@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Forestry 472: Ecological Monitoring and Data Analysis</title>
+  <meta name="description" content="Course book for FOR472: Ecological Monitoring and Data Analysis">
+  <meta name="generator" content="bookdown 0.7 and GitBook 2.6.7">
+
+  <meta property="og:title" content="Forestry 472: Ecological Monitoring and Data Analysis" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Course book for FOR472: Ecological Monitoring and Data Analysis" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Forestry 472: Ecological Monitoring and Data Analysis" />
+  
+  <meta name="twitter:description" content="Course book for FOR472: Ecological Monitoring and Data Analysis" />
+  
+
+<meta name="author" content="Andrew O. Finley and Jeffrey W. Doser">
+
+
+<meta name="date" content="2018-08-30">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+
+<link rel="next" href="data.html">
+<script src="libs/jquery/jquery.min.js"></script>
+<link href="libs/gitbook/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="css/style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">A Book Example</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="1" data-path="data.html"><a href="data.html"><i class="fa fa-check"></i><b>1</b> Data</a><ul>
+<li class="chapter" data-level="1.1" data-path="data.html"><a href="data.html#fef-tree-biomass-data-set"><i class="fa fa-check"></i><b>1.1</b> FEF Tree Biomass Data Set</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://bookdown.org" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Forestry 472: Ecological Monitoring and Data Analysis</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="header">
+<h1 class="title">Forestry 472: Ecological Monitoring and Data Analysis</h1>
+<h4 class="author"><em>Andrew O. Finley and Jeffrey W. Doser</em></h4>
+<h4 class="date"><em>2018-08-30</em></h4>
+</div>
+<div id="preface" class="section level1 unnumbered">
+<h1>Preface</h1>
+<p>This text is an introduction to data sciences for Forestry and Environmental students. Understanding and responding to current environmental challenges requires strong quantitative and analytical skills. There is a pressing need for professionals with data science expertise in this data rich era. The <a href="http://www.mckinsey.com/insights/business_technology/big_data_the_next_frontier_for_innovation">McKinsey Global Institute</a> predicts that “by 2018, the United States alone could face a shortage of 140,000 to 190,000 people with deep analytical skills as well as 1.5 million managers and analysts with the know-how to use the analysis of big data to make effective decisions”. The Harvard Business Review dubbed <em>data scientist</em> <a href="https://hbr.org/2012/10/data-scientist-the-sexiest-job-of-the-21st-century">“The Sexiest Job of the 21st Century”</a>. This need is not at all confined to the tech sector, as forestry professionals are increasingly asked to assume the role of <em>data scientists</em> and <em>data analysts</em> given the rapid accumulation and availability of environmental data (see, e.g. <span class="citation">Schimel and Keller (<a href="#ref-Schimel2015">2015</a>)</span>). <a href="www.import.io/post/data-scientists-vs-data-analysts-why-the-distinction-matters">Thomson Nguyen’s talk</a> on the difference between a data scientist and a data analyst is very interesting and contains elements relevant to the aim of this text. This aim is to give you the opportunity to acquire the tools needed to become an environmental data analyst. Following <span class="citation">Bravo et al. (<a href="#ref-Bravo16">2016</a>)</span> a <em>data analyst</em> has the ability to make appropriate calculations, convert data to graphical representation, interpret the information presented in graphical or mathematical forms, and make judgements or draw conclusions based on the quantitative analysis of data.</p>
+
+</div>
+<h3>References</h3>
+<div id="refs" class="references">
+<div id="ref-Schimel2015">
+<p>Schimel, David, and Michael Keller. 2015. “Big Questions, Big Science: Meeting the Challenges of Global Ecology.” <em>Oecologia</em> 177 (4): 925–34. doi:<a href="https://doi.org/10.1007/s00442-015-3236-3">10.1007/s00442-015-3236-3</a>.</p>
+</div>
+<div id="ref-Bravo16">
+<p>Bravo, Adriana, Ana Porzecanski, Eleanor Sterling, Nora Bynum, Michelle Cawthorn, Denny S. Fernandez, Laurie Freeman, et al. 2016. “Teaching for Higher Levels of Thinking: Developing Quantitative and Analytical Skills in Environmental Science Courses.” <em>Ecosphere</em> 7 (4): n/a–n/a. doi:<a href="https://doi.org/10.1002/ecs2.1290">10.1002/ecs2.1290</a>.</p>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+
+<a href="data.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook/js/app.min.js"></script>
+<script src="libs/gitbook/js/lunr.js"></script>
+<script src="libs/gitbook/js/plugin-search.js"></script>
+<script src="libs/gitbook/js/plugin-sharing.js"></script>
+<script src="libs/gitbook/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": true,
+"facebook": false,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/yihui/bookdown-crc/edit/master/index.Rmd",
+"text": "Edit"
+},
+"download": ["bookdown.pdf", "bookdown.epub"],
+"toc": {
+"collapse": "none"
+}
+});
+});
+</script>
+
+</body>
+
+</html>
