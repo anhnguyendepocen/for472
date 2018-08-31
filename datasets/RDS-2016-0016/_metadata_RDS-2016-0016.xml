@@ -1,0 +1,427 @@
+<?xml version="1.0"?>
+<?xml-stylesheet href='NBII_classic.xsl' type='text/xsl'?>
+<metadata>
+  <idinfo>
+    <citation>
+      <citeinfo>
+        <origin>Wood, Frederica</origin>
+        <origin>Kochenderfer, James N.</origin>
+        <origin>Adams, Mary B.</origin>
+        <pubdate>2016</pubdate>
+        <title>Felled tree biomass for four hardwood species of the central Appalachians, West Virginia</title>
+        <geoform>tabular digital data</geoform>
+        <pubinfo>
+          <pubplace>Fort Collins, CO</pubplace>
+          <publish>Forest Service Research Data Archive</publish>
+        </pubinfo>
+        <onlink>http://dx.doi.org/10.2737/RDS-2016-0016</onlink>
+      </citeinfo>
+    </citation>
+    <descript>
+      <abstract>This data package includes felled tree biomass by tree component for four hardwood species of the central Appalachians sampled on the Fernow Experimental Forest (FEF), West Virginia. A total of 88 trees were sampled from plots within two different watersheds on the FEF. Hardwood species sampled include Acer rubrum, Betula lenta, Liriodendron tulipifera, and Prunus serotina, all of which were measured in the summer of 1991 and 1992. Data include tree height, diameter, as well as green and dry weight of tree stem, top, small branches, large branches, and leaves.</abstract>
+      <purpose>These data were collected to test whether the Brenneman et al. (1978) biomass equations were accurate for smaller diameter trees in support of a study comparing vegetation growth and nutrient status between an untreated and an artificially acidified watershed.
+
+Brenneman, B.B.; Frederick, D.J.; Gardner,W.E.; Schoenhofen, L.H.; Marsh, P.L. 1977. Biomass of species and stands of West Virginia hardwoods. In: Pope, P.E., ed. Proceedings, Central Hardwood Forest Conference II : West Lafayette, Indiana, November 14-16, 1978. p. 160-178.</purpose>
+    </descript>
+    <timeperd>
+      <timeinfo>
+        <mdattim>
+          <sngdate>
+            <caldate>199107</caldate>
+          </sngdate>
+          <sngdate>
+            <caldate>199108</caldate>
+          </sngdate>
+          <sngdate>
+            <caldate>199206</caldate>
+          </sngdate>
+        </mdattim>
+      </timeinfo>
+      <current>ground condition</current>
+    </timeperd>
+    <status>
+      <progress>Complete</progress>
+      <update>None planned</update>
+    </status>
+    <spdom>
+      <descgeog>The Fernow Experimental Forest is located on the Monongahela National Forest in Tucker County, West Virginia approximately 2 miles southeast of Parsons, West Virginia.</descgeog>
+      <bounding>
+        <westbc>-79.6902209</westbc>
+        <eastbc>-79.6802399</eastbc>
+        <northbc>39.0660358</northbc>
+        <southbc>39.0540966</southbc>
+        <boundalt>
+          <altmin>730</altmin>
+          <altmax>860</altmax>
+          <altunits>meters</altunits>
+        </boundalt>
+      </bounding>
+    </spdom>
+    <keywords>
+      <theme>
+        <themekt>None</themekt>
+        <themekey>biomass</themekey>
+        <themekey>green weight</themekey>
+        <themekey>dry weight</themekey>
+        <themekey>felled tree</themekey>
+        <themekey>tree component</themekey>
+        <themekey>hardwoods</themekey>
+      </theme>
+      <theme>
+        <themekt>ISO 19115 Topic Category</themekt>
+        <themekey>biota</themekey>
+        <themekey>environment</themekey>
+      </theme>
+      <theme>
+        <themekt>National Research &amp; Development Taxonomy</themekt>
+        <themekey>Forest &amp; Plant Health</themekey>
+        <themekey>Forest Products</themekey>
+        <themekey>Bioenergy and biomass</themekey>
+        <themekey>Inventory, Monitoring, &amp; Analysis</themekey>
+        <themekey>Techniques</themekey>
+        <themekey>Natural Resource Management &amp; Use</themekey>
+        <themekey>Forest management</themekey>
+      </theme>
+      <place>
+        <placekt>None</placekt>
+        <placekey>Fernow Experimental Forest</placekey>
+        <placekey>Monongahela National Forest</placekey>
+        <placekey>West Virginia</placekey>
+        <placekey>central Appalachian Mountains</placekey>
+      </place>
+    </keywords>
+    <taxonomy>
+      <keywtax>
+        <taxonkt>None</taxonkt>
+        <taxonkey>plants</taxonkey>
+        <taxonkey>vegetation</taxonkey>
+        <taxonkey>black cherry</taxonkey>
+        <taxonkey>Prunus serotina</taxonkey>
+        <taxonkey>black birch</taxonkey>
+        <taxonkey>Betula lenta</taxonkey>
+        <taxonkey>red maple</taxonkey>
+        <taxonkey>Acer rubrum</taxonkey>
+        <taxonkey>yellow-poplar</taxonkey>
+        <taxonkey>Liriodendron tulipifera</taxonkey>
+      </keywtax>
+      <taxonsys>
+        <classsys>
+          <classcit>
+            <citeinfo>
+              <origin>ITIS</origin>
+              <pubdate>2015</pubdate>
+              <title>Integrated Taxonomic Information System</title>
+              <geoform>database</geoform>
+              <othercit>Retrieved [September, 15, 2015] </othercit>
+              <onlink>http://www.itis.gov</onlink>
+            </citeinfo>
+          </classcit>
+        </classsys>
+        <taxonpro>
+        </taxonpro>
+      </taxonsys>
+      <taxoncl>
+        <taxonrn>Kingdom</taxonrn>
+        <taxonrv>Plantae</taxonrv>
+        <taxoncl>
+          <taxonrn>Division</taxonrn>
+          <taxonrv>Tracheophyta</taxonrv>
+          <taxoncl>
+            <taxonrn>Class</taxonrn>
+            <taxonrv>Magnoliopsida</taxonrv>
+            <taxoncl>
+              <taxonrn>Superorder</taxonrn>
+              <taxonrv>Rosanae</taxonrv>
+              <taxoncl>
+                <taxonrn>Order</taxonrn>
+                <taxonrv>Rosales</taxonrv>
+                <taxoncl>
+                  <taxonrn>Family</taxonrn>
+                  <taxonrv>Rosaceae</taxonrv>
+                  <common>roses</common>
+                  <taxoncl>
+                    <taxonrn>Genus</taxonrn>
+                    <taxonrv>Prunus L.</taxonrv>
+                    <common>chokecherry</common>
+                    <common>plum</common>
+                    <taxoncl>
+                      <taxonrn>Species</taxonrn>
+                      <taxonrv>Prunus serotina Ehrh.</taxonrv>
+                      <common>black cherry</common>
+                      <common>black chokecherry</common>
+                    </taxoncl>
+                  </taxoncl>
+                </taxoncl>
+              </taxoncl>
+              <taxoncl>
+                <taxonrn>Order</taxonrn>
+                <taxonrv>Fagales</taxonrv>
+                <taxoncl>
+                  <taxonrn>Family</taxonrn>
+                  <taxonrv>Betulaceae</taxonrv>
+                  <common>alder</common>
+                  <common>birch</common>
+                  <taxoncl>
+                    <taxonrn>Genus</taxonrn>
+                    <taxonrv>Betula L.</taxonrv>
+                    <common>birch</common>
+                    <taxoncl>
+                      <taxonrn>Species</taxonrn>
+                      <taxonrv>Betula lenta L.</taxonrv>
+                      <common>black birch</common>
+                      <common>sweet birch</common>
+                    </taxoncl>
+                  </taxoncl>
+                </taxoncl>
+              </taxoncl>
+              <taxoncl>
+                <taxonrn>Order</taxonrn>
+                <taxonrv>Sapindales</taxonrv>
+                <taxoncl>
+                  <taxonrn>Family</taxonrn>
+                  <taxonrv>Sapindaceae</taxonrv>
+                  <common>soapberries</common>
+                  <taxoncl>
+                    <taxonrn>Genus</taxonrn>
+                    <taxonrv>Acer L.</taxonrv>
+                    <common>maples</common>
+                    <taxoncl>
+                      <taxonrn>Species</taxonrn>
+                      <taxonrv>Acer rubrum L.</taxonrv>
+                      <common>red maple</common>
+                    </taxoncl>
+                  </taxoncl>
+                </taxoncl>
+              </taxoncl>
+            </taxoncl>
+            <taxoncl>
+              <taxonrn>Superorder</taxonrn>
+              <taxonrv>Magnolianae</taxonrv>
+              <taxoncl>
+                <taxonrn>Order</taxonrn>
+                <taxonrv>Magnoliales</taxonrv>
+                <taxoncl>
+                  <taxonrn>Family</taxonrn>
+                  <taxonrv>Magnoliaceae</taxonrv>
+                  <common>magnolias</common>
+                  <taxoncl>
+                    <taxonrn>Genus</taxonrn>
+                    <taxonrv>Liriodendron L.</taxonrv>
+                    <common>tuliptree</common>
+                    <taxoncl>
+                      <taxonrn>Species</taxonrn>
+                      <taxonrv>Liriodendron tulipifera L.</taxonrv>
+                      <common>yellow-poplar</common>
+                      <common>tulip poplar</common>
+                      <common>tuliptree</common>
+                    </taxoncl>
+                  </taxoncl>
+                </taxoncl>
+              </taxoncl>
+            </taxoncl>
+          </taxoncl>
+        </taxoncl>
+      </taxoncl>
+    </taxonomy>
+    <accconst>None</accconst>
+    <useconst>These data were collected using funding from the U.S. Government and can be used without additional permissions or fees. If you use these data in a publication, presentation, or other research product please use the citation below when citing the data publication:  
+	
+Wood, Frederica; Kochenderfer, James N.; Adams, Mary B. 2016. Felled tree biomass for four hardwood species of the central Appalachians, West Virginia. Fort Collins, CO: Forest Service Research Data Archive. http://dx.doi.org/10.2737/RDS-2016-0016</useconst>
+    <ptcontac>
+      <cntinfo>
+        <cntperp>
+          <cntper>Frederica Wood</cntper>
+          <cntorg>USDA Forest Service, Northern Research Station</cntorg>
+        </cntperp>
+        <cntpos>Fernow Experimental Forest Data Manager</cntpos>
+        <cntaddr>
+          <addrtype>mailing</addrtype>
+          <address>Timber &amp; Watershed Laboratory</address>
+          <address>PO Box 404</address>
+          <city>Parsons</city>
+          <state>WV</state>
+          <postal>26287</postal>
+        </cntaddr>
+        <cntaddr>
+          <addrtype>physical</addrtype>
+          <address>Timber &amp; Watershed Laboratory</address>
+          <address>459 Nursery Bottom Rd.</address>
+          <city>Parsons</city>
+          <state>WV</state>
+          <postal>26287</postal>
+        </cntaddr>
+        <cntvoice>304-478-2000 x128</cntvoice>
+      </cntinfo>
+    </ptcontac>
+    <browse>
+      <browsen>\Supplements\biomass_sample_locations.jpg</browsen>
+      <browsed>Map showing biomass sampling locations in watersheds 3 and 7 on the Fernow Experimental Forest.</browsed>
+      <browset>JPEG</browset>
+    </browse>
+    <datacred>Funding for this project provided by USDA Forest Service, Northern Research Station.</datacred>
+  </idinfo>
+  <dataqual>
+    <attracc>
+      <attraccr>Tree species was identified in the field by experienced forestry personnel. Tree component samples were labeled in a consistent manner and the labels double-checked before storage. Each sample was identified by watershed, year, species, tree component, and subsample code. Sample labels were carried through the entire laboratory process. Green weights were measured in the field to the nearest 1 gram and dry weights measured in the laboratory to the nearest 0.1 grams. Digital data were checked for accuracy by the project data manager.</attraccr>
+    </attracc>
+    <logic>Not applicable</logic>
+    <complete>No missing data</complete>
+    <lineage>
+      <method>
+        <methtype>Field</methtype>
+        <methdesc>Five trees from each of four species (black cherry [Prunus serotina], red maple [Acer rubrum], black birch [Betula lenta], and yellow-poplar [Liriodendron tulipifera]) in the range of 5 to 9 inches diameter at breast height (dbh) were sampled from each watershed in July and August 1991. Six trees from each of the same four species in the range of 1 to 4.9 inches dbh were sampled from each watershed in June 1992.
+
+The permanent growth plot centers were randomly selected as sampling points. At each selected plot (\Supplements\biomass_sample_locations.jpg), trees were selected in a band 50-75 feet from plot center (plot radius = 37.2 feet) beginning in a clockwise direction from North. For the larger dbh group, the first dominant or codominant trees encountered of the four selected species (maximum of one per species per plot) were selected. For the smaller dbh group, the goal was to select no more than three intermediate trees per species per plot. However more trees had to be selected from a plot for black cherry on watershed 3 (four trees) and yellow-poplar on watershed 7 (five trees) due to the species distribution within the watershed. When a species was not available on a plot it was chosen on an alternate plot.
+
+Tree dbh (inches) and total height (feet) were measured before each tree was felled. All components of sampled trees were weighed in the field immediately after they were felled. Green weights were measured to the nearest 0.1 kilograms.
+
+Trees were limbed and cut into 4-foot bolts to where the live crown began. Each bolt was numbered and weighed individually (stem field sample). One disk 1.5-inches thick was cut from the small end of each bolt. The disks were placed in individual plastic bags for nutrient and moisture content determinations. The remainder of the bole (top-wood above where the live crown began) was marked at one-quarter, one-half and three-quarter points, and then cut into convenient lengths and weighed (top field sample). Subsamples 2 inches in length were removed at each of the previously marked points for nutrient and moisture content determinations.
+
+The severed branches were weighed separately for each side of the tree. All branches 0.5 inches and smaller in diameter were removed from the bole on each side of the tree and weighed (small branch field sample). Branches greater than 0.5 inches diameter on each side of the tree also were weighed (large branch field sample). Two samples of small branches and two samples of large branches were collected for nutrient and moisture content determinations from each side of the tree. For the large branches a 2-inch-long section of branch was collected at the one-third point of total branch length measuring from the bole.
+
+Leaves were removed from each side of the tree and placed in large plastic bags and weighed. Immediately after weighing two subsamples were collected from each side of the tree crown for nutrient and moisture content determinations. All nutrient and moisture content subsamples – leaves, branches, top-wood, and bole disks – were placed in air-tight plastic bags carefully labeled by watershed, plot, species and component, and kept in a cooler with ice for transportation to the laboratory.</methdesc>
+      </method>
+      <method>
+        <methtype>Lab</methtype>
+        <methdesc>Each subsample was weighed to the nearest 0.1 grams in the laboratory the same day it was collected. Subsamples were then oven-dried at 100 degrees Celsius until a consistent dry weight was reached.
+
+Percent dry weight was calculated as dry weight divided by green weight for each subsample. Dry weight for each field sample was calculated as total green weight per sample multiplied by the percent dry weight of its corresponding subsample. Field sample dry weights were summed by component to determine total component dry weights. Both green and dry total woody material weights were the sum of stem, top and large and small branch weights.</methdesc>
+      </method>
+      <procstep>
+        <procdesc>Field and laboratory data were recorded on data forms by hand and then entered into ASCII text files. Digital data were checked for accuracy by the project data manager. A Fortran program was used to summarize the green and dry weight data in kilograms by tree component for each sampled tree and calculate percent moisture by tree component. Whole-tree dry weights by tree component also were calculated by the Fortran program using the field-collected green weights and percent moisture for each tree component. Total green and dry weights for each tree and tree component were saved in an ASCII text file.</procdesc>
+        <procdate>1992</procdate>
+      </procstep>
+    </lineage>
+  </dataqual>
+  <eainfo>
+    <overview>
+      <eaover>Below you will find a list of the data files available in this package and a short description of their contents.
+
+\Data\felled_tree_biomass.csv is a comma-delimited ASCII text file containing tree biomass data for four hardwood species.
+
+WATERSHED = research compartment where sample plots are located.
+
+YEAR = year the tree was sampled (1991, 1992).
+
+PLOT = plot number.
+
+SPECIES = tree species (genus and species).
+
+DBH_IN = tree diameter at breast height (dbh) in inches.
+
+HEIGHT_FT = total tree height in feet measured before the tree was sampled.
+
+STEM_GREEN_KG = total green weight of tree stem measured in the field in kilograms.
+
+TOP_GREEN_KG = total green weight of tree top measured in the field in kilograms.
+
+SMBRANCH_GREEN_KG = total green weight of tree small branches measured in the field in kilograms.
+
+LGBRANCH_GREEN_KG = total green weight of tree large branches measured in the field in kilograms.
+
+ALLWOODY_GREEN_KG = sum of green weights for stem, top, and branch tree components in kilograms.
+
+LEAVES_GREEN_KG = total green weight of tree leaves measured in the field in kilograms.
+
+STEM_DRY_KG = total dry weight of tree stem derived from green weight and moisture content determined in laboratory; weight in kilograms.
+
+TOP_DRY_KG = total dry weight of tree top derived from green weight and moisture content determined in laboratory; weight in kilograms.
+
+SMBRANCH_DRY_KG = total dry weight of tree small branches derived from green weight and moisture content determined in laboratory; weight in kilograms.
+
+LGBRANCH_DRY_KG = total dry weight of tree large branches derived from green weight and moisture content determined in laboratory; weight in kilograms.
+
+ALLWOODY_DRY_KG = sum of dry weights for stem, top, and branch tree components in kilograms.
+
+LEAVES_DRY_KG = total dry weight of tree leaves derived from green weight and moisture content determined in laboratory; weight in kilograms.</eaover>
+      <eadetcit>None provided</eadetcit>
+    </overview>
+    <overview>
+      <eaover>\Data\watershed_plot_locations.csv is a comma-delimited ASCII text file containing geographic coordinates for each biomass sampling location. (Projection is NAD83, UTM zone 17N).
+
+WATERSHED = research compartment where sample plots are located.
+
+PLOT = plot number.
+
+EASTING NAD83 zone 17N (meters) = easting coordinate (datum NAD83, UTM zone 17N).
+
+NORTHING NAD83 zone 17N (meters) = northing coordinate (datum NAD83, UTM zone 17N).</eaover>
+      <eadetcit>None provided</eadetcit>
+    </overview>
+  </eainfo>
+  <distinfo>
+    <distrib>
+      <cntinfo>
+        <cntorgp>
+          <cntorg>USDA Forest Service, Research and Development</cntorg>
+        </cntorgp>
+        <cntpos>Research Data Archivist</cntpos>
+        <cntaddr>
+          <addrtype>mailing and physical</addrtype>
+          <address>240 West Prospect Road</address>
+          <city>Fort Collins</city>
+          <state>CO</state>
+          <postal>80526</postal>
+          <country>USA</country>
+        </cntaddr>
+        <cntvoice>see Contact Instructions</cntvoice>
+        <cntinst>This contact information was current as of June 2016. For current information see Contact Us page on: http://dx.doi.org/10.2737/RDS.</cntinst>
+      </cntinfo>
+    </distrib>
+    <resdesc>RDS-2016-0016</resdesc>
+    <distliab>Metadata documents have been reviewed for accuracy and completeness. Unless otherwise stated, all data and related materials are considered to satisfy the quality standards relative to the purpose for which the data were collected. However, neither the author, the Archive, nor any part of the federal government can assure the reliability or suitability of these data for a particular purpose. The act of distribution shall not constitute any such warranty, and no responsibility is assumed for a user's application of these data or related materials.
+
+The metadata, data, or related materials may be updated without notification. If a user believes errors are present in the metadata, data or related materials, please use the information in (1) Identification Information: Point of Contact, (2) Metadata Reference: Metadata Contact, or (3) Distribution Information: Distributor to notify the author or the Archive of the issues.</distliab>
+    <stdorder>
+      <digform>
+        <digtinfo>
+          <formname>ASCII</formname>
+          <formvern>see Format Specification</formvern>
+          <formspec>Comma-delimited ASCII text file (CSV)</formspec>
+          <filedec>Files zipped with Winzip 14.0</filedec>
+        </digtinfo>
+        <digtopt>
+          <onlinopt>
+            <computer>
+              <networka>
+                <networkr>http://www.fs.usda.gov/rds/archive</networkr>
+              </networka>
+            </computer>
+          </onlinopt>
+        </digtopt>
+      </digform>
+      <fees>None</fees>
+    </stdorder>
+  </distinfo>
+  <metainfo>
+    <metd>20160608</metd>
+    <metc>
+      <cntinfo>
+        <cntperp>
+          <cntper>Frederica Wood</cntper>
+          <cntorg>USDA Forest Service, Northern Research Station</cntorg>
+        </cntperp>
+        <cntpos>Fernow Experimental Forest Data Manager</cntpos>
+        <cntaddr>
+          <addrtype>mailing</addrtype>
+          <address>Timber &amp; Watershed Laboratory</address>
+          <address>PO Box 404</address>
+          <city>Parsons</city>
+          <state>WV</state>
+          <postal>26287</postal>
+        </cntaddr>
+        <cntaddr>
+          <addrtype>physical</addrtype>
+          <address>Timber &amp; Watershed Laboratory</address>
+          <address>459 Nursery Bottom Rd.</address>
+          <city>Parsons</city>
+          <state>WV</state>
+          <postal>26287</postal>
+        </cntaddr>
+        <cntvoice>304-478-2000 x128</cntvoice>
+      </cntinfo>
+    </metc>
+    <metstdn>FGDC Biological Data Profile of the Content Standard for Digital Geospatial Metadata</metstdn>
+    <metstdv>FGDC-STD-001.1-1999</metstdv>
+  </metainfo>
+</metadata>

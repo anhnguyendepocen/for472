@@ -1,0 +1,797 @@
+<?xml version="1.0"?>
+<?xml-stylesheet href='NBII_classic.xsl' type='text/xsl'?>
+<metadata>
+  <idinfo>
+    <citation>
+      <citeinfo>
+        <origin>Kubiske, Mark E.</origin>
+        <pubdate>2013</pubdate>
+        <title>Tree height and diameter data from the Aspen FACE Experiment, 1997-2008</title>
+        <geoform>tabular digital data</geoform>
+        <pubinfo>
+          <pubplace>Newtown Square, PA</pubplace>
+          <publish>USDA Forest Service, Northern Research Station</publish>
+        </pubinfo>
+        <onlink>http://dx.doi.org/10.2737/RDS-2013-0015</onlink>
+      </citeinfo>
+    </citation>
+    <descript>
+      <abstract>This data product contains annual tree height and diameter measurements from 1997 to 2008 for trembling aspen, sugar maple, and paper birch as part of the Aspen FACE (Free-Air Carbon Dioxide Enrichment) Experiment. This experiment was located on the Harshaw Experimental Forest and consisted of twelve 30 meter diameter rings of aspen, birch and maple trees in which the concentrations of carbon dioxide and tropospheric ozone were controlled. Because there was no confinement, there was no significant change in the natural, ambient environment other than elevating these trace gas concentrations.</abstract>
+      <purpose>The Aspen FACE Experiment was a multidisciplinary study that assessed the effects of increasing tropospheric ozone and carbon dioxide concentrations on the structure and functioning of northern forest ecosystems. The design provided the ability to assess the effects of these gasses alone, and in combination, on many ecosystem attributes, including growth, leaf development, root characteristics, and soil carbon.</purpose>
+      <supplinf>Original metadata date was 09/24/2013. Minor metadata updates on 01/08/2015 and 03/04/2015. On 3/30/2016 the bounding coordinates, cross-references, and methodology citations were updated.</supplinf>
+    </descript>
+    <timeperd>
+      <timeinfo>
+        <rngdates>
+          <begdate>1997</begdate>
+          <enddate>2008</enddate>
+        </rngdates>
+      </timeinfo>
+      <current>ground condition</current>
+    </timeperd>
+    <status>
+      <progress>Complete</progress>
+      <update>As needed</update>
+    </status>
+    <spdom>
+      <descgeog>The Aspen FACE Experiment was located in the Harshaw Experimental Forest in Oneida County, Wisconsin on a 32 hectare USDA Forest Service research farm near Rhinelander. The legal description of the site is SW80, Sect. 21, T37N, R7E, Cassian Township, Oneida County, Wisconsin. The soil is a Pandus series, mixed, frigid, coarse loamy, Alfic Haplorthod. It consists of a 30 centimeter clay loam plow layer that grades into sandy loam above stratified sand and gravel. Average soil texture across the site is 55.6% sand, 36.6% silt, and 7.8% clay.  The topography is level to gently rolling. When the FACE Experiment was initiated, total soil N was 0.12%, with 13.53 milligrams/gram of NO3- N, and 0.84 milligrams/gram of NH4+ N, and the C:N was 12.9. Detailed information on site and soil characteristics is presented in Dickson et al. 2000.</descgeog>
+      <bounding>
+        <westbc>-89.63077383</westbc>
+        <eastbc>-89.62551667</eastbc>
+        <northbc>45.68118365</northbc>
+        <southbc>45.67394177</southbc>
+      </bounding>
+    </spdom>
+    <keywords>
+      <theme>
+        <themekt>ISO 19115 Topic Category</themekt>
+        <themekey>biota</themekey>
+        <themekey>environment</themekey>
+      </theme>
+      <theme>
+        <themekt>National Research &amp; Development Taxonomy</themekt>
+        <themekey>Climate change</themekey>
+        <themekey>Carbon</themekey>
+        <themekey>Ecology, Ecosystems, &amp; Environment</themekey>
+        <themekey>Plant ecology</themekey>
+        <themekey>Forest &amp; Plant Health</themekey>
+        <themekey>Air, soil, water pollution (environmental injury)</themekey>
+        <themekey>Climate effects</themekey>
+        <themekey>Inventory, Monitoring, &amp; Analysis</themekey>
+        <themekey>Monitoring</themekey>
+      </theme>
+      <theme>
+        <themekt>None</themekt>
+        <themekey>aspen</themekey>
+        <themekey>birch</themekey>
+        <themekey>maple</themekey>
+        <themekey>tropospheric ozone</themekey>
+        <themekey>carbon dioxide</themekey>
+      </theme>
+      <place>
+        <placekt>None</placekt>
+        <placekey>Harshaw Experimental Forest</placekey>
+        <placekey>Wisconsin</placekey>
+      </place>
+    </keywords>
+    <taxonomy>
+      <keywtax>
+        <taxonkt>None</taxonkt>
+        <taxonkey>multiple species</taxonkey>
+        <taxonkey>plants</taxonkey>
+      </keywtax>
+      <taxonsys>
+        <classsys>
+          <classcit>
+            <citeinfo>
+              <origin>U.S. Department of Agriculture</origin>
+              <origin>U.S. National Oceanic and Atmospheric Administration</origin>
+              <origin>U.S. Geological Survey</origin>
+              <origin>Smithsonian Institution</origin>
+              <origin>U.S. Environmental Protection Agency</origin>
+              <origin>U.S. Fish &amp; Wildlife Service</origin>
+              <origin>Agriculture and Agri-Food Canada</origin>
+              <origin>NatureServe</origin>
+              <origin>U.S. National Park Service</origin>
+              <origin>Conabio</origin>
+              <pubdate>Unknown</pubdate>
+              <title>Integrated Taxonomic Information System (ITIS)</title>
+              <geoform>database</geoform>
+              <othercit>Retrieved [September, 10, 2013]</othercit>
+              <onlink>http://www.itis.gov</onlink>
+            </citeinfo>
+          </classcit>
+          <classmod>According to Voss 1985, the Betulaceae also includes hornbeam (blue-beech; Carpinus caroliniana) and ironwood (hop-hornbeam; Ostrya virginiana).
+
+Voss, E.G. 1985, Michigan Flora, Volume II, Dicots.  Cranbrook Institute of Science.</classmod>
+        </classsys>
+        <taxonpro>
+        </taxonpro>
+      </taxonsys>
+      <taxoncl>
+        <taxonrn>Kingdom</taxonrn>
+        <taxonrv>Plantae</taxonrv>
+        <common>plantes</common>
+        <common>Planta</common>
+        <common>Vegetal</common>
+        <common>plants</common>
+        <taxoncl>
+          <taxonrn>Subkingdom</taxonrn>
+          <taxonrv>Viridaeplantae</taxonrv>
+          <common>green plants</common>
+          <taxoncl>
+            <taxonrn>Infrakingdom</taxonrn>
+            <taxonrv>Streptophyta</taxonrv>
+            <common>land plants</common>
+            <taxoncl>
+              <taxonrn>Division</taxonrn>
+              <taxonrv>Tracheophyta</taxonrv>
+              <common>vascular plants</common>
+              <common>tracheophytes</common>
+              <taxoncl>
+                <taxonrn>Subdivision</taxonrn>
+                <taxonrv>Spermatophytina</taxonrv>
+                <common>spermatophytes</common>
+                <common>seed plants</common>
+                <common>phanerogames</common>
+                <taxoncl>
+                  <taxonrn>Infradivision</taxonrn>
+                  <taxonrv>Angiospermae</taxonrv>
+                  <common>flowering plants</common>
+                  <common>angiosperms</common>
+                  <common>plantas com flor</common>
+                  <common>angiosperma</common>
+                  <common>plantes a fleurs</common>
+                  <common>angiospermes</common>
+                  <common>plantes a fruits</common>
+                  <taxoncl>
+                    <taxonrn>Class</taxonrn>
+                    <taxonrv>Magnoliopsida</taxonrv>
+                    <taxoncl>
+                      <taxonrn>Superorder</taxonrn>
+                      <taxonrv>Rosanae</taxonrv>
+                      <taxoncl>
+                        <taxonrn>Order</taxonrn>
+                        <taxonrv>Fagales</taxonrv>
+                        <taxoncl>
+                          <taxonrn>Family</taxonrn>
+                          <taxonrv>Betulaceae</taxonrv>
+                          <common>alder</common>
+                          <common>birch</common>
+                          <taxoncl>
+                            <taxonrn>Genus</taxonrn>
+                            <taxonrv>Betula</taxonrv>
+                            <common>birch</common>
+                            <taxoncl>
+                              <taxonrn>Species</taxonrn>
+                              <taxonrv>Betula papyrifera</taxonrv>
+                              <common>paper birch</common>
+                            </taxoncl>
+                          </taxoncl>
+                        </taxoncl>
+                      </taxoncl>
+                      <taxoncl>
+                        <taxonrn>Order</taxonrn>
+                        <taxonrv>Sapindales</taxonrv>
+                        <taxoncl>
+                          <taxonrn>Family</taxonrn>
+                          <taxonrv>Sapindaceae</taxonrv>
+                          <common>soapberries</common>
+                          <taxoncl>
+                            <taxonrn>Genus</taxonrn>
+                            <taxonrv>Acer</taxonrv>
+                            <common>maples</common>
+                            <taxoncl>
+                              <taxonrn>Species</taxonrn>
+                              <taxonrv>Acer saccharum</taxonrv>
+                              <common>sugar maple</common>
+                            </taxoncl>
+                          </taxoncl>
+                        </taxoncl>
+                      </taxoncl>
+                      <taxoncl>
+                        <taxonrn>Order</taxonrn>
+                        <taxonrv>Malpighiales</taxonrv>
+                        <taxoncl>
+                          <taxonrn>Family</taxonrn>
+                          <taxonrv>Salicaceae</taxonrv>
+                          <common>willows</common>
+                          <common>saules</common>
+                          <taxoncl>
+                            <taxonrn>Genus</taxonrn>
+                            <taxonrv>Populus</taxonrv>
+                            <common>cottonwood</common>
+                            <common>poplar</common>
+                            <taxoncl>
+                              <taxonrn>Species</taxonrn>
+                              <taxonrv>Populus tremuloides</taxonrv>
+                              <common>quaking aspen</common>
+                              <common>trembling aspen</common>
+                            </taxoncl>
+                          </taxoncl>
+                        </taxoncl>
+                      </taxoncl>
+                    </taxoncl>
+                  </taxoncl>
+                </taxoncl>
+              </taxoncl>
+            </taxoncl>
+          </taxoncl>
+        </taxoncl>
+      </taxoncl>
+    </taxonomy>
+    <accconst>None</accconst>
+    <useconst>These data were collected by USDA Forest Service researchers and can be used without additional permissions or fees. If you use these data in a publication, presentation, or other research product please use one of the citations below when citing the data product:
+
+Kubiske, Mark E. 2013. Tree height and diameter data from the Aspen FACE Experiment, 1997-2008. Newtown Square, PA: USDA Forest Service, Northern Research Station. http://dx.doi.org/10.2737/RDS-2013-0015</useconst>
+    <ptcontac>
+      <cntinfo>
+        <cntperp>
+          <cntper>Mark Kubiske</cntper>
+          <cntorg>USDA Forest Service, Northern Research Station</cntorg>
+        </cntperp>
+        <cntpos>Research Scientist</cntpos>
+        <cntaddr>
+          <addrtype>mailing and physical</addrtype>
+          <address>5985 County Road K</address>
+          <city>Rhinelander</city>
+          <state>WI</state>
+          <postal>54501</postal>
+          <country>USA</country>
+        </cntaddr>
+        <cntvoice>715-362-1108</cntvoice>
+      </cntinfo>
+    </ptcontac>
+    <browse>
+      <browsen>\Supplements\RingMaps.pdf</browsen>
+      <browsed>Adobe Acrobat PDF file containing the 12 rings maps (and legend) for the FACE Experiment. The maps are labelled as 'replicate.treatment' where replicate=1, 2, or 3 and treatment = 1, 2, 3, or 4. (Replicate 1=north, 2=central, and 3=south. Treatment 1=control, 2=elevated CO2, 3=elevated O3, and 4=elevated CO2+O3)</browsed>
+      <browset>PDF</browset>
+    </browse>
+    <datacred>The Aspen FACE Experiment was funded principally by the U.S. Department of Energy's (DOE) Office of Biological and Environmental Research with additional support from the USFS Global Change Program, Michigan Technological University, the Canadian Forest Service and the USDA Forest Service Northern Research Station (NRS).</datacred>
+    <crossref>
+      <citeinfo>
+        <origin>Kubiske, Mark E.</origin>
+        <origin>Foss, Anita R.</origin>		
+        <pubdate>2015</pubdate>
+        <title>Carbon dioxide and ozone data from the Aspen FACE Experiment, 1998-2009, and Phase II Experiment, 2010</title>
+        <geoform>tabular digital data</geoform>
+        <pubinfo>
+          <pubplace>Fort Collins, CO</pubplace>
+          <publish>Forest Service Research Data Archive</publish>
+        </pubinfo>
+        <onlink>http://dx.doi.org/10.2737/RDS-2015-0001</onlink>
+      </citeinfo>
+    </crossref>
+    <crossref>
+      <citeinfo>
+        <origin>Kubiske, Mark E.</origin>
+        <pubdate>2016</pubdate>
+        <title>Meteorological and soil temperature data from the treatment plots at the Aspen FACE Experiment, 1999-2009</title>
+        <geoform>tabular digital data</geoform>
+        <pubinfo>
+          <pubplace>Fort Collins, CO</pubplace>
+          <publish>Forest Service Research Data Archive</publish>
+        </pubinfo>
+        <onlink>http://dx.doi.org/10.2737/RDS-2016-0011</onlink>
+      </citeinfo>
+    </crossref>
+    <crossref>
+      <citeinfo>
+        <origin>Kubiske, Mark E.</origin>
+        <pubdate>2016</pubdate>
+        <title>Meteorological and soil moisture data from an ambient monitoring station at the Aspen FACE Experiment, 1999-2009</title>
+        <geoform>tabular digital data</geoform>
+        <pubinfo>
+          <pubplace>Fort Collins, CO</pubplace>
+          <publish>Forest Service Research Data Archive</publish>
+        </pubinfo>
+        <onlink>http://dx.doi.org/10.2737/RDS-2016-0012</onlink>
+      </citeinfo>
+    </crossref>	
+    <crossref>
+          <citeinfo>
+            <origin>Kubiske, Mark E.</origin>
+            <origin>Foss, Anita R.</origin>
+            <origin>Burton, Andrew J.</origin>
+            <origin>Jones, Wendy S.</origin>
+            <origin>Lewin, Keith F.</origin>
+            <origin>Nagy, John</origin>
+            <origin>Pregitzer, Kurt S.</origin>
+            <origin>Zak, Donald R.</origin>
+            <origin>Karnosky, David F.</origin>
+            <pubdate>2015</pubdate>
+            <title>Supporting 13 years of global change research: the history, technology, and methods of the Aspen FACE Experiment</title>
+            <geoform>document</geoform>
+            <serinfo>
+              <sername>General Technical Report</sername>
+              <issue>NRS-153</issue>
+            </serinfo>
+            <pubinfo>
+              <pubplace>Newtown Square, PA</pubplace>
+              <publish>U.S. Department of Agriculture, Forest Service, Northern Research Station</publish>
+            </pubinfo>
+            <othercit>50 p.</othercit>
+            <onlink>http://www.treesearch.fs.fed.us/pubs/48510</onlink>
+          </citeinfo>
+    </crossref>
+  </idinfo>
+  <dataqual>
+    <attracc>
+      <attraccr>Meter sticks used for height measurements were graduated to 0.1 centimeters (cm), but measurements were made to the nearest 1 cm. Telescoping height poles used for height measurements were graduated to 1 cm. Digital calipers were accurate to 0.001 cm, but data were recorded to nearest 0.01 cm. Diameter tapes were accurate to 0.01 inches and measurements were converted to the nearest 0.01 cm upon data entry.</attraccr>
+    </attracc>
+    <logic>At the time of data entry, the data were entered by one technician and verified by another. Each value was compared to the previous year and we tried to note any issues in the Notes column, and remeasured when possible. Data were also plotted and examined for obvious errors.
+
+* See \Supplements\Additional_Info.pdf (included in this data product) for additional information on methods and quality assurance / control checks recorded by date across the measurement years.</logic>
+    <complete>There are intentionally empty cells where trees are dead and no height and diameter measurements are taken. Any missing data would be a result of a tree possibly marked as dead incorrectly, resulting in no measurements being taken when there should have been.
+
+The maps included in this data product show 2009 harvest locations, but 2009 data are not included in this data product. These data may be made available in the future.</complete>
+    <lineage>
+      <method>
+        <methtype>Field</methtype>
+        <methdesc>This Aspen FACE (Free-Air CO2 and ozone Enrichment) Experiment, which was formerly referred to as Forest - Atmosphere Carbon Transfer and Storage - II (Facts-II), was conducted on a research farm near Rhinelander, Wisconsin.
+
+From 1996-1997, twelve 30 meter diameter, open-air treatment arrays (rings) were constructed to deliver elevated concentrations of atmospheric carbon dioxide (CO2) and/or ozone (O3) to the interior of the rings (Hendrey et al. 1999). There were three replicates each of control, elevated CO2, elevated O3, and elevated CO2 +O3 atmospheres (designated treatments 1-4, respectively). The treatment rings were dispersed around the 32 hectare site at spacing of about 100 meters between rings. The three replicates were blocked roughly into north (rep. 1), central (rep. 2), and south (rep. 3) locations of the site, such that each treatment ring was identified by number as R.T where R was replicate and T was treatment. Each ring was subdivided with wooden walkways. A north-south walkway divided the rings into east and west halves, and a second walkway divided the west half into two quarters, creating a split-plot design for three different plant communities. The statistical design of the experiment was a split-plot, full-factorial, randomized complete block design with three replicates.
+
+In 1997, the treatment rings were planted at 1x1 meter spacing with rooted cuttings of five clones of trembling aspen (Populus tremuloides Michx), and seedlings of paper birch (Betula papyrifera Marsh) and sugar maple (Acer Saccharum Marsh). The east half of each ring was aspen monoculture, which consisted of five clones that have been studied previously for responses to elevated CO2 and O3 (Karnosky et al. 1996; Kubiske et al. 1998). The northwest quarter of each ring was planted with a 50-50 mixture of aspen clone 216 and sugar maple at 1x1 meter spacing. The southwest quarter of each ring was planted with a 50-50 mixture of aspen clone 216 and paper birch. Maple and birch seedlings were from open-pollinated seed sources. Some individuals of aspen clones 216 and 271 (labeled E216 and E271) were raised in a growth chamber with CO2-enriched atmosphere (ambient + 350 microlitre Litre(l)-1 CO2) prior to out-planting to test the effect of exposure during early growth upon subsequent responses.
+
+All of the planting occurred across a 1 x 1 meter coordinate grid system with the north-south coordinate identified by letter (AD, AC, AB, AA, A, B, C, ... Z; from north to south), and the east-west coordinate identified by number (1-29; from west to east), thus providing a unique, identifiable location for each tree in the experiment. In addition, each tree was assigned a unique identification number. All of the grid points that were encircled by the gas dispensing pipes were planted except for coordinates K1, K2, K3, ... K14, which were occupied by the east-west walkway dividing the west half of each ring. Space for the main north-south wooden walkways was allocated within the grid by wider spacing between columns 14 and 15. A buffer zone was identified in each treatment ring comprised of the outermost 5-6 trees, thus defining a circular "core" area within each ring about 20 meter diameter where all measurements were conducted.
+
+The first full growing season of fumigation treatments was 1998, and the final full growing season of treatments was 2008. Each year, CO2 and O3 fumigation began with bud burst in May and continued through leaf senescence in mid-to-late October. Target elevated CO2 was 560 microlitres/liter and target elevated O3 was 45-75 nanolitre/liter (1.5 x that of ambient air). Carbon dioxide and O3 fumigations occurred only during daylight hours from bud burst until leaf senescence. Also, ozone fumigation occurred when conditions were appropriate for O3 to naturally build up in the troposphere; thus it did not occur when maximum temperatures were projected to be less than 15 degrees Celsius or when plants were wet from fog, dew or rain. Ozone was not dispensed when wind speed was at or below 0.4 meters per second for 40 seconds. Neither gas was dispensed when wind speeds exceeded 5 meters per second.</methdesc>
+        <methcite>
+          <citeinfo>
+            <origin>Hendrey, George R.</origin>
+            <origin>Ellsworth, David S.</origin>
+            <origin>Lewin, Keith F.</origin>
+            <origin>Nagy, John</origin>
+            <pubdate>1999</pubdate>
+            <title>A free-air enrichment system for exposing tall forest vegetation to elevated atmospheric CO2</title>
+            <geoform>journal article</geoform>
+            <serinfo>
+              <sername>Global Change Biology</sername>
+              <issue>5:293-309</issue>
+            </serinfo>
+            <onlink>http://dx.doi.org/10.1046/j.1365-2486.1999.00228.x</onlink>
+          </citeinfo>
+        </methcite>
+        <methcite>
+          <citeinfo>
+            <origin>Karnosky, D.F.</origin>
+            <origin>Gagnon, Z.E.</origin>
+            <origin>Dickson, R.E.</origin>
+            <origin>Coleman, M.D.</origin>
+            <origin>Lee, E.H.</origin>
+            <origin>Isebrands, J.G.</origin>
+            <pubdate>1996</pubdate>
+            <title>Changes in growth, leaf abscission, and biomass associated with seasonal tropospheric ozone exposures of Populus tremuloides clones and seedlings</title>
+            <geoform>journal article</geoform>
+            <serinfo>
+              <sername>Canadian Journal of Forest Research</sername>
+              <issue>26:23-37</issue>
+            </serinfo>
+            <onlink>http://www.treesearch.fs.fed.us/pubs/5077</onlink>
+            <onlink>http://dx.doi.org/10.1139/x26-003</onlink>
+          </citeinfo>
+        </methcite>
+        <methcite>
+          <citeinfo>
+            <origin>Kubiske, Mark E.</origin>
+            <origin>Pregitzer, Keith S.</origin>
+            <origin>Zak, Donald R.</origin>
+            <origin>Mikan, Carl J.</origin>
+            <pubdate>1998</pubdate>
+            <title>Growth and C allocation of Populus tremuloides clones in response to atmospheric CO2 and soil N availability</title>
+            <geoform>journal article</geoform>
+            <serinfo>
+              <sername>New Phytologist</sername>
+              <issue>140(2):251-260</issue>
+            </serinfo>
+            <othercit>9 p.</othercit>
+			<onlink>http://dx.doi.org/10.1046/j.1469-8137.1998.00264.x</onlink>
+          </citeinfo>
+        </methcite>
+        <methcite>
+          <citeinfo>
+            <origin>Dickson, R.E.</origin>
+            <origin>Lewin, K.F.</origin>
+            <origin>Isebrands, J.G.</origin>
+            <origin>Coleman, M.D.</origin>
+            <origin>Heilman, W.E.</origin>
+            <origin>Riemenschneider, D.E.</origin>
+            <origin>Sober, J. </origin>
+            <origin>Host, G.E.</origin>
+            <origin>Zak, D.R.</origin>
+            <origin>Hendrey, G.R.</origin>
+            <origin>Pregitzer, K.S.</origin>
+            <origin>Karnosky, D.F.</origin>
+            <pubdate>2000</pubdate>
+            <title>Forest atmosphere carbon transfer and storage (FACTS-II) the aspen Free-air CO2 and O3 Enrichment (FACE) project: an overview</title>
+            <geoform>document</geoform>
+            <serinfo>
+              <sername>General Technical Report</sername>
+              <issue>GTR-NC-214</issue>
+            </serinfo>
+            <pubinfo>
+              <pubplace>St. Paul, MN</pubplace>
+              <publish>U.S. Department of Agriculture, Forest Service, North Central Forest Experiment Station</publish>
+            </pubinfo>
+            <othercit>74 p.</othercit>
+            <onlink>http://www.treesearch.fs.fed.us/pubs/10278</onlink>
+          </citeinfo>
+        </methcite>
+   <methcite>
+          <citeinfo>
+            <origin>Kubiske, Mark E.</origin>
+            <origin>Foss, Anita R.</origin>
+            <origin>Burton, Andrew J.</origin>
+            <origin>Jones, Wendy S.</origin>
+            <origin>Lewin, Keith F.</origin>
+            <origin>Nagy, John</origin>
+            <origin>Pregitzer, Kurt S.</origin>
+            <origin>Zak, Donald R.</origin>
+            <origin>Karnosky, David F.</origin>
+            <pubdate>2015</pubdate>
+            <title>Supporting 13 years of global change research: the history, technology, and methods of the Aspen FACE Experiment</title>
+            <geoform>document</geoform>
+            <serinfo>
+              <sername>General Technical Report</sername>
+              <issue>NRS-153</issue>
+            </serinfo>
+            <pubinfo>
+              <pubplace>Newtown Square, PA</pubplace>
+              <publish>U.S. Department of Agriculture, Forest Service, Northern Research Station</publish>
+            </pubinfo>
+            <othercit>50 p.</othercit>
+            <onlink>http://www.treesearch.fs.fed.us/pubs/48510</onlink>
+          </citeinfo>
+    </methcite>		
+      </method>
+      <method>
+        <methtype>Field</methtype>
+        <methdesc>Height and diameter measurements were taken at the "end of the season", which means after leaf fall. If errors were found in the measurements (e.g. height measurements was lower than previous year, then remeasurements might have been taken in early spring of the following year before leaf out, which would be noted in the data file). Methods varied slightly over the years. See below for details.
+
+1997-2000 END OF SEASON FACE MEASUREMENTS
+
+1. Tree diameters were measured 3 centimeters (cm) off of the ground (the width of 3 fingers). 
+
+2. Calipers were used to measure the diameter. Two measurements were taken with the caliper. One oriented North-South, and the other East-West. Caliper was oriented perpendicular to the stem, which may not necessarily have been level with the ground. 
+
+3.  Tree heights were measured from the ground to tree apex with a meter stick held vertically against the main stem.  Trees more than 2 meters (m) tall were measured with a telescoping height pole with 1 cm graduations.  
+
+4. Notes recorded indicating if tree was dead, missing, damaged, had a forked stem at the point where the circumference or diameter was measured, etc.
+
+
+
+2001 END OF SEASON FACE MEASUREMENTS
+
+1. Tree diameters were measured 3 cm off of the ground (the width of 3 fingers) and 10 cm off of the ground. 
+
+2. Trees less than 6 cm in circumference were measured with calipers. Two measurements were taken with the caliper. One oriented North-South, and the other East-West. Caliper was oriented perpendicular to the stem, which may not necessarily have been level with the ground. 
+
+3. Trees greater than 6 cm were measured with d-tape (diameter tape, which is a form of dendrometer used to measure the diameter of trees) and the diameter was entered on the data sheet. 
+
+4.  Tree heights were measured from the ground to tree apex with a telescoping height pole with 1 cm graduations, held vertically.  
+
+5. Notes recorded indicating if tree was dead, missing, damaged, had a forked stem at the point where the diameter was measured, etc.
+
+
+
+2002 END OF SEASON FACE MEASUREMENTS
+
+1. Trees were measured 10 cm off of the ground. 
+
+2. Trees less than 6 cm in circumference were measured with calipers. Two measurements were taken with the caliper. One oriented North-South, and the other East-West. Caliper was oriented perpendicular to the stem, which may not necessarily have been level with the ground. 
+
+3. Trees greater than 6 cm were measured with d-tape and the diameter entered on the data sheet. 
+
+4.  Tree heights were measured from the ground to tree apex with a telescoping height pole with 1 cm graduations, held vertically.  
+
+5. Notes recorded indicating if tree was dead, missing, damaged, had a forked stem at the point where the diameter was measured, etc.
+
+
+
+2003-2005 END OF SEASON FACE MEASUREMENTS
+
+1. Reformatted datasheets identified trees to be measured in each ring.
+
+2. Tree ID #s were checked occasionally in each ring column, and at the ends of each column to be certain of positions. Some trees were missing due to harvest or mortality, so there may not have been a live tree present as indicated by the ID number on the sheet.
+
+3. A ruler was used to measure 10 cm above the ground and a line marked on the main stem at that position with a permanent marker.
+
+4. A diameter tape was used to determine diameter of the stem(s) at the 10 cm height. However, for stems less than 6 cm in circumference a caliper was used to measure the diameter. Two measurements were taken with the caliper. One oriented North-South, and the other East-West. If tree had a forked stem below 10 cm, both stems were measured and "forked stem" recorded in the notes. If the stem forked above the 10 cm mark, only the single diameter measurement was recorded. Tape or caliper was oriented perpendicular to the stem, which may not necessarily have been level with the ground.
+
+5. A pre-constructed diameter at breast height (DBH) measuring stick was used to measure 1.3 meters (m) above the ground, and the main stem was marked at that position with a permanent marker or wax pencil.  A diameter tape was used to measure diameter of the stem(s) at the 1.3 m height. If tree had a forked stem below 1.3 m, diameter of both stems were measured and “2 stems" recorded in the notes. 
+
+6.  Tree heights were measured from the ground to tree apex with a telescoping height pole with 1 cm graduations, held vertically.  A crew member some distance from the tree assisted with alignment of the top of the pole with the tree apex.
+
+7. Notes recorded indicating if tree was dead, missing, damaged, had a forked stem at the point where the diameter was measured, etc.
+
+
+
+2006-2008 END OF SEASON FACE MEASUREMENTS
+
+1. Datasheets identified trees to be measured in each ring. Ring-map formatted data sheets were used. Previously, datasheets were formatted as a list of core trees.
+
+2.  Tree ID #s were checked occasionally in each ring column, and at the ends of each column to be certain of positions. Some trees were missing due to harvest or mortality, so there may not have been a live tree present as indicated by the ID number on the sheet. Missing (M) and dead (D) trees were noted on data sheet.
+
+3. A pre-constructed diameter at breast height (DBH) measuring stick was used to measure 1.3 m above the ground, and the main stem was marked at that position with a permanent marker or wax pencil.
+
+4. A diameter tape was used to measure diameter of the stem(s) at the 1.3 m height. If tree had a forked stem below 1.3 m, diameter of both stems were measured and "2 stems" recorded in the notes. 
+
+5. The diameter tape was oriented perpendicular to the stem, which may not necessarily have been level with the ground. (In other words, the measurement should follow the slant of the main stem.)
+
+6.  Tree heights were measured from the ground to tree apex with a telescoping height pole with 1 cm graduations, held vertically.  A crew member some distance from the tree assisted with alignment of the top of the pole with the tree apex.
+
+7. Record important notes indicating if tree is dead, missing, damaged, has a forked stem at the point where the circumference or diameter is being measured, etc.
+
+* See \Supplements\Additional_Info.pdf for additional information on methods and quality assurance / control checks recorded by date across the measurement years.</methdesc>
+      </method>
+      <procstep>
+        <procdesc>Diameter measurements for each tree are calculated as the average of the north-south diameter and the east-west diameter.</procdesc>
+        <procdate>Unknown</procdate>
+      </procstep>
+    </lineage>
+  </dataqual>
+  <eainfo>
+    <overview>
+      <eaover>This data product consists of three data files containing tree height and diameter measurements for the Aspen FACE Experiment. Unless otherwise noted, all tree height and diameter measurements were taken at the end of the season, which is after leaf fall. 
+
+\Data\FACE_aspen_core_growth.csv
+Comma-delimited ASCII text file containing tree height and diameter measurements for the east half of each ring, which was aspen monoculture. The data contain the following: 
+
+Rep = Replicate number of tree (1=north, 2=central, 3=south)
+Treat = Code for treatment used on tree (1=control, 2=elevated CO2, 3=elevated O3, and 4=elevated CO2+O3)
+Clone = Tree clone code
+E Clone = Tree E clone code
+row = Row tree is located in
+col = Column tree is located in
+ID # = Tree identification number
+1997Initial_Height = Initial tree height (centimeters=cm), which were measurements taken when the approximately 1-year old seedlings were planted
+1997Initial_Diam = Initial tree diameter (cm), which were measurements taken when the approximately 1-year old seedlings were planted
+1997Final_Height = Final tree height for 1997 (cm), which was measured at the end of the season
+1997Final_Diam = Final tree diameter for 1997 (cm), which was measured at the end of the season
+1998_Height = Tree height (cm)
+1998_Diam = Tree diameter (cm)
+1999_Height = Tree height (cm)
+1999_Diam = Tree diameter (cm)
+2000_Height = Tree height (cm)
+2000_Diam = Tree diameter (cm)
+2001_Height = Tree height (cm)
+2001_AvgDiam = Average diameter of tree (cm), which was calculated as the average of the 3 cm and 10 cm diameters provided next
+2001_Diam@3cm = Diameter of tree 3 cm off ground (cm)
+2001_Diam@10cm = Diameter of tree 10 cm off ground (cm)
+2002_Height = Tree height (cm)
+2002_Diam@10cm = Diameter of tree 10 cm off ground (cm)
+2003_Height = Tree height (cm)
+2003_Diam@10cm = Diameter of tree 10 cm off ground (cm)
+2003_DBH = Diameter of tree at breast height (cm)
+2004_Height = Tree height (cm)
+2004_Diam@10cm = Diameter of tree 10 cm off ground (cm)
+2004_DBH = Diameter of tree at breast height (cm)
+2005_Height = Tree height (cm)
+2005_Diam@10cm = Diameter of tree 10 cm off ground (cm)
+2005_DBH = Diameter of tree at breast height (cm)
+2006_Height = Tree height (cm)
+2006_DBH = Diameter of tree at breast height (cm)
+2007_Height = Tree height (cm)
+2007_DBH = Diameter of tree at breast height (cm)
+2008_Height = Tree height (cm)
+2008_DBH = Diameter of tree at breast height (cm)
+Notes = Notes regarding the tree (sometimes the note taker included the last 2 digits of the year the comment was made, i.e. 02 = 2002), see below for a list of definitions for abbreviations used.
+Comment1* = Information about the specified variable and corresponding measurement.
+Comment2* = Information about the specified variable and corresponding measurement.
+Comment3* = Information about the specified variable and corresponding measurement.
+Comment4* = Information about the specified variable and corresponding measurement.
+Comment5* = Information about the specified variable and corresponding measurement.
+Comment6* = Information about the specified variable and corresponding measurement.
+ (*There may be 0 or up to 6 comments for each ID#. See below for a list of definitions/explanations for abbreviations and other notations used in these fields. Sometimes the note taker included the date in the comment as mm-dd-yy where mm=month, dd=day, and yy=year)
+
+
+\Data\FACE_aspen-birch_core_growth.csv
+Comma-delimited ASCII text file containing tree height and diameter measurements for the northwest corner of each ring, which was planted with a 50-50 mixture of aspen clone 216 and paper birch. The data contain the following: 
+
+Rep = Replicate number of tree (1=north, 2=central, 3=south)
+Treat = Code for treatment used on tree (1=control, 2=elevated CO2, 3=elevated O3, and 4=elevated CO2+O3)
+SPP = Tree species code
+Clone = Tree clone code
+Row = Row tree is located in
+Col = Column tree is located in
+ID # = Tree identification number
+1997_Height = Tree height (cm)
+1997_Diam = Tree diameter (cm)
+1998_Height = Tree height (cm)
+1998_Diam = Tree diameter (cm)
+1999_Height = Tree height (cm)
+1999_Diam = Tree diameter (cm)
+2000_Height = Tree height (cm)
+2000_Diam = Tree diameter (cm)
+2001_Height = Tree height (cm)
+2001_Diam@3cm = Diameter of tree 3 cm off ground (cm)
+2001_Diam@10cm = Diameter of tree 10 cm off ground (cm)
+2002_Height = Tree height (cm)
+2002_Diam = Tree diameter (cm)
+2003_Height = Tree height (cm)
+2003_Diam@10cm = Diameter of tree 10 cm off ground (cm)
+2003_DBH = Diameter of tree at breast height (cm)
+2004_Height = Tree height (cm)
+2004_Diam@10cm = Diameter of tree 10 cm off ground (cm)
+2004_DBH = Diameter of tree at breast height (cm)
+2005_Height = Tree height (cm)
+2005_Diam@10cm = Diameter of tree 10 cm off ground (cm)
+2005_DBH = Diameter of tree at breast height (cm)
+2006_Height = Tree height (cm)
+2006_DBH = Diameter of tree at breast height (cm)
+2007_Height = Tree height (cm)
+2007_DBH = Diameter of tree at breast height (cm)
+2008_Height = Tree height (cm)
+2008_DBH = Diameter of tree at breast height (cm)
+Notes = Notes regarding the tree (sometimes the note taker included the last 2 digits of the year the comment was made, i.e. 02 = 2002), see below for a list of definitions for abbreviations used.
+Comment1* = Information about the specified variable and corresponding measurement.
+Comment2* = Information about the specified variable and corresponding measurement.
+Comment3* = Information about the specified variable and corresponding measurement.
+ (*There may be 0 or up to 6 comments for each ID#. See below for a list of definitions/explanations for abbreviations and other notations used in these fields. Sometimes the note taker included the date in the comment as mm-dd-yy where mm=month, dd=day, and yy=year)
+
+
+\Data\FACE_aspen-maple_core_growth.csv
+Comma-delimited ASCII text file containing tree height and diameter measurements for the southwest corner of each ring, which was planted with a 50-50 mixture of aspen 216 and sugar maple. The data contain the following: 
+
+Rep = Replicate number of tree (1=north, 2=central, 3=south)
+Treat = Code for treatment used on tree (1=control, 2=elevated CO2, 3=elevated O3, and 4=elevated CO2+O3)
+SPP = Tree clone code
+Clone = Tree clone code
+Row = Row tree is located in
+Col = Column tree is located in
+ID # = Tree identification number
+1997_Height = Tree height (cm)
+1997_Diam = Tree diameter (cm)
+1998_Height = Tree height (cm)
+1998_Diam = Tree diameter (cm)
+1999_Height = Tree height (cm)
+1999_Diam = Tree diameter (cm)
+2000_Height = Tree height (cm)
+2000_Diam = Tree diameter (cm)
+2001_Height = Tree height (cm)
+2001_Diam@3cm = Diameter of tree 3 cm off ground (cm)
+2001_Diam@10cm = Diameter of tree 10 cm off ground (cm)
+2002_Height = Tree height (cm)
+2002_Diam@10cm = Diameter of tree 10 cm off ground (cm)
+2003_Height = Tree height (cm)
+2003_Diam@10cm = Diameter of tree 10 cm off ground (cm)
+2004_Height = Tree height (cm)
+2004_Diam@10cm = Diameter of tree 10 cm off ground (cm)
+2005_Height = Tree height (cm)
+2005_Diam@10cm = Diameter of tree 10 cm off ground (cm)
+2006_Height = Tree height (cm)
+2006_DBH = Diameter of tree at breast height (cm)
+2006_Diam@10cm = Diameter of tree 10 cm off ground (cm)
+2007_Height = Tree height (cm)
+2007_DBH = Diameter of tree at breast height (cm)
+2008_Height = Tree height (cm)
+2008_DBH = Diameter of tree at breast height (cm)
+Notes = Notes regarding the tree (sometimes the note taker included the last 2 digits of the year the comment was made, i.e. 02 = 2002), see below for a list of definitions for abbreviations used.
+Comment1* = Information about the specified variable and corresponding measurement.
+Comment2* = Information about the specified variable and corresponding measurement.
+Comment3* = Information about the specified variable and corresponding measurement.
+ (*There may be 0 or up to 6 comments for each ID#. See below for a list of definitions/explanations for abbreviations and other notations used in these fields. Sometimes the note taker included the date in the comment as mm-dd-yy where mm=month, dd=day, and yy=year)
+
+
+Key to abbreviations/explanations used in the Notes or CommentsX column of the data files:	
+
+m = missing tree
+
+d = dead tree (operationally defined as a tree that has not leafed-out)
+
+SA = sleeve average, tree has sap flow probe covered in plastic sheath at DBH height, diameter is then measured at top and bottom of sheath and an average value is calculated
+
+A = average, DBH height was located at a branch or other swelling, measurement was taken above and below swelling from which an average was calculated
+
+2 stems = main stem of tree branched into 2 significant stems below the DBH height, therefore both stems were measured
+
+3 stems = main stem of tree branched into 3 significant stems below the DBH height, therefore all stems were measured
+
+v = verified in field	
+
+pd = probably dead	
+
+ts = too short for DBH measurement
+
+ct broken = central terminal (ct) branch has broken off
+
+top broken = top of tree that constitutes more than the ct broken off
+
+lrg = measurement is larger than expected
+
+sml = measurement is smaller than expected
+
+measured twice = measured 2x = measurement was taken twice, most likely because the value was in question and they wanted to verify it was correct
+
+measured = measurement was a remeasurement, which is also noted as "remeasured" in some cases depending on the note taker
+
+Average diameter references occur in some of the CommentX columns. This would be cases where multiple diameter measurements were taken either because there were measurements made at 3 and 10 cm or because measurements were taken above and below some obstruction, similar to the notation "A" described above. Most of these references occurred in 2001.</eaover>
+      <eadetcit>None provided</eadetcit>
+    </overview>
+  </eainfo>
+  <distinfo>
+    <distrib>
+      <cntinfo>
+        <cntorgp>
+          <cntorg>USDA Forest Service, Research and Development</cntorg>
+        </cntorgp>
+        <cntpos>Research Data Archivist</cntpos>
+        <cntaddr>
+          <addrtype>mailing and physical</addrtype>
+          <address>240 West Prospect Road</address>
+          <city>Fort Collins</city>
+          <state>CO</state>
+          <postal>80526</postal>
+          <country>USA</country>
+        </cntaddr>
+        <cntvoice>see Contact Instructions</cntvoice>
+        <cntinst>This contact information was current as of March 2016. For current information see Contact Us page on: http://dx.doi.org/10.2737/RDS.</cntinst>
+      </cntinfo>
+    </distrib>
+    <resdesc>RDS-2013-0015</resdesc>
+    <distliab>Metadata documents have been reviewed for accuracy and completeness. Unless otherwise stated, all data and related materials are considered to satisfy the quality standards relative to the purpose for which the data were collected. However, neither the author, the Archive, nor any part of the federal government can assure the reliability or suitability of these data for a particular purpose. The act of distribution shall not constitute any such warranty, and no responsibility is assumed for a user's application of these data or related materials.
+
+The metadata, data, or related materials may be updated without notification. If a user believes errors are present in the metadata, data or related materials, please use the information in (1) Identification Information: Point of Contact, (2) Metadata Reference: Metadata Contact, or (3) Distribution Information: Distributor to notify the author or the Archive of the issues.</distliab>
+    <stdorder>
+      <digform>
+        <digtinfo>
+          <formname>ASCII</formname>
+          <formvern>See Format Specification</formvern>
+          <formspec>Comma-delimited ASCII text file</formspec>
+          <filedec>Files zipped with WinZip 14.0</filedec>
+        </digtinfo>
+        <digtopt>
+          <onlinopt>
+            <computer>
+              <networka>
+                <networkr>http://www.fs.usda.gov/rds/archive</networkr>
+              </networka>
+            </computer>
+          </onlinopt>
+        </digtopt>
+      </digform>
+      <digform>
+        <digtinfo>
+          <formname>PDF</formname>
+          <formvern>See Format Specification</formvern>
+          <formspec>Adobe Acrobat Portable Document Format</formspec>
+          <filedec>Files zipped using Winzip 14.0</filedec>
+        </digtinfo>
+        <digtopt>
+          <onlinopt>
+            <computer>
+              <networka>
+                <networkr>http://www.fs.usda.gov/rds/archive</networkr>
+              </networka>
+            </computer>
+          </onlinopt>
+        </digtopt>
+      </digform>
+      <fees>None</fees>
+    </stdorder>
+  </distinfo>
+  <metainfo>
+    <metd>20160330</metd>
+    <metc>
+      <cntinfo>
+        <cntorgp>
+          <cntorg>USDA Forest Service, Northern Research Station</cntorg>
+          <cntper>Mark Kubiske</cntper>
+        </cntorgp>
+        <cntpos>Research Scientist</cntpos>
+        <cntaddr>
+          <addrtype>mailing and physical</addrtype>
+          <address>5985 County Road K</address>
+          <city>Rhinelander</city>
+          <state>WI</state>
+          <postal>54501</postal>
+          <country>USA</country>
+        </cntaddr>
+        <cntvoice>715-362-1108</cntvoice>
+      </cntinfo>
+    </metc>
+    <metstdn>FGDC Biological Data Profile of the Content Standard for Digital Geospatial Metadata</metstdn>
+    <metstdv>FGDC-STD-001.1-1999</metstdv>
+  </metainfo>
+</metadata>

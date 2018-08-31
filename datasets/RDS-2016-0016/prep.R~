@@ -1,0 +1,4 @@
+dat <- read.csv("Data/felled_tree_biomass.csv")
+colnames(dat)
+
+plot(dat$dbh_in, dat$height_ft)
