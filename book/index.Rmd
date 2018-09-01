@@ -12,6 +12,8 @@ lof: yes
 site: bookdown::bookdown_site
 description: "Course book for FOR472: Ecological Monitoring and Data Analysis"
 graphics: yes
+header-includes:
+  - \usepackage{color}
 ---
 
 ```{r setup, include=FALSE}
