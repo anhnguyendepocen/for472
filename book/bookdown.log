@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99998 (TeX Live 2017/Debian) (preloaded format=xelatex 2018.5.22)  4 SEP 2018 10:03
+This is XeTeX, Version 3.14159265-2.6-0.99998 (TeX Live 2017/Debian) (preloaded format=xelatex 2018.5.22)  4 SEP 2018 14:07
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1614,18 +1614,464 @@ Package natbib Warning: Citation `le2011' on page xiii undefined on input line
 Package natbib Warning: Citation `ometto2014' on page xiii undefined on input l
 ine 376.
 
-! Missing $ inserted.
-<inserted text> 
-                $
-l.378 ...est carbon (i.e., carbon comprises \$\sim
-                                                  \$50\% of 
-Here is how much of TeX's memory you used:
- 24204 strings out of 493007
- 446855 string characters out of 6136719
- 584648 words of memory out of 5000000
- 27939 multiletter control sequences out of 15000+600000
- 551018 words of font info for 63 fonts, out of 8000000 for 9000
- 1348 hyphenation exceptions out of 8191
- 53i,8n,92p,10449b,358s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on bookdown.pdf (12 pages).
+Package natbib Warning: Citation `west2004' on page xiii undefined on input lin
+e 379.
+
+
+Package natbib Warning: Citation `REDD2009' on page xiii undefined on input lin
+e 386.
+
+
+Package natbib Warning: Citation `UNFCCC2015' on page xiii undefined on input l
+ine 386.
+
+
+LaTeX Warning: Reference `fig:img1' on page xiii undefined on input line 398.
+
+
+Package natbib Warning: Citation `Kenefic2015' on page xiii undefined on input 
+line 402.
+
+
+LaTeX Warning: Reference `tab:pef' on page xiii undefined on input line 405.
+
+[13]
+File: bookdown_files/figure-latex/img1-1.pdf Graphic file (type pdf)
+<use bookdown_files/figure-latex/img1-1.pdf>
+
+LaTeX Warning: Reference `fig:zf' on page xiv undefined on input line 447.
+
+File: bookdown_files/figure-latex/zf-1.pdf Graphic file (type pdf)
+<use bookdown_files/figure-latex/zf-1.pdf>
+[14]
+Underfull \hbox (badness 10000) detected at line 469
+ [][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 469
+[][][]
+ []
+
+[15]
+Underfull \hbox (badness 10000) detected at line 472
+ [][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 472
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 475
+ [][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 475
+[][][]
+ []
+
+[16] [17]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+Overfull \hbox (336.25pt too wide) has occurred while \output is active
+[]
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+Overfull \hbox (336.25pt too wide) has occurred while \output is active
+[]
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+Overfull \hbox (336.25pt too wide) has occurred while \output is active
+[]
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+Overfull \hbox (336.25pt too wide) has occurred while \output is active
+[]
+ []
+
+
+Underfull \hbox (badness 10000) has occurred while \output is active
+ [][][][] 
+ []
+
+[18
+
+]
+Underfull \vbox (badness 10000) detected at line 534
+ []
+
+
+Overfull \hbox (336.25pt too wide) detected at line 534
+[]
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 534
+ []
+
+
+Overfull \hbox (336.25pt too wide) detected at line 534
+[]
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 534
+ []
+
+
+Overfull \hbox (336.25pt too wide) detected at line 534
+[]
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 534
+ []
+
+
+Overfull \hbox (336.25pt too wide) detected at line 534
+[]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 546
+ [][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 546
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 548
+ [][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 548
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 551
+ [][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 551
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 554
+ [][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 554
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 556
+ [][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 556
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) has occurred while \output is active
+ [][][][] 
+ []
+
+[19
+
+]
+Underfull \hbox (badness 10000) detected at line 587
+ [][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 587
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 589
+ [][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 589
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 591
+ [][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 591
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 594
+ [][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 594
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 596
+ [][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 596
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 598
+ [][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 598
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 600
+ [][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 600
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 613
+ [][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 613
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 615
+ [][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 615
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 618
+ [][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 618
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 620
+ [][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 620
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 623
+ [][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 623
+[][][]
+ []
+
+
+LaTeX Warning: Reference `fig:rstudio' on page xx undefined on input line 634.
+
+File: 02-introToR/02-images/RStudio.png Graphic file (type bmp)
+<02-introToR/02-images/RStudio.png>
+
+Overfull \hbox (462.78491pt too wide) in paragraph at lines 637--637
+[][] 
+ []
+
+
+LaTeX Warning: Float too large for page by 22.02155pt on input line 638.
+
+[20] [21]
+LaTeX Font Info:    Font shape `TU/lmtt/bx/n' in size <10> not available
+(Font)              Font shape `TU/lmtt/b/n' tried instead on input line 660.
+[22] [23] [24]
+File: bookdown_files/figure-latex/unnamed-chunk-4-1.pdf Graphic file (type pdf)
+
+<use bookdown_files/figure-latex/unnamed-chunk-4-1.pdf>
+[25]
+File: bookdown_files/figure-latex/unnamed-chunk-5-1.pdf Graphic file (type pdf)
+
+<use bookdown_files/figure-latex/unnamed-chunk-5-1.pdf>
+[26] [27] [28]
+File: 02-introToR/02-images/code_quality.png Graphic file (type bmp)
+<02-introToR/02-images/code_quality.png>
+
+Overfull \hbox (331.9327pt too wide) in paragraph at lines 1068--1068
+[][] 
+ []
+
+
+LaTeX Warning: Reference `fig:comic' on page xxix undefined on input line 1073.
+
+
+[29] [30] [31]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+Overfull \hbox (336.25pt too wide) has occurred while \output is active
+[]
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+Overfull \hbox (336.25pt too wide) has occurred while \output is active
+[]
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+Overfull \hbox (336.25pt too wide) has occurred while \output is active
+[]
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+Overfull \hbox (336.25pt too wide) has occurred while \output is active
+[]
+ []
+
+
+Underfull \hbox (badness 10000) has occurred while \output is active
+ [][][][] 
+ []
+
+[32
+
+]
+Underfull \vbox (badness 10000) detected at line 1131
+ []
+
+
+Overfull \hbox (336.25pt too wide) detected at line 1131
+[]
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 1131
+ []
+
+
+Overfull \hbox (336.25pt too wide) detected at line 1131
+[]
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 1131
+ []
+
+
+Overfull \hbox (336.25pt too wide) detected at line 1131
+[]
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 1131
+ []
+
+
+Overfull \hbox (336.25pt too wide) detected at line 1131
+[]
+ []
+
+
+Underfull \hbox (badness 10000) has occurred while \output is active
+ [][][][] 
+ []
+
+[33
+
+] [34]
+File: bookdown_files/figure-latex/unnamed-chunk-9-1.pdf Graphic file (type pdf)
+
+<use bookdown_files/figure-latex/unnamed-chunk-9-1.pdf>
+[35]
+File: bookdown_files/figure-latex/unnamed-chunk-11-1.pdf Graphic file (type pdf
+)
+<use bookdown_files/figure-latex/unnamed-chunk-11-1.pdf>
+[36]
+
+LaTeX Warning: Reference `fig:script' on page xxxvii undefined on input line 13
+44.
+
+[37]
+File: 03-scripts/03-images/FACE-script-screenshot.png Graphic file (type bmp)
+<03-scripts/03-images/FACE-script-screenshot.png>
+! You can't use `\spacefactor' in math mode.
+\@->\spacefactor 
+                 \@m {}
+l.1374   if the document is more technical}
+                                            and to include R output such as 
+Here is how much of TeX's memory you used:
+ 24272 strings out of 493007
+ 448855 string characters out of 6136719
+ 584648 words of memory out of 5000000
+ 27985 multiletter control sequences out of 15000+600000
+ 551042 words of font info for 66 fonts, out of 8000000 for 9000
+ 1348 hyphenation exceptions out of 8191
+ 53i,8n,92p,10449b,452s stack positions out of 5000i,500n,10000p,200000b,80000s
+
+Output written on bookdown.pdf (37 pages).

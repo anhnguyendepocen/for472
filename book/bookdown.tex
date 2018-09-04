@@ -375,7 +375,7 @@ Forest Degradation} (UN-REDD) and NASA's
 \href{http://carbon.nasa.gov}{Carbon Monitoring System} (CMS)
 \citep{le2011}, \citep{ometto2014}. In these, and similar initiatives,
 AGB is the forest variable of interest because it provides a nearly
-direct measure of forest carbon (i.e., carbon comprises \$\sim\$50\% of
+direct measure of forest carbon (i.e., carbon comprises \(\sim 50\)\% of
 wood biomass, \citet{west2004}). Most efforts to quantify and/or manage
 forest ecosystem services (e.g., carbon, biodiversity, water) seek high
 spatial resolution wall-to-wall data products such as gridded maps with
@@ -1133,16 +1133,15 @@ Research}\label{scripts-r-markdown-and-reproducible-research}
 
 Doing work in data science, whether for homework, a project for a
 business, or a research project, typically involves several iterations.
-For example creating an effective graphical representation of data can
+For example, creating an effective graphical representation of data can
 involve trying out several different graphical representations, and then
 tens if not hundreds of iterations when fine-tuning the chosen
 representation. And each of these representations may require several R
 commands to create. Although this all could be accomplished by typing
 and re-typing commands at the R Console, it is easier and more effective
-to write the commands in a \texttt{script\ file} that can then be
-submitted to the R console either a line at a time or all
-together.\footnote{Unsurprisingly it is also possible to submit several
-  selected lines of code at once.}
+to write the commands in a \emph{script file} that can then be submitted
+to the R console either a line at a time or all together.\footnote{Unsurprisingly
+  it is also possible to submit several selected lines of code at once.}
 
 In addition to making the workflow more efficient, R scripts provide
 another large benefit. Often we work on one part of a homework
@@ -1166,10 +1165,10 @@ variables to formal data analysis. In principle this can be facilitated
 by explaining, in words, each step of the work with data. In practice,
 on the other hand, it is typically difficult or impossible to reproduce
 a full data analysis based on a written explanation. It is much more
-effective to include the actual computer code which accomplished the
-data work in the report, whether the report is a homework assignment or
-a research paper. Tools in R such as \texttt{R\ Markdown} facilitate
-this process.
+effective to include the actual computer code that accomplished the data
+work in the report, whether the report is a homework assignment or a
+research paper. Tools in R such as \emph{R Markdown} facilitate this
+process.
 
 \section{Scripts in R}\label{scripts-in-r}
 
@@ -1295,12 +1294,13 @@ respectively, using \texttt{range()} (try and figure out what the
 \texttt{na.rm} argument does in the range function). Second we add
 treatment 2 data via the \texttt{points()} function. There are several
 other arguments passed to the plot function, but don't worry about these
-detail for now.
+details for now.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\OperatorTok{>}\StringTok{ }\KeywordTok{plot}\NormalTok{(dbh.treat.}\DecValTok{1}\NormalTok{, ht.treat.}\DecValTok{1}\NormalTok{, }\DataTypeTok{xlim=}\KeywordTok{range}\NormalTok{(dbh, }\DataTypeTok{na.rm=}\OtherTok{TRUE}\NormalTok{), }\DataTypeTok{ylim=}\KeywordTok{range}\NormalTok{(ht, }\DataTypeTok{na.rm=}\OtherTok{TRUE}\NormalTok{),}
-\OperatorTok{+}\StringTok{      }\DataTypeTok{pch=}\DecValTok{19}\NormalTok{, }\DataTypeTok{col=}\StringTok{"salmon3"}\NormalTok{, }\DataTypeTok{cex=}\FloatTok{0.5}\NormalTok{, }\DataTypeTok{xlab=}\StringTok{"DBH (cm)"}\NormalTok{, }\DataTypeTok{ylab=}\StringTok{"Height (cm)"}\NormalTok{)}
+\OperatorTok{>}\StringTok{ }\KeywordTok{plot}\NormalTok{(dbh.treat.}\DecValTok{1}\NormalTok{, ht.treat.}\DecValTok{1}\NormalTok{, }\DataTypeTok{xlim=}\KeywordTok{range}\NormalTok{(dbh, }\DataTypeTok{na.rm=}\OtherTok{TRUE}\NormalTok{), }
+\OperatorTok{+}\StringTok{      }\DataTypeTok{ylim=}\KeywordTok{range}\NormalTok{(ht, }\DataTypeTok{na.rm=}\OtherTok{TRUE}\NormalTok{), }\DataTypeTok{pch=}\DecValTok{19}\NormalTok{, }\DataTypeTok{col=}\StringTok{"salmon3"}\NormalTok{, }\DataTypeTok{cex=}\FloatTok{0.5}\NormalTok{, }
+\OperatorTok{+}\StringTok{      }\DataTypeTok{xlab=}\StringTok{"DBH (cm)"}\NormalTok{, }\DataTypeTok{ylab=}\StringTok{"Height (cm)"}\NormalTok{)}
 \OperatorTok{>}\StringTok{ }\KeywordTok{points}\NormalTok{(dbh.treat.}\DecValTok{2}\NormalTok{, ht.treat.}\DecValTok{2}\NormalTok{, }\DataTypeTok{pch=}\DecValTok{19}\NormalTok{, }\DataTypeTok{col=}\StringTok{"blue"}\NormalTok{, }\DataTypeTok{cex=}\FloatTok{0.5}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
@@ -1308,35 +1308,35 @@ detail for now.
 \begin{center}\includegraphics{bookdown_files/figure-latex/unnamed-chunk-11-1} \end{center}
 
 Of course we should have a plot legend to tell the viewer which colors
-are associated with treatments and a lot of other aesthetic refinements.
-For now, however, we will resist such temptations.\footnote{As an aside,
-  by only looking at the plotted data and thinking about basic plant
-  physiology, can you guess which color is associated with the elevated
-  CO\(_2\) treatment?}
+are associated with the treatments, as well as many other aesthetic
+refinements. For now, however, we will resist such
+temptations.\footnote{As an aside, by only looking at the plotted data
+  and thinking about basic plant physiology, can you guess which color
+  is associated with the elevated CO\(_2\) treatment?}
 
 Some of the process leading to the completed plot is shown above. We
 read in the data, created an intermediate plot by adding treatment
 identifiers, creating variables representing the 2008 measurements of
-DBH and height, and so on. A lot of the process isn't shown, to save
-space. For example, I made several mistakes in the process of getting
-the code and plot the way I wanted it---forgot the \texttt{na.rm=TRUE}
-initially then fiddled around with the treatment colors a bit.
+DBH and height, and so on. However, a lot of the process isn't shown.
+For example, I made several mistakes in the process of getting the code
+and plot the way I wanted it---forgot the \texttt{na.rm=TRUE} initially
+then fiddled around with the treatment colors a bit.
 
 Now imagine trying to recreate the plot a few days later. Possibly
 someone saw the plot and commented that it would be interesting to see
-similar plots for each year in the study period. If all the work,
-including all the false starts and refinements, were done at the
-console, it would be hard to sort things out and would take longer than
-necessary to create the new plots. This would be especially true if a
-few months had passed, rather than just a few days.
+similar plots for each year in the study period. If we did all the work,
+including all the false starts and refinements, at the console it would
+be hard to sort things out. This would take much longer than necessary
+to create the new plots. This would be especially true if a few months
+had passed, rather than just a few days.
 
 Creating the new scatter plots would be much easier with a script file,
 especially if it had a few well-chosen comments. Fortunately it is quite
 easy to create and work with script files in RStudio.\footnote{It is
   also easy in R without RStudio. Just use
-  \texttt{File\ \$\textgreater{}\$\ New\ script} to create a script
-  file, and save it before exiting R.} Just choose
-\texttt{File\ \$\textgreater{}\$\ New\ File\ \$\textgreater{}\$\ New\ script}
+  \texttt{File\ \textgreater{}\ New\ script} to create a script file,
+  and save it before exiting R.} Just choose
+\texttt{File\ \textgreater{}\ New\ File\ \textgreater{}\ New\ script}
 and a script window will open up in the upper left of the full RStudio
 window.
 
@@ -1352,7 +1352,7 @@ the script file is saved.
 
 \begin{figure}
 
-{\centering \includegraphics[width=10.61in]{03-scripts/03-images/FACE-script-screenshot} 
+{\centering \includegraphics[width=1\linewidth]{03-scripts/03-images/FACE-script-screenshot} 
 
 }
 
@@ -1367,8 +1367,7 @@ the purpose is to refine a system that recommends movies to users in an
 online streaming movie service. Possibly the purpose is to complete a
 homework assignment and demonstrate to the instructor an understanding
 of an aspect of data analysis. Whatever the purpose, a key aspect is
-communicating with the desired audience, for example, fellow researchers
-or an instructor.
+communicating with the desired audience.
 
 One possibility, which is somewhat effective, is to write a document
 using software such as Microsoft Word \footnote{Or possibly \(\LaTeX\)
@@ -1380,7 +1379,7 @@ code that created graphics or analyses, to revise these.\footnote{Organizing
   the R code using script files and keeping all the work organized in a
   well-thought-out directory structure can help here, but this requires
   a level of forethought and organization that most people do not
-  possess\(\ldots\)including myself.} A more subtle but possibly more
+  possess \(\ldots\) including myself.} A more subtle but possibly more
 important drawback is that the reader of the document will not know
 precisely how analyses were done, or how graphics were created. Over
 time even the author(s) of the paper will forget the details. A verbal
@@ -1398,70 +1397,23 @@ Among other things, R Markdown provides a way to include R code that
 read in data, create graphics, or perform analyses, all in a single
 document that is processed to create a research paper, homework
 assignment, or other written product. The R Markdown file is a plain
-text file containing text the author wants to have show in the final
+text file containing text the author wants to show in the final
 document, simple commands to indicate how the text should be formatted
-(for example boldface or italic, or a bulleted list), and R code that
+(for example boldface, italic, or a bulleted list), and R code that
 creates output (including graphics) on the fly. Perhaps the simplest way
 to get started is to see an R Markdown file and the resulting document
-that is produced after the R Markdown document is processed. Bewlo we
-show a very simple R Markdown file, and Figure @ref\{fig:rmdout\} shows
-the resulting output. In this case the output created is an HTML file,
-but there are other possible output formats, such as Microsoft Word or
-PDF.
-
-\begin{verbatim}
----
-title: "R Markdown"
-author: "Andy Finley"
-date: "April 3, 2017"
-output: html_document
----
-
-Basic formatting: 
-
-*italic* 
-
-**bold**
-
-~~strikethrough~~ 
-
-A code chunk:
-
-
-```r
-x <- 1:10
-y <- 10:1
-mean(x)
-```
-
-```
-## [1] 5.5
-```
-
-```r
-sd(y)
-```
-
-```
-## [1] 3.028
-```
-
-Inline code:
-
-10
-
-Inline code not executed:
-
-`5+5`
-\end{verbatim}
+that is produced after the R Markdown document is processed. In Figure
+\ref{fig:rmark} we show the input and output of an example R Markdown
+document. In this case the output created is an HTML file, but there are
+other possible output formats, such as Microsoft Word or PDF.
 
 \begin{figure}
 
-{\centering \includegraphics[width=4.9in]{03-scripts/03-images/Small-2} 
+{\centering \includegraphics[width=1\linewidth]{03-scripts/03-images/rmarkdownInputOutput} 
 
 }
 
-\caption{The R Markdown file that produces the output of the above code}\label{fig:rmdout}
+\caption{Example R Markdown Input and Output}\label{fig:rmark}
 \end{figure}
 
 At the top of the input R Markdown file are some lines with
@@ -1480,9 +1432,12 @@ More important for our purposes is the ability to include R code in the
 R Markdown file, which will be executed with the output appearing in the
 output document. Bits of R code included this way are called \emph{code
 chunks}. The beginning of a code chunk is indicated with three backticks
-and an ``r''" in curly braces. The end of a code chunk is indicated with
-three backticks. For example, the R Markdown file in Figure
-@ref(fig:rmd\_in) has one code chunk:
+and an ``r'' in curly braces:
+\texttt{\textasciigrave{}\textasciigrave{}\textasciigrave{}\{r\}}. The
+end of a code chunk is indicated with three backticks
+\texttt{\textasciigrave{}\textasciigrave{}\textasciigrave{}}. For
+example, the R Markdown file in Figure \ref{fig:rmark} has one code
+chunk:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1497,9 +1452,210 @@ three backticks. For example, the R Markdown file in Figure
 
 In this code chunk two vectors \texttt{x} and \texttt{y} are created,
 and the mean of \texttt{x} and the standard deviation of \texttt{y} are
-computed. In the output in Figure @ref(fig:rmd\_out) the R code is
+computed. In the output in Figure \ref{fig:rmark} the R code is
 reproduced, and the output of the two lines of code asking for the mean
 and standard deviation is shown.
+
+\subsection{Creating and processing R Markdown
+documents}\label{creating-and-processing-r-markdown-documents}
+
+RStudio has features which facilitate creating and processing R Markdown
+documents. Choose
+\texttt{File\ \textgreater{}\ New\ File\ \textgreater{}\ R\ \ Markdown...}.
+In the ensuing dialog box, make sure that \texttt{Document} is
+highlighted on the left, enter the title and author (if desired), and
+choose the Default Output Format (HTML is good to begin). Then click OK.
+A document will appear in the upper left of the RStudio window. It is an
+R Markdown document, and the title and author you chose will show up,
+delimited by \texttt{-\/-\/-} at the top of the document. A generic body
+of the document will also be included.
+
+For now just keep this generic document as is. To process it to create
+the HTML output, click the \texttt{Knit\ HTML} button at the top of the
+R Markdown window\footnote{If you hover your mouse over this Knit button
+  after a couple seconds it should display a keyboard shortcut for you
+  to do this if you don't like pushing buttons}. You'll be prompted to
+choose a filename for the R Markdown file. Make sure that you use
+\texttt{.Rmd} as the extension for this file. Once you've successfully
+saved the file, RStudio will process the file, create the HTML output,
+and open this output in a new window. The HTML output file will also be
+saved to your working directory. This file can be shared with others,
+who can open it using a web browser such as Chrome or Firefox.
+
+There are many options which allow customization of R Markdown
+documents. Some of these affect formatting of text in the document,
+while others affect how R code is evaluated and displayed. The RStudio
+web site contains a useful summary of many R Markdown options at
+\url{https://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf}.
+A different, but mind-numbingly busy, cheatsheet is at
+\url{https://www.rstudio.com/wp-content/uploads/2016/03/rmarkdown-cheatsheet-2.0.pdf}.
+Some of the more commonly used R Markdown options are described next.
+
+\subsection{Text: Lists and Headers}\label{text-lists-and-headers}
+
+Unordered (sometimes called bulleted) lists and ordered lists are easy
+in R Markdown. Figure \ref{fig:lists} illustrates the creation of
+unordered and ordered lists.
+
+\begin{figure}
+
+{\centering \includegraphics[width=1\linewidth]{03-scripts/03-images/listsPic} 
+
+}
+
+\caption{Producing Lists in R Markdown}\label{fig:lists}
+\end{figure}
+
+\begin{itemize}
+\item
+  For an unordered list, either an asterisk, a plus sign, or a minus
+  sign may precede list items. Use a space after these symbols before
+  including the list text. To have second-level items (sub-lists) indent
+  four spaces before indicating the list item. This can also be done for
+  third-level items.
+\item
+  For an ordered list use a numeral followed by a period and a space (1.
+  or 2. or 3. or \ldots{}) to indicate a numbered list, and use a letter
+  followed by a period and a space (a. or b. or c. or \ldots{}) to
+  indicate a lettered list. The same four space convention used in
+  unordered lists is used to designate ordered sub lists.
+\item
+  For an ordered list, the first list item will be labeled with the
+  number or letter that you specify, but subsequent list items will be
+  numbered sequentially. The example in Figure \ref{fig:lists} will make
+  this more clear. In those examples notice that for the ordered list,
+  although the first-level numbers given in the R Markdown file are 1,
+  2, and 17, the numbers printed in the output are 1, 2, and 3.
+  Similarly the letters given in the R Markdown file are c and q, but
+  the output file prints c and d.
+\end{itemize}
+
+R Markdown does not give substantial control over font size. Different
+``header'' levels are available that provide different font sizes. Put
+one or more hash marks in front of text to specify different header
+levels. Other font choices such as subscripts and superscripts are
+possible, by surrounding the text either by tildes or carets. More
+sophisticated mathematical displays are also possible, and are
+surrounded by dollar signs. The actual mathematical expressions are
+specified using a language called \(\LaTeX\) See Figures
+\ref{fig:headers} and \ref{fig:latex} for examples.
+
+\begin{figure}
+
+{\centering \includegraphics[width=1\linewidth]{03-scripts/03-images/headersAndLatex} 
+
+}
+
+\caption{Headers and Some LaTeX in R Markdown}\label{fig:headers}
+\end{figure}
+
+\begin{figure}
+
+{\centering \includegraphics[width=1\linewidth]{03-scripts/03-images/latex} 
+
+}
+
+\caption{Other useful LaTeX symbols and expressions in R Markdown}\label{fig:latex}
+\end{figure}
+
+\subsection{Code Chunks}\label{code-chunks}
+
+R Markdown provides a large number of options to vary the behavior of
+code chunks. In some contexts it is useful to display the output but not
+the R code leading to the output. In some contexts it is useful to
+display the R prompt, while in others it is not. Maybe we want to change
+the size of figures created by graphics commands. And so on. A large
+number of code chunk options are described in
+\url{http://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf}.
+
+Code chunk options are specified in the curly braces near the beginning
+of a code chunk. Below are a few of the more commonly used options are
+described. The use of these options is illustrated in Figure
+\ref{fig:chunk}.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \texttt{echo=FALSE} specifies that the R code itself should not be
+  printed, but any output of the R code should be printed in the
+  resulting document.
+\item
+  \texttt{include=FALSE} specifies that neither the R code nor the
+  output should be printed. However, the objects created by the code
+  chunk will be available for use in later code chunks.
+\item
+  \texttt{eval=FALSE} specifies that the R code should not be evaluated.
+  The code will be printed unless, for example, \texttt{echo=FALSE} is
+  also given as an option.
+\item
+  \texttt{error=FALSE} and \texttt{warning=FALSE} specify that,
+  respectively, error messages and warning messages generated by the R
+  code should not be printed.
+\item
+  The \texttt{comment} option allows a specified character string to be
+  prepended to each line of results. By default this is set to
+  \texttt{comment\ =\ \textquotesingle{}\#\#\textquotesingle{}} which
+  explains the two hash marks preceding the results in Figure
+  \ref{fig:rmark}. Setting \texttt{comment\ =\ NA} presents output
+  without any character string prepended. That is done in most code
+  chunks in this book.
+\item
+  \texttt{prompt=TRUE} specifies that the R prompt
+  \texttt{\textgreater{}} will be prepended to each line of R code shown
+  in the document. \texttt{prompt\ =\ FALSE} specifies that command
+  prompts should not be included.
+\item
+  \texttt{fig.height} and \texttt{fig.width} specify the height and
+  width of figures generated by R code. These are specified in inches.
+  For example, \texttt{fig.height=4} specifies a four inch high figure.
+\end{enumerate}
+
+Figures \ref{fig:chunk} gives examples of the use of code chunk options.
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.5\linewidth]{03-scripts/03-images/chunks1} \includegraphics[width=0.5\linewidth]{03-scripts/03-images/chunks2} 
+
+}
+
+\caption{Output of Example R Markdown}\label{fig:chunk}
+\end{figure}
+
+\subsection{Output formats other than
+HTML}\label{output-formats-other-than-html}
+
+It is possible to use R Markdown to produce documents in formats other
+than HTML, including Word and PDF documents. Next to the
+\texttt{Knit\ HTML} button is a down arrow. Click on this and choose
+\texttt{Knit\ Word} to produce a Microsoft word output document.
+Although there is also a \texttt{Knit\ PDF} button, PDF output requires
+additional software called TeX in addition to RStudio.\footnote{It isn't
+  particularly hard to install TeX software. For a Microsoft Windows
+  system, MiKTeX is convenient and is available from
+  \url{https://miktex.org}. For a Mac system, MacTeX is available from
+  \url{https://www.tug.org/mactex/}}
+
+\subsection{LaTeX, knitr, and bookdown}\label{latex-knitr-and-bookdown}
+
+While R Markdown provides substantial flexibility and power, it lacks
+features such as cross-referencing, fine control over fonts, etc. If
+this is desired, a variant of R Markdown called \texttt{knitr}, which
+has very similar syntax to R Markdown for code chunks, can be used in
+conjunction with the typesetting system \(\LaTeX\) to produce documents.
+We originally created this book using knitr and \(\LaTeX\). For simpler
+tasks, however, R Markdown is sufficient, and substantially easier to
+learn.
+
+As you know (since you are reading this) we are currently converting
+this book into R Markdown using the package \texttt{bookdown} written by
+Yihui Xie. This package utilizes the R Markdown style that is described
+above, and also incorporates numerous other features that R Markdown
+alone does not have (see the previous paragraph). Perhaps the best part
+about \texttt{bookdown} (in addition to it's lovely formatting style) is
+that we can make it interactive, so as you read the html version of this
+book you can interact with the code itself. You will experience this
+first hand when you work through the spatial data and databases
+chapters.
 
 \chapter*{References}\label{references}
 
