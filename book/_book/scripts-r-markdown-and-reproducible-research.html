@@ -25,7 +25,7 @@
 <meta name="author" content="Andrew O. Finley and Jeffrey W. Doser">
 
 
-<meta name="date" content="2018-09-04">
+<meta name="date" content="2018-09-05">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -33,7 +33,7 @@
   
   
 <link rel="prev" href="introduction-to-r-and-rstudio.html">
-<link rel="next" href="references.html">
+<link rel="next" href="data-structures.html">
 <script src="libs/jquery/jquery.min.js"></script>
 <link href="libs/gitbook/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook/css/plugin-bookdown.css" rel="stylesheet" />
@@ -136,6 +136,24 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="3.2.5" data-path="scripts-r-markdown-and-reproducible-research.html"><a href="scripts-r-markdown-and-reproducible-research.html#latex-knitr-and-bookdown"><i class="fa fa-check"></i><b>3.2.5</b> LaTeX, knitr, and bookdown</a></li>
 </ul></li>
 </ul></li>
+<li class="chapter" data-level="4" data-path="data-structures.html"><a href="data-structures.html"><i class="fa fa-check"></i><b>4</b> Data Structures</a><ul>
+<li class="chapter" data-level="4.1" data-path="data-structures.html"><a href="data-structures.html#vectors"><i class="fa fa-check"></i><b>4.1</b> Vectors</a><ul>
+<li class="chapter" data-level="4.1.1" data-path="data-structures.html"><a href="data-structures.html#types-conversion-and-coercion"><i class="fa fa-check"></i><b>4.1.1</b> Types, Conversion, and Coercion</a></li>
+<li class="chapter" data-level="4.1.2" data-path="data-structures.html"><a href="data-structures.html#accessing-specific-elements-of-vectors"><i class="fa fa-check"></i><b>4.1.2</b> Accessing Specific Elements of Vectors</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="data-structures.html"><a href="data-structures.html#factors"><i class="fa fa-check"></i><b>4.2</b> Factors</a></li>
+<li class="chapter" data-level="4.3" data-path="data-structures.html"><a href="data-structures.html#names-of-objects-in-r"><i class="fa fa-check"></i><b>4.3</b> Names of objects in R</a></li>
+<li class="chapter" data-level="4.4" data-path="data-structures.html"><a href="data-structures.html#missing-data-infinity-etc."><i class="fa fa-check"></i><b>4.4</b> Missing Data, Infinity, etc.</a><ul>
+<li class="chapter" data-level="4.4.1" data-path="data-structures.html"><a href="data-structures.html#infinity-and-nan"><i class="fa fa-check"></i><b>4.4.1</b> Infinity and NaN</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="data-structures.html"><a href="data-structures.html#data-frames"><i class="fa fa-check"></i><b>4.5</b> Data Frames</a><ul>
+<li class="chapter" data-level="4.5.1" data-path="data-structures.html"><a href="data-structures.html#accessing-specific-elements-of-data-frames"><i class="fa fa-check"></i><b>4.5.1</b> Accessing specific elements of data frames</a></li>
+</ul></li>
+<li class="chapter" data-level="4.6" data-path="data-structures.html"><a href="data-structures.html#lists"><i class="fa fa-check"></i><b>4.6</b> Lists</a><ul>
+<li class="chapter" data-level="4.6.1" data-path="data-structures.html"><a href="data-structures.html#accessing-specific-elements-of-lists"><i class="fa fa-check"></i><b>4.6.1</b> Accessing specific elements of lists</a></li>
+</ul></li>
+<li class="chapter" data-level="4.7" data-path="data-structures.html"><a href="data-structures.html#subsetting-with-logical-vectors"><i class="fa fa-check"></i><b>4.7</b> Subsetting with Logical Vectors</a></li>
+</ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 </ul>
 
@@ -167,52 +185,53 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <span class="op">+</span><span class="st"> </span>)</code></pre></div>
 <p>Next we print the names of the variables in the data set. Don’t be concerned about the specific details. Later we will learn much more about reading in data and working with data sets in R.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="op">&gt;</span><span class="st"> </span><span class="kw">names</span>(face.dat)</code></pre></div>
-<pre><code>##  [1] &quot;Rep&quot;                 &quot;Treat&quot;              
-##  [3] &quot;Clone&quot;               &quot;E.Clone&quot;            
-##  [5] &quot;Row&quot;                 &quot;Col&quot;                
-##  [7] &quot;ID..&quot;                &quot;X1997Initial_Height&quot;
-##  [9] &quot;X1997Initial_Diam&quot;   &quot;X1997Final_Height&quot;  
-## [11] &quot;X1997Final_Diam&quot;     &quot;X1998_Height&quot;       
-## [13] &quot;X1998_Diam&quot;          &quot;X1999_Height&quot;       
-## [15] &quot;X1999_Diam&quot;          &quot;X2000_Height&quot;       
-## [17] &quot;X2000_Diam&quot;          &quot;X2001_Height&quot;       
-## [19] &quot;X2001_AvgDiam&quot;       &quot;X2001_Diam.3cm&quot;     
-## [21] &quot;X2001_Diam.10cm&quot;     &quot;X2002_Height&quot;       
-## [23] &quot;X2002_Diam.10cm&quot;     &quot;X2003_Height&quot;       
-## [25] &quot;X2003_Diam.10cm&quot;     &quot;X2003_DBH&quot;          
-## [27] &quot;X2004_Height&quot;        &quot;X2004_Diam.10cm&quot;    
-## [29] &quot;X2004_DBH&quot;           &quot;X2005_Height&quot;       
-## [31] &quot;X2005_Diam.10cm&quot;     &quot;X2005_DBH&quot;          
-## [33] &quot;X2006_Height&quot;        &quot;X2006_DBH&quot;          
-## [35] &quot;X2007_Height&quot;        &quot;X2007_DBH&quot;          
-## [37] &quot;X2008_Height&quot;        &quot;X2008_DBH&quot;          
-## [39] &quot;Notes&quot;               &quot;Comment1&quot;           
-## [41] &quot;Comment2&quot;            &quot;Comment3&quot;           
-## [43] &quot;Comment4&quot;            &quot;Comment5&quot;           
-## [45] &quot;Comment6&quot;</code></pre>
+<pre><code> [1] &quot;Rep&quot;                 &quot;Treat&quot;              
+ [3] &quot;Clone&quot;               &quot;E.Clone&quot;            
+ [5] &quot;Row&quot;                 &quot;Col&quot;                
+ [7] &quot;ID..&quot;                &quot;X1997Initial_Height&quot;
+ [9] &quot;X1997Initial_Diam&quot;   &quot;X1997Final_Height&quot;  
+[11] &quot;X1997Final_Diam&quot;     &quot;X1998_Height&quot;       
+[13] &quot;X1998_Diam&quot;          &quot;X1999_Height&quot;       
+[15] &quot;X1999_Diam&quot;          &quot;X2000_Height&quot;       
+[17] &quot;X2000_Diam&quot;          &quot;X2001_Height&quot;       
+[19] &quot;X2001_AvgDiam&quot;       &quot;X2001_Diam.3cm&quot;     
+[21] &quot;X2001_Diam.10cm&quot;     &quot;X2002_Height&quot;       
+[23] &quot;X2002_Diam.10cm&quot;     &quot;X2003_Height&quot;       
+[25] &quot;X2003_Diam.10cm&quot;     &quot;X2003_DBH&quot;          
+[27] &quot;X2004_Height&quot;        &quot;X2004_Diam.10cm&quot;    
+[29] &quot;X2004_DBH&quot;           &quot;X2005_Height&quot;       
+[31] &quot;X2005_Diam.10cm&quot;     &quot;X2005_DBH&quot;          
+[33] &quot;X2006_Height&quot;        &quot;X2006_DBH&quot;          
+[35] &quot;X2007_Height&quot;        &quot;X2007_DBH&quot;          
+[37] &quot;X2008_Height&quot;        &quot;X2008_DBH&quot;          
+[39] &quot;Notes&quot;               &quot;Comment1&quot;           
+[41] &quot;Comment2&quot;            &quot;Comment3&quot;           
+[43] &quot;Comment4&quot;            &quot;Comment5&quot;           
+[45] &quot;Comment6&quot;           </code></pre>
 <p>Let’s create a scatter plot of 2008 DBH versus height. To do this we’ll first create variables for DBH and height taken in the year 2008 and print out the first ten values of each variable.<a href="#fn10" class="footnoteRef" id="fnref10"><sup>10</sup></a></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="op">&gt;</span><span class="st"> </span>dbh &lt;-<span class="st"> </span>face.dat<span class="op">$</span>X2008_DBH
 <span class="op">&gt;</span><span class="st"> </span>ht &lt;-<span class="st"> </span>face.dat<span class="op">$</span>X2008_Height
 <span class="op">&gt;</span><span class="st"> </span>dbh[<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>]</code></pre></div>
-<pre><code>##  [1]   NA 9.55 2.00 9.00 3.11 6.35 4.60   NA   NA 1.42</code></pre>
+<pre><code> [1]   NA 9.55 2.00 9.00 3.11 6.35 4.60   NA   NA 1.42</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="op">&gt;</span><span class="st"> </span>ht[<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>]</code></pre></div>
-<pre><code>##  [1]   NA 1225  334 1079  370  859  818   NA   NA  268</code></pre>
+<pre><code> [1]   NA 1225  334 1079  370  859  818   NA   NA  268</code></pre>
 <p>The <code>NA</code> is how missing data are represented in R. Their presence here suggests several trees in this data set are dead or not measured for some reason in 2008. Of course at some point it would be good to investigate which trees have missing data and why. The <code>plot()</code> function in R will omit missing values, and for now we will just plot the non-missing data. A scatter plot of the data is drawn next.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="op">&gt;</span><span class="st"> </span><span class="kw">plot</span>(dbh, ht)</code></pre></div>
 <p><img src="bookdown_files/figure-html/unnamed-chunk-9-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>Not surprisingly, the scatter plot shows that DBH and height are positively correlated and the relationship is nonlinear. Now that we have a basic scatter plot, it is tempting to make it more informative. We will do this by adding a feature that identifies which trees belong to the control and elevated CO<span class="math inline">\(_2\)</span> environment treatments. We do this by first separating DBH and height into their respective treatment groups.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="op">&gt;</span><span class="st"> </span>treat &lt;-<span class="st"> </span>face.dat<span class="op">$</span>Treat
-<span class="op">&gt;</span><span class="st"> </span>dbh.treat.<span class="dv">1</span> &lt;-<span class="st"> </span>dbh[treat<span class="op">==</span><span class="dv">1</span>] ##Treatment 1 is the control
-<span class="op">&gt;</span><span class="st"> </span>ht.treat.<span class="dv">1</span> &lt;-<span class="st"> </span>ht[treat<span class="op">==</span><span class="dv">1</span>]
+<span class="op">&gt;</span><span class="st"> </span>dbh.treat.<span class="dv">1</span> &lt;-<span class="st"> </span>dbh[treat <span class="op">==</span><span class="st"> </span><span class="dv">1</span>]  ##Treatment 1 is the control
+<span class="op">&gt;</span><span class="st"> </span>ht.treat.<span class="dv">1</span> &lt;-<span class="st"> </span>ht[treat <span class="op">==</span><span class="st"> </span><span class="dv">1</span>]
 <span class="op">&gt;</span><span class="st"> </span>
-<span class="er">&gt;</span><span class="st"> </span>dbh.treat.<span class="dv">2</span> &lt;-<span class="st"> </span>dbh[treat<span class="op">==</span><span class="dv">2</span>] ##Treatment 2 is the elevated CO2
-<span class="op">&gt;</span><span class="st"> </span>ht.treat.<span class="dv">2</span> &lt;-<span class="st"> </span>ht[treat<span class="op">==</span><span class="dv">2</span>]</code></pre></div>
+<span class="er">&gt;</span><span class="st"> </span>dbh.treat.<span class="dv">2</span> &lt;-<span class="st"> </span>dbh[treat <span class="op">==</span><span class="st"> </span><span class="dv">2</span>]  ##Treatment 2 is the elevated CO2
+<span class="op">&gt;</span><span class="st"> </span>ht.treat.<span class="dv">2</span> &lt;-<span class="st"> </span>ht[treat <span class="op">==</span><span class="st"> </span><span class="dv">2</span>]</code></pre></div>
 <p>To make a more informative scatter plot we will do two things. First make a plot for treatment 1 data, but ensure the plot region is large enough to include the treatment 2 data. This is done by specifying the range of the plot axes via <code>xlim</code> and <code>ylim</code> arguments in the <code>plot()</code> function. Here the <code>xlim</code> and <code>ylim</code> are set to the range of <code>dbh</code> and <code>ht</code> values, respectively, using <code>range()</code> (try and figure out what the <code>na.rm</code> argument does in the range function). Second we add treatment 2 data via the <code>points()</code> function. There are several other arguments passed to the plot function, but don’t worry about these details for now.</p>
 <!-- These and many other plot considerations will be covered later in the text---we will learn about an R package called `ggplot2` that provides a simpler way to create such plots. -->
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="op">&gt;</span><span class="st"> </span><span class="kw">plot</span>(dbh.treat.<span class="dv">1</span>, ht.treat.<span class="dv">1</span>, <span class="dt">xlim=</span><span class="kw">range</span>(dbh, <span class="dt">na.rm=</span><span class="ot">TRUE</span>), 
-<span class="op">+</span><span class="st">      </span><span class="dt">ylim=</span><span class="kw">range</span>(ht, <span class="dt">na.rm=</span><span class="ot">TRUE</span>), <span class="dt">pch=</span><span class="dv">19</span>, <span class="dt">col=</span><span class="st">&quot;salmon3&quot;</span>, <span class="dt">cex=</span><span class="fl">0.5</span>, 
-<span class="op">+</span><span class="st">      </span><span class="dt">xlab=</span><span class="st">&quot;DBH (cm)&quot;</span>, <span class="dt">ylab=</span><span class="st">&quot;Height (cm)&quot;</span>)
-<span class="op">&gt;</span><span class="st"> </span><span class="kw">points</span>(dbh.treat.<span class="dv">2</span>, ht.treat.<span class="dv">2</span>, <span class="dt">pch=</span><span class="dv">19</span>, <span class="dt">col=</span><span class="st">&quot;blue&quot;</span>, <span class="dt">cex=</span><span class="fl">0.5</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="op">&gt;</span><span class="st"> </span><span class="kw">plot</span>(dbh.treat.<span class="dv">1</span>, ht.treat.<span class="dv">1</span>, <span class="dt">xlim =</span> <span class="kw">range</span>(dbh, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>), 
+<span class="op">+</span><span class="st">   </span><span class="dt">ylim =</span> <span class="kw">range</span>(ht, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>), <span class="dt">pch =</span> <span class="dv">19</span>, <span class="dt">col =</span> <span class="st">&quot;salmon3&quot;</span>, 
+<span class="op">+</span><span class="st">   </span><span class="dt">cex =</span> <span class="fl">0.5</span>, <span class="dt">xlab =</span> <span class="st">&quot;DBH (cm)&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;Height (cm)&quot;</span>)
+<span class="op">&gt;</span><span class="st"> </span><span class="kw">points</span>(dbh.treat.<span class="dv">2</span>, ht.treat.<span class="dv">2</span>, <span class="dt">pch =</span> <span class="dv">19</span>, <span class="dt">col =</span> <span class="st">&quot;blue&quot;</span>, 
+<span class="op">+</span><span class="st">   </span><span class="dt">cex =</span> <span class="fl">0.5</span>)</code></pre></div>
 <p><img src="bookdown_files/figure-html/unnamed-chunk-11-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>Of course we should have a plot legend to tell the viewer which colors are associated with the treatments, as well as many other aesthetic refinements. For now, however, we will resist such temptations.<a href="#fn11" class="footnoteRef" id="fnref11"><sup>11</sup></a></p>
 <p>Some of the process leading to the completed plot is shown above. We read in the data, created an intermediate plot by adding treatment identifiers, creating variables representing the 2008 measurements of DBH and height, and so on. However, a lot of the process isn’t shown. For example, I made several mistakes in the process of getting the code and plot the way I wanted it—forgot the <code>na.rm=TRUE</code> initially then fiddled around with the treatment colors a bit.</p>
@@ -336,7 +355,7 @@ FIGURE 3.6: Output of Example R Markdown
         </div>
       </div>
 <a href="introduction-to-r-and-rstudio.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="references.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="data-structures.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook/js/app.min.js"></script>
@@ -366,8 +385,8 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/yihui/bookdown-crc/edit/master/03-scripts.Rmd",
-"text": "Edit"
+"link": null,
+"text": null
 },
 "download": ["bookdown.pdf", "bookdown.epub"],
 "toc": {

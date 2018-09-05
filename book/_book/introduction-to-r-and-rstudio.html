@@ -25,7 +25,7 @@
 <meta name="author" content="Andrew O. Finley and Jeffrey W. Doser">
 
 
-<meta name="date" content="2018-09-04">
+<meta name="date" content="2018-09-05">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -136,6 +136,24 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="3.2.5" data-path="scripts-r-markdown-and-reproducible-research.html"><a href="scripts-r-markdown-and-reproducible-research.html#latex-knitr-and-bookdown"><i class="fa fa-check"></i><b>3.2.5</b> LaTeX, knitr, and bookdown</a></li>
 </ul></li>
 </ul></li>
+<li class="chapter" data-level="4" data-path="data-structures.html"><a href="data-structures.html"><i class="fa fa-check"></i><b>4</b> Data Structures</a><ul>
+<li class="chapter" data-level="4.1" data-path="data-structures.html"><a href="data-structures.html#vectors"><i class="fa fa-check"></i><b>4.1</b> Vectors</a><ul>
+<li class="chapter" data-level="4.1.1" data-path="data-structures.html"><a href="data-structures.html#types-conversion-and-coercion"><i class="fa fa-check"></i><b>4.1.1</b> Types, Conversion, and Coercion</a></li>
+<li class="chapter" data-level="4.1.2" data-path="data-structures.html"><a href="data-structures.html#accessing-specific-elements-of-vectors"><i class="fa fa-check"></i><b>4.1.2</b> Accessing Specific Elements of Vectors</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="data-structures.html"><a href="data-structures.html#factors"><i class="fa fa-check"></i><b>4.2</b> Factors</a></li>
+<li class="chapter" data-level="4.3" data-path="data-structures.html"><a href="data-structures.html#names-of-objects-in-r"><i class="fa fa-check"></i><b>4.3</b> Names of objects in R</a></li>
+<li class="chapter" data-level="4.4" data-path="data-structures.html"><a href="data-structures.html#missing-data-infinity-etc."><i class="fa fa-check"></i><b>4.4</b> Missing Data, Infinity, etc.</a><ul>
+<li class="chapter" data-level="4.4.1" data-path="data-structures.html"><a href="data-structures.html#infinity-and-nan"><i class="fa fa-check"></i><b>4.4.1</b> Infinity and NaN</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="data-structures.html"><a href="data-structures.html#data-frames"><i class="fa fa-check"></i><b>4.5</b> Data Frames</a><ul>
+<li class="chapter" data-level="4.5.1" data-path="data-structures.html"><a href="data-structures.html#accessing-specific-elements-of-data-frames"><i class="fa fa-check"></i><b>4.5.1</b> Accessing specific elements of data frames</a></li>
+</ul></li>
+<li class="chapter" data-level="4.6" data-path="data-structures.html"><a href="data-structures.html#lists"><i class="fa fa-check"></i><b>4.6</b> Lists</a><ul>
+<li class="chapter" data-level="4.6.1" data-path="data-structures.html"><a href="data-structures.html#accessing-specific-elements-of-lists"><i class="fa fa-check"></i><b>4.6.1</b> Accessing specific elements of lists</a></li>
+</ul></li>
+<li class="chapter" data-level="4.7" data-path="data-structures.html"><a href="data-structures.html#subsetting-with-logical-vectors"><i class="fa fa-check"></i><b>4.7</b> Subsetting with Logical Vectors</a></li>
+</ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 </ul>
 
@@ -202,38 +220,38 @@ FIGURE 2.1: The Rstudio IDE.
 <div id="r-as-a-calculator" class="section level3">
 <h3><span class="header-section-number">2.3.1</span> R as a calculator</h3>
 <p>R can be used as a calculator. Note that <code>#</code> is the comment character in R, so R ignores everything following this character. Also, you will see that R prints <code>[1]</code> before the results of each command. Soon we will explain its relevance, but ignore this for now. The command prompt in R is the greater than sign <code>&gt;</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="op">&gt;</span><span class="st"> </span><span class="dv">34</span><span class="op">+</span><span class="dv">20</span><span class="op">*</span><span class="kw">sqrt</span>(<span class="dv">100</span>)  ## +,-,*,/ have the expected meanings</code></pre></div>
-<pre><code>## [1] 234</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="op">&gt;</span><span class="st"> </span><span class="dv">34</span> <span class="op">+</span><span class="st"> </span><span class="dv">20</span> <span class="op">*</span><span class="st"> </span><span class="kw">sqrt</span>(<span class="dv">100</span>)  ## +,-,*,/ have the expected meanings</code></pre></div>
+<pre><code>[1] 234</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="op">&gt;</span><span class="st"> </span><span class="kw">exp</span>(<span class="dv">2</span>)  ##The exponential function</code></pre></div>
-<pre><code>## [1] 7.389</code></pre>
+<pre><code>[1] 7.389</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="op">&gt;</span><span class="st"> </span><span class="kw">log10</span>(<span class="dv">100</span>)  ##Base 10 logarithm</code></pre></div>
-<pre><code>## [1] 2</code></pre>
+<pre><code>[1] 2</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="op">&gt;</span><span class="st"> </span><span class="kw">log</span>(<span class="dv">100</span>)  ##Base e logarithm</code></pre></div>
-<pre><code>## [1] 4.605</code></pre>
+<pre><code>[1] 4.605</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="op">&gt;</span><span class="st"> </span><span class="dv">10</span><span class="op">^</span><span class="kw">log10</span>(<span class="dv">55</span>)</code></pre></div>
-<pre><code>## [1] 55</code></pre>
+<pre><code>[1] 55</code></pre>
 <p>Most functions in R can be applied to vector arguments rather than operating on a single argument at a time. A <em>vector</em> is a data structure that contains elements of the same data type (i.e. integers).</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="op">&gt;</span><span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">25</span> ##The integers from 1 to 25</code></pre></div>
-<pre><code>##  [1]  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17
-## [18] 18 19 20 21 22 23 24 25</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="op">&gt;</span><span class="st"> </span><span class="kw">log</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">25</span>) ##The base e logarithm of these integers</code></pre></div>
-<pre><code>##  [1] 0.0000 0.6931 1.0986 1.3863 1.6094 1.7918 1.9459
-##  [8] 2.0794 2.1972 2.3026 2.3979 2.4849 2.5649 2.6391
-## [15] 2.7081 2.7726 2.8332 2.8904 2.9444 2.9957 3.0445
-## [22] 3.0910 3.1355 3.1781 3.2189</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="op">&gt;</span><span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">25</span><span class="op">*</span><span class="dv">1</span><span class="op">:</span><span class="dv">25</span> ##What will this produce?</code></pre></div>
-<pre><code>##  [1]   1   4   9  16  25  36  49  64  81 100 121 144
-## [13] 169 196 225 256 289 324 361 400 441 484 529 576
-## [25] 625</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="op">&gt;</span><span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">25</span><span class="op">*</span><span class="dv">1</span><span class="op">:</span><span class="dv">5</span> ##What about this?</code></pre></div>
-<pre><code>##  [1]   1   4   9  16  25   6  14  24  36  50  11  24
-## [13]  39  56  75  16  34  54  76 100  21  44  69  96
-## [25] 125</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="op">&gt;</span><span class="st"> </span><span class="kw">seq</span>(<span class="dt">from=</span><span class="dv">0</span>, <span class="dt">to=</span><span class="dv">1</span>, <span class="dt">by=</span><span class="fl">0.1</span>) ##A sequence of numbers from 0 to 1</code></pre></div>
-<pre><code>##  [1] 0.0 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1.0</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="op">&gt;</span><span class="st"> </span><span class="kw">exp</span>(<span class="kw">seq</span>(<span class="dt">from=</span><span class="dv">0</span>, <span class="dt">to=</span><span class="dv">1</span>, <span class="dt">by=</span><span class="fl">0.1</span>)) ##What will this produce?</code></pre></div>
-<pre><code>##  [1] 1.000 1.105 1.221 1.350 1.492 1.649 1.822 2.014
-##  [9] 2.226 2.460 2.718</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="op">&gt;</span><span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">25</span>  ##The integers from 1 to 25</code></pre></div>
+<pre><code> [1]  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17
+[18] 18 19 20 21 22 23 24 25</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="op">&gt;</span><span class="st"> </span><span class="kw">log</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">25</span>)  ##The base e logarithm of these integers</code></pre></div>
+<pre><code> [1] 0.0000 0.6931 1.0986 1.3863 1.6094 1.7918 1.9459
+ [8] 2.0794 2.1972 2.3026 2.3979 2.4849 2.5649 2.6391
+[15] 2.7081 2.7726 2.8332 2.8904 2.9444 2.9957 3.0445
+[22] 3.0910 3.1355 3.1781 3.2189</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="op">&gt;</span><span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">25</span> <span class="op">*</span><span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">25</span>  ##What will this produce?</code></pre></div>
+<pre><code> [1]   1   4   9  16  25  36  49  64  81 100 121 144
+[13] 169 196 225 256 289 324 361 400 441 484 529 576
+[25] 625</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="op">&gt;</span><span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">25</span> <span class="op">*</span><span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">5</span>  ##What about this?</code></pre></div>
+<pre><code> [1]   1   4   9  16  25   6  14  24  36  50  11  24
+[13]  39  56  75  16  34  54  76 100  21  44  69  96
+[25] 125</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="op">&gt;</span><span class="st"> </span><span class="kw">seq</span>(<span class="dt">from =</span> <span class="dv">0</span>, <span class="dt">to =</span> <span class="dv">1</span>, <span class="dt">by =</span> <span class="fl">0.1</span>)  ##A sequence of numbers from 0 to 1</code></pre></div>
+<pre><code> [1] 0.0 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1.0</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="op">&gt;</span><span class="st"> </span><span class="kw">exp</span>(<span class="kw">seq</span>(<span class="dt">from =</span> <span class="dv">0</span>, <span class="dt">to =</span> <span class="dv">1</span>, <span class="dt">by =</span> <span class="fl">0.1</span>))  ##What will this produce?</code></pre></div>
+<pre><code> [1] 1.000 1.105 1.221 1.350 1.492 1.649 1.822 2.014
+ [9] 2.226 2.460 2.718</code></pre>
 <p>Now the mysterious square bracketed numbers appearing next to the output make sense. R puts the position of the beginning value on a line in square brackets before the line of output. For example if the output has 40 values, and 15 values appear on each line, then the first line will have <code>[1]</code> at the left, the second line will have <code>[16]</code> to the left, and the third line will have <code>[31]</code> to the left.</p>
 </div>
 <div id="sec:dec" class="section level3">
@@ -241,60 +259,62 @@ FIGURE 2.1: The Rstudio IDE.
 <p>Of course it is easy to compute basic descriptive statistics and to produce standard graphical representations of data. For illustration consider the first 14 observations of tree height and DBH (diameter at breast height) from the FEF data set. We will begin by entering these data “by hand” using the <code>c()</code> function, which concatenates its arguments into a vector. For larger data sets we will clearly want an alternative way to enter data.</p>
 <p>A style note: R has two widely used methods of assignment: the left arrow, which consists of a less than sign followed immediately by a dash: <code>&lt;-</code> and the equals sign: <code>=</code>. Much ink has been used debating the relative merits of the two methods, and their subtle differences. Many leading R style guides (e.g., the Google style guide at <a href="https://google.github.io/styleguide/Rguide.xml" class="uri">https://google.github.io/styleguide/Rguide.xml</a> and the Bioconductor style guide at <a href="http://www.bioconductor.org/developers/how-to/coding-style/" class="uri">http://www.bioconductor.org/developers/how-to/coding-style/</a>) recommend the left arrow <code>&lt;-</code> as an assignment operator, and we will use this throughout the book.</p>
 <p>Also you will see that if a command has not been completed but the ENTER key is pressed, the command prompt changes to a <code>+</code> sign.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="op">&gt;</span><span class="st"> </span>dbh &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">6</span>, <span class="fl">6.9</span>, <span class="fl">6.4</span>, <span class="fl">6.5</span>, <span class="fl">7.2</span>, <span class="fl">3.1</span>, <span class="dv">2</span>, <span class="fl">4.1</span>, <span class="fl">2.4</span>, <span class="fl">2.7</span>, <span class="fl">3.7</span>, <span class="fl">6.3</span>, <span class="fl">5.2</span>, <span class="fl">5.1</span>, <span class="fl">6.4</span>)
-<span class="op">&gt;</span><span class="st"> </span>ht &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">48</span>, <span class="dv">48</span>, <span class="dv">48</span>, <span class="dv">49</span>, <span class="dv">51</span>, <span class="dv">40</span>, <span class="fl">30.5</span>, <span class="dv">50</span>, <span class="dv">28</span>, <span class="fl">40.4</span>, <span class="fl">42.6</span>, <span class="dv">53</span>, <span class="dv">55</span>, <span class="dv">50</span>, <span class="dv">50</span>)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="op">&gt;</span><span class="st"> </span>dbh &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">6</span>, <span class="fl">6.9</span>, <span class="fl">6.4</span>, <span class="fl">6.5</span>, <span class="fl">7.2</span>, <span class="fl">3.1</span>, <span class="dv">2</span>, <span class="fl">4.1</span>, <span class="fl">2.4</span>, <span class="fl">2.7</span>, <span class="fl">3.7</span>, 
+<span class="op">+</span><span class="st">   </span><span class="fl">6.3</span>, <span class="fl">5.2</span>, <span class="fl">5.1</span>, <span class="fl">6.4</span>)
+<span class="op">&gt;</span><span class="st"> </span>ht &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">48</span>, <span class="dv">48</span>, <span class="dv">48</span>, <span class="dv">49</span>, <span class="dv">51</span>, <span class="dv">40</span>, <span class="fl">30.5</span>, <span class="dv">50</span>, <span class="dv">28</span>, <span class="fl">40.4</span>, <span class="fl">42.6</span>, 
+<span class="op">+</span><span class="st">   </span><span class="dv">53</span>, <span class="dv">55</span>, <span class="dv">50</span>, <span class="dv">50</span>)
 <span class="op">&gt;</span><span class="st"> </span>dbh</code></pre></div>
-<pre><code>##  [1] 6.0 6.9 6.4 6.5 7.2 3.1 2.0 4.1 2.4 2.7 3.7 6.3
-## [13] 5.2 5.1 6.4</code></pre>
+<pre><code> [1] 6.0 6.9 6.4 6.5 7.2 3.1 2.0 4.1 2.4 2.7 3.7 6.3
+[13] 5.2 5.1 6.4</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="op">&gt;</span><span class="st"> </span>ht</code></pre></div>
-<pre><code>##  [1] 48.0 48.0 48.0 49.0 51.0 40.0 30.5 50.0 28.0 40.4
-## [11] 42.6 53.0 55.0 50.0 50.0</code></pre>
+<pre><code> [1] 48.0 48.0 48.0 49.0 51.0 40.0 30.5 50.0 28.0 40.4
+[11] 42.6 53.0 55.0 50.0 50.0</code></pre>
 <p>Next we compute some descriptive statistics for the two numeric variables</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="op">&gt;</span><span class="st"> </span><span class="kw">mean</span>(dbh)</code></pre></div>
-<pre><code>## [1] 4.933</code></pre>
+<pre><code>[1] 4.933</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="op">&gt;</span><span class="st"> </span><span class="kw">sd</span>(dbh)</code></pre></div>
-<pre><code>## [1] 1.782</code></pre>
+<pre><code>[1] 1.782</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="op">&gt;</span><span class="st"> </span><span class="kw">summary</span>(dbh)</code></pre></div>
-<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-##    2.00    3.40    5.20    4.93    6.40    7.20</code></pre>
+<pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+   2.00    3.40    5.20    4.93    6.40    7.20 </code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="op">&gt;</span><span class="st"> </span><span class="kw">mean</span>(ht)</code></pre></div>
-<pre><code>## [1] 45.57</code></pre>
+<pre><code>[1] 45.57</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="op">&gt;</span><span class="st"> </span><span class="kw">sd</span>(ht)</code></pre></div>
-<pre><code>## [1] 7.857</code></pre>
+<pre><code>[1] 7.857</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="op">&gt;</span><span class="st"> </span><span class="kw">summary</span>(ht)</code></pre></div>
-<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-##    28.0    41.5    48.0    45.6    50.0    55.0</code></pre>
+<pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+   28.0    41.5    48.0    45.6    50.0    55.0 </code></pre>
 <p>Next, a scatter plot of <code>dbh</code> versus <code>ht</code>:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(dbh, ht)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="op">&gt;</span><span class="st"> </span><span class="kw">plot</span>(dbh, ht)</code></pre></div>
 <p><img src="bookdown_files/figure-html/unnamed-chunk-4-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>Unsurprisingly as DBH increases, height tends to increase. We’ll investigate this further using simple linear regression in the next section.</p>
 </div>
 <div id="simple-linear-regression-in-r" class="section level3">
 <h3><span class="header-section-number">2.3.3</span> Simple linear regression in R</h3>
 <p>The <code>lm()</code> function is used to fit linear models in R, including simple linear regression models. Here it is applied to the DBH height data.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="op">&gt;</span><span class="st"> </span>ht.lm &lt;-<span class="st"> </span><span class="kw">lm</span>(ht <span class="op">~</span><span class="st"> </span>dbh) ##Fit the model and save it in ht.lm
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="op">&gt;</span><span class="st"> </span>ht.lm &lt;-<span class="st"> </span><span class="kw">lm</span>(ht <span class="op">~</span><span class="st"> </span>dbh)  ##Fit the model and save it in ht.lm
 <span class="op">&gt;</span><span class="st"> </span><span class="kw">summary</span>(ht.lm)  ##Basic summary of the model</code></pre></div>
-<pre><code>## 
-## Call:
-## lm(formula = ht ~ dbh)
-## 
-## Residuals:
-##    Min     1Q Median     3Q    Max 
-## -8.507 -2.742 -0.812  2.683  8.480 
-## 
-## Coefficients:
-##             Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept)   27.925      3.739    7.47  4.7e-06 ***
-## dbh            3.576      0.716    5.00  0.00024 ***
-## ---
-## Signif. codes:  
-## 0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
-## 
-## Residual standard error: 4.77 on 13 degrees of freedom
-## Multiple R-squared:  0.658,  Adjusted R-squared:  0.631 
-## F-statistic:   25 on 1 and 13 DF,  p-value: 0.000244</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="op">&gt;</span><span class="st"> </span><span class="kw">plot</span>(dbh, ht) ##Scatter plot of the data
-<span class="op">&gt;</span><span class="st"> </span><span class="kw">abline</span>(ht.lm) ##Add the fitted regression line to the plot</code></pre></div>
+<pre><code>
+Call:
+lm(formula = ht ~ dbh)
+
+Residuals:
+   Min     1Q Median     3Q    Max 
+-8.507 -2.742 -0.812  2.683  8.480 
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)   27.925      3.739    7.47  4.7e-06 ***
+dbh            3.576      0.716    5.00  0.00024 ***
+---
+Signif. codes:  
+0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+Residual standard error: 4.77 on 13 degrees of freedom
+Multiple R-squared:  0.658, Adjusted R-squared:  0.631 
+F-statistic:   25 on 1 and 13 DF,  p-value: 0.000244</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="op">&gt;</span><span class="st"> </span><span class="kw">plot</span>(dbh, ht)  ##Scatter plot of the data
+<span class="op">&gt;</span><span class="st"> </span><span class="kw">abline</span>(ht.lm)  ##Add the fitted regression line to the plot</code></pre></div>
 <p><img src="bookdown_files/figure-html/unnamed-chunk-5-1.png" width="672" style="display: block; margin: auto;" /> We will work extensively with such models later in the text. We will also talk about why it might not be a good idea to assume a linear relationship between DBH and height—can you guess why this is by looking at the data scatter and model fitted line in the plot above?</p>
 </div>
 </div>
@@ -403,8 +423,8 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/yihui/bookdown-crc/edit/master/02-introToR.Rmd",
-"text": "Edit"
+"link": null,
+"text": null
 },
 "download": ["bookdown.pdf", "bookdown.epub"],
 "toc": {

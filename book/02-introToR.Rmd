@@ -35,6 +35,7 @@ You must install R prior to installing RStudio. RStudio is also simple to instal
 5. On the ensuing page, click on the `Installer` version for your operating system, and once downloaded, install as you would any program
 
 ## Using R and RStudio
+
 Start RStudio as you would any other program in your operating system. For example, under Microsoft Windows use the Start Menu or double click on the shortcut on the desktop (if a shortcut was created in the installation process). A (rather small) view of RStudio is displayed in Figure \@ref(fig:rstudio).
 
 ```{r rstudio, echo = FALSE, fig.cap = "The Rstudio IDE."}

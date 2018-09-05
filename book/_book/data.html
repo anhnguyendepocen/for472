@@ -25,7 +25,7 @@
 <meta name="author" content="Andrew O. Finley and Jeffrey W. Doser">
 
 
-<meta name="date" content="2018-09-04">
+<meta name="date" content="2018-09-05">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -135,6 +135,24 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="3.2.4" data-path="scripts-r-markdown-and-reproducible-research.html"><a href="scripts-r-markdown-and-reproducible-research.html#output-formats-other-than-html"><i class="fa fa-check"></i><b>3.2.4</b> Output formats other than HTML</a></li>
 <li class="chapter" data-level="3.2.5" data-path="scripts-r-markdown-and-reproducible-research.html"><a href="scripts-r-markdown-and-reproducible-research.html#latex-knitr-and-bookdown"><i class="fa fa-check"></i><b>3.2.5</b> LaTeX, knitr, and bookdown</a></li>
 </ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="data-structures.html"><a href="data-structures.html"><i class="fa fa-check"></i><b>4</b> Data Structures</a><ul>
+<li class="chapter" data-level="4.1" data-path="data-structures.html"><a href="data-structures.html#vectors"><i class="fa fa-check"></i><b>4.1</b> Vectors</a><ul>
+<li class="chapter" data-level="4.1.1" data-path="data-structures.html"><a href="data-structures.html#types-conversion-and-coercion"><i class="fa fa-check"></i><b>4.1.1</b> Types, Conversion, and Coercion</a></li>
+<li class="chapter" data-level="4.1.2" data-path="data-structures.html"><a href="data-structures.html#accessing-specific-elements-of-vectors"><i class="fa fa-check"></i><b>4.1.2</b> Accessing Specific Elements of Vectors</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="data-structures.html"><a href="data-structures.html#factors"><i class="fa fa-check"></i><b>4.2</b> Factors</a></li>
+<li class="chapter" data-level="4.3" data-path="data-structures.html"><a href="data-structures.html#names-of-objects-in-r"><i class="fa fa-check"></i><b>4.3</b> Names of objects in R</a></li>
+<li class="chapter" data-level="4.4" data-path="data-structures.html"><a href="data-structures.html#missing-data-infinity-etc."><i class="fa fa-check"></i><b>4.4</b> Missing Data, Infinity, etc.</a><ul>
+<li class="chapter" data-level="4.4.1" data-path="data-structures.html"><a href="data-structures.html#infinity-and-nan"><i class="fa fa-check"></i><b>4.4.1</b> Infinity and NaN</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="data-structures.html"><a href="data-structures.html#data-frames"><i class="fa fa-check"></i><b>4.5</b> Data Frames</a><ul>
+<li class="chapter" data-level="4.5.1" data-path="data-structures.html"><a href="data-structures.html#accessing-specific-elements-of-data-frames"><i class="fa fa-check"></i><b>4.5.1</b> Accessing specific elements of data frames</a></li>
+</ul></li>
+<li class="chapter" data-level="4.6" data-path="data-structures.html"><a href="data-structures.html#lists"><i class="fa fa-check"></i><b>4.6</b> Lists</a><ul>
+<li class="chapter" data-level="4.6.1" data-path="data-structures.html"><a href="data-structures.html#accessing-specific-elements-of-lists"><i class="fa fa-check"></i><b>4.6.1</b> Accessing specific elements of lists</a></li>
+</ul></li>
+<li class="chapter" data-level="4.7" data-path="data-structures.html"><a href="data-structures.html#subsetting-with-logical-vectors"><i class="fa fa-check"></i><b>4.7</b> Subsetting with Logical Vectors</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 </ul>
@@ -247,7 +265,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </div>
 <div id="face-experiment-data-set" class="section level2">
 <h2><span class="header-section-number">1.2</span> FACE Experiment Data Set</h2>
-<p>We often encounter data gleaned from highly structured and complex experiments. Such data typically present challenges in organization/storage, exploratory data analysis (EDA), statistical analysis, and interpretation of analysis results. An example data set comes from the Aspen <a href="http://www.nrs.fs.fed.us/disturbance/climate_change/face">Free-Air Carbon Dioxide Enrichment</a> (FACE) Experiment conducted from 1997-2009 on the <a href="http://www.nrs.fs.fed.us/ef/locations/wi/rhinelander/">Harshaw Experimental Forest</a> near Rhinelander, Wisconsin. The Aspen FACE Experiment was a multidisciplinary study that assessed the effects of increasing tropospheric ozone and carbon dioxide concentrations on the structure and functioning of northern forest ecosystems. The design provided the ability to assess the effects of these gasses alone (and in combination) on many ecosystem attributes, including growth, leaf development, root characteristics, and soil carbon. The data set considered here comprises annual tree height and diameter measurements from 1997 to 2008 for <em>Populus tremuloides</em>, <em>Acer saccharum</em>, and <em>Betula papyrifera</em> grown within twelve 30 meter diameter rings in which the concentrations of tropospheric ozone and carbon dioxide were controlled <span class="citation">Kubiske (<a href="#ref-Kubiske2013">2013</a>)</span>. Because there was no confinement, there was no significant change in the natural, ambient environment other than elevating these trace gas concentrations. Although the basic individual tree measurements are similar to those in the FEF data set we saw in Section~<a href="data.html#fef">1.1</a>, (i.e., height and diameter), the study design specifies various tree species clones, varying gas treatments, and treatment replicates. Further, because these are longitudinal data, (measurements were recorded over time) the data set presents many missing values as a result of tree mortality. Table <a href="data.html#tab:face">1.2</a> contains the first five records as well as 5 more randomly selected records in the data set. Here, a row identifies each tree’s experimental assignment, genetic description, and growth over time.</p>
+<p>We often encounter data gleaned from highly structured and complex experiments. Such data typically present challenges in organization/storage, exploratory data analysis (EDA), statistical analysis, and interpretation of analysis results. An example data set comes from the Aspen <a href="http://www.nrs.fs.fed.us/disturbance/climate_change/face">Free-Air Carbon Dioxide Enrichment</a> (FACE) Experiment conducted from 1997-2009 on the <a href="http://www.nrs.fs.fed.us/ef/locations/wi/rhinelander/">Harshaw Experimental Forest</a> near Rhinelander, Wisconsin. The Aspen FACE Experiment was a multidisciplinary study that assessed the effects of increasing tropospheric ozone and carbon dioxide concentrations on the structure and functioning of northern forest ecosystems. The design provided the ability to assess the effects of these gasses alone (and in combination) on many ecosystem attributes, including growth, leaf development, root characteristics, and soil carbon. The data set considered here comprises annual tree height and diameter measurements from 1997 to 2008 for <em>Populus tremuloides</em>, <em>Acer saccharum</em>, and <em>Betula papyrifera</em> grown within twelve 30 meter diameter rings in which the concentrations of tropospheric ozone and carbon dioxide were controlled <span class="citation">Kubiske (<a href="#ref-Kubiske2013">2013</a>)</span>. Because there was no confinement, there was no significant change in the natural, ambient environment other than elevating these trace gas concentrations. Although the basic individual tree measurements are similar to those in the FEF data set we saw in Section <a href="data.html#fef">1.1</a>, (i.e., height and diameter), the study design specifies various tree species clones, varying gas treatments, and treatment replicates. Further, because these are longitudinal data, (measurements were recorded over time) the data set presents many missing values as a result of tree mortality. Table <a href="data.html#tab:face">1.2</a> contains the first five records as well as 5 more randomly selected records in the data set. Here, a row identifies each tree’s experimental assignment, genetic description, and growth over time.</p>
 <table>
 <caption><span id="tab:face">TABLE 1.2: </span>A small portion of the FACE experiment data set</caption>
 <thead>
@@ -601,8 +619,8 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/yihui/bookdown-crc/edit/master/01-introduction.Rmd",
-"text": "Edit"
+"link": null,
+"text": null
 },
 "download": ["bookdown.pdf", "bookdown.epub"],
 "toc": {

@@ -17,9 +17,13 @@ header-includes:
 ---
 
 ```{r setup, include=FALSE}
+library(tidyr)
+library(knitr)
 options(
-  htmltools.dir.version = FALSE, formatR.indent = 2, width = 55, digits = 4
+  htmltools.dir.version = FALSE, formatR.indent = 2, width = 55, digits = 4,
+  formatR.arrow = TRUE
 )
+opts_chunk$set(comment=NA, tidy=TRUE, prompt=TRUE)
 
 # install the packages needed by this book; you fill out c(), e.g. c('ggplot2', 'dplyr')
 lapply(c('xfun'), function(pkg) {

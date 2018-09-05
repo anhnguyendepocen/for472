@@ -4,7 +4,6 @@ bookdown::gitbook:
     toc:
       collapse: none
     download: [pdf, epub]
-    edit: https://github.com/yihui/bookdown-crc/edit/master/%s
     sharing:
       github: true
       facebook: false
