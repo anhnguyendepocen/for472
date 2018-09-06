@@ -38,7 +38,7 @@ You must install R prior to installing RStudio. RStudio is also simple to instal
 
 Start RStudio as you would any other program in your operating system. For example, under Microsoft Windows use the Start Menu or double click on the shortcut on the desktop (if a shortcut was created in the installation process). A (rather small) view of RStudio is displayed in Figure \@ref(fig:rstudio).
 
-```{r rstudio, echo = FALSE, fig.cap = "The Rstudio IDE."}
+```{r rstudio, out.wdith = "4in", out.height = "4in", echo = FALSE, fig.cap = "The Rstudio IDE."}
 include_graphics("02-introToR/02-images/RStudio.png")
 ```
 
@@ -93,7 +93,7 @@ sd(ht)
 summary(ht)
 ```
 Next, a scatter plot of `dbh` versus `ht`:
-```{r, fig=T, fig.align= "center"}
+```{r, fig.align= "center"}
 plot(dbh, ht)
 ```
 
@@ -135,7 +135,7 @@ As with all work, keeping organized is the key to efficiency. It is good practic
 
 ## Quality of R code
 
-```{r comic, echo = FALSE, fig.cap = "xkcd: Code Quality"}
+```{r comic, echo = FALSE, out.width = "4in", out.height = "4in", fig.cap = "xkcd: Code Quality"}
 include_graphics("02-introToR/02-images/code_quality.png")
 ```
 

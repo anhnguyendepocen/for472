@@ -50,7 +50,7 @@ kable(
 )
 ```
 
-```{r img1, echo = FALSE, cache = TRUE, message = FALSE, warning = FALSE, fig.width = 8, fig.height = 8, fig.cap= "Surface of LiDAR energy returns at 12 m above the ground, forest inventory plot locations, and management unit boundaries on the PEF."}
+```{r img1, echo = FALSE, cache = TRUE, message = FALSE, warning = FALSE, fig.cap= "Surface of LiDAR energy returns at 12 m above the ground, forest inventory plot locations, and management unit boundaries on the PEF."}
 library(fields)
 library(MBA)
 library(rgdal)
@@ -68,14 +68,14 @@ plot(PEF.shp, add=TRUE)
 points(dat[,c("easting","northing")], pch=19, cex=0.5)
 ```
 
-##Z&uuml;richberg Forest inventory data set {#zf}
-Measuring tree diameter and height is a time consuming process. This fact makes the Z&uuml;richberg Forest inventory data set a rare and impressive investment. These data comprise a complete enumeration of the `r dim(dat)[1]` trees in the Z&uuml;richberg Forest, including species, diameter at breast height, basal area, and volume. The stem map colored by species is shown in Figure \@ref(fig:zf).
+##Zurichberg Forest inventory data set {#zf}
+Measuring tree diameter and height is a time consuming process. This fact makes the Zurichberg Forest inventory data set a rare and impressive investment. These data comprise a complete enumeration of the `r dim(dat)[1]` trees in the Zurichberg Forest, including species, diameter at breast height, basal area, and volume. The stem map colored by species is shown in Figure \@ref(fig:zf).
 
 ```{r, echo = FALSE, results = 'asis'}
 dat <- read.csv("../datasets/ZF/ZF-trees.csv")
 ```
 
-```{r zf, echo=FALSE, cache=TRUE, message=FALSE, warning=FALSE, fig.width= 8, fig.height = 8, fig.cap = "Location and species of all trees in the Z&uuml;richberg Forest."}
+```{r zf, echo=FALSE, cache=TRUE, message=FALSE, warning=FALSE, fig.cap = "Location and species of all trees in the Zurichberg Forest."}
 coords <- dat[,c("X_TREE", "Y_TREE")]
 
 spp.name <- c("beech","maple","ash","other broadleaves",
@@ -98,7 +98,7 @@ legend(legend.coords, pch=19, legend=spp.name,
 The four examples above illustrate a variety of data sets that might be encountered in practice, and each provides its own challenges. For the FACE data, the challenges are more statistical in nature. Complications could arise related to the complex study design and how that design might affect methods of analysis and conclusions drawn from the study. The other data sets present different challenges, such as how to:
 
 1. Develop biomass equations suitable for population inference from the FEF's small sample of 88 trees
-2. Work with spatially indexed data in the case of the PEF and Z&uuml;richberg inventory data
+2. Work with spatially indexed data in the case of the PEF and Zurichberg inventory data
 3. Effectively and efficiently process the PEF's high-dimentional LiDAR signal data for use in predictive models of forest variables.
 
 This book and associated material introduce tools to tackle some of the challenges in working with real data sets within the context of the R statistical system. We will focus on important topics such as

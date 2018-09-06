@@ -1,4 +1,5 @@
 base
+tidyr
 knitr
 dotCall64
 spam

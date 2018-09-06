@@ -14,6 +14,8 @@ description: "Course book for FOR472: Ecological Monitoring and Data Analysis"
 graphics: yes
 header-includes:
   - \usepackage{color}
+  - \usepackage{graphicx}
+  - \graphicspath{{_bookdown_files/}}
 ---
 
 ```{r setup, include=FALSE}

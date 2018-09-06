@@ -3,10 +3,8 @@ bookdown::gitbook:
   config:
     toc:
       collapse: none
-    download: [pdf, epub]
-    sharing:
-      github: true
-      facebook: false
+    download: [pdf]
+    sharing: null
 bookdown::pdf_book:
   includes:
     in_header: latex/preamble.tex
