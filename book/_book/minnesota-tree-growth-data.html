@@ -25,7 +25,7 @@
 <meta name="author" content="Andrew O. Finley and Jeffrey W. Doser">
 
 
-<meta name="date" content="2018-09-08">
+<meta name="date" content="2018-09-07">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -33,7 +33,7 @@
   
   
 <link rel="prev" href="manipulating-data-with-dplyr.html">
-
+<link rel="next" href="references.html">
 <script src="libs/jquery/jquery.min.js"></script>
 <link href="libs/gitbook/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook/css/plugin-bookdown.css" rel="stylesheet" />
@@ -154,18 +154,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul></li>
 <li class="chapter" data-level="4.7" data-path="data-structures.html"><a href="data-structures.html#subsetting-with-logical-vectors"><i class="fa fa-check"></i><b>4.7</b> Subsetting with Logical Vectors</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="manipulating-data-with-dplyr.html"><a href="manipulating-data-with-dplyr.html"><i class="fa fa-check"></i><b>5</b> Manipulating Data with <code>dplyr</code></a><ul>
-<li class="chapter" data-level="5.1" data-path="manipulating-data-with-dplyr.html"><a href="manipulating-data-with-dplyr.html#minnesota-tree-growth-data"><i class="fa fa-check"></i><b>5.1</b> Minnesota tree growth data</a></li>
-<li class="chapter" data-level="5.2" data-path="manipulating-data-with-dplyr.html"><a href="manipulating-data-with-dplyr.html#improved-data-frames"><i class="fa fa-check"></i><b>5.2</b> Improved Data Frames</a></li>
-<li class="chapter" data-level="5.3" data-path="manipulating-data-with-dplyr.html"><a href="manipulating-data-with-dplyr.html#filtering-data-by-row"><i class="fa fa-check"></i><b>5.3</b> Filtering Data By Row</a></li>
-<li class="chapter" data-level="5.4" data-path="manipulating-data-with-dplyr.html"><a href="manipulating-data-with-dplyr.html#selecting-variables-by-column"><i class="fa fa-check"></i><b>5.4</b> Selecting Variables by Column</a></li>
-<li class="chapter" data-level="5.5" data-path="manipulating-data-with-dplyr.html"><a href="manipulating-data-with-dplyr.html#pipes"><i class="fa fa-check"></i><b>5.5</b> Pipes</a></li>
-<li class="chapter" data-level="5.6" data-path="manipulating-data-with-dplyr.html"><a href="manipulating-data-with-dplyr.html#arranging-data-by-row"><i class="fa fa-check"></i><b>5.6</b> Arranging Data by Row</a></li>
-<li class="chapter" data-level="5.7" data-path="manipulating-data-with-dplyr.html"><a href="manipulating-data-with-dplyr.html#renaming-variables"><i class="fa fa-check"></i><b>5.7</b> Renaming Variables</a></li>
-<li class="chapter" data-level="5.8" data-path="manipulating-data-with-dplyr.html"><a href="manipulating-data-with-dplyr.html#creating-new-variables"><i class="fa fa-check"></i><b>5.8</b> Creating New Variables</a></li>
-<li class="chapter" data-level="5.9" data-path="manipulating-data-with-dplyr.html"><a href="manipulating-data-with-dplyr.html#data-summaries-and-grouping"><i class="fa fa-check"></i><b>5.9</b> Data Summaries and Grouping</a></li>
-<li class="chapter" data-level="5.10" data-path="manipulating-data-with-dplyr.html"><a href="manipulating-data-with-dplyr.html#counts"><i class="fa fa-check"></i><b>5.10</b> Counts</a></li>
-</ul></li>
+<li class="chapter" data-level="5" data-path="manipulating-data-with-dplyr.html"><a href="manipulating-data-with-dplyr.html"><i class="fa fa-check"></i><b>5</b> Manipulating Data with <code>dplyr</code></a></li>
+<li class="chapter" data-level="6" data-path="minnesota-tree-growth-data.html"><a href="minnesota-tree-growth-data.html"><i class="fa fa-check"></i><b>6</b> Minnesota tree growth data</a></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 </ul>
 
@@ -184,95 +174,25 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="references" class="section level1 unnumbered">
-<h1>References</h1>
+<div id="minnesota-tree-growth-data" class="section level1">
+<h1><span class="header-section-number">Chapter 6</span> Minnesota tree growth data</h1>
+<p>We’ll use some tree growth data to motivate the methods presented in this chapter. The data were collected in 2010 from 35 forest stands in and around Superior National Forest in northeastern Minnesota. See <span class="citation">Foster, D’Amato, and Bradford (<a href="#ref-foster14">2014</a>)</span> for details about data collection and preparation.</p>
+<p>The tree growth data set consists of radial growth increments (collected using an increment borer) for 521 trees located in 105 forest plots in northeastern Minnesota from 1978 to 2007. The forest plots are distributed across 35 forest stands (3 plots per stand). Each stand represents an area with similar species composition and approximately homogeneous forest characteristics (e.g., trees/acre, tree size distribution, tree age distribution). In total, 15 species are present in the sample data. The “mn_trees.csv”&quot; file that is read into the <code>mn.trees</code> data frame below contains the dated (<code>Year</code>) annual radial growth increment (<code>rad.inc</code> annual growth ring width in mm) and basal area increment (<code>BA.inc</code> cross-sectional area of annual growth in cm<span class="math inline">\(^2\)</span>) estimates for each tree, along with ancillary tree-level information including species, diameter at breast height (DBH), and age. The data frame also includes a stand, plot, and tree identification number for each tree, i.e., <code>StandID</code>, <code>PlotID</code>, and <code>TreeID</code>, respectively. Each tree can be uniquely identified by its combined stand, plot, and tree ID values. For illustration, each line in Figure <a href="#fig:mntrees"><strong>??</strong></a> is an individual tree’s diameter growth over time from one stand colored by species.</p>
 
+</div>
+<h3>References</h3>
 <div id="refs" class="references">
-<div>
-<p>Asner, GP, RF Hughes, TA Varga, DE Knapp, and T Kennedy-Bowdoin. 2009. “Environmental and Biotic Controls over Aboveground Biomass Throughout a Tropical Rain Forest.” <em>Ecosystems</em> 12 (2): 261–78.</p>
-</div>
-<div>
-<p>Babcock, CR, JA Matney, AO Finley, A Weiskittel, and BD Cook. 2013. “Multivariate Spatial Regression Models for Predicting Individual Tree Structure Variables Using Lidar Data.” <em>IEEE Journal of Selected Topics in Applied Earth Observations and Remote Sensing</em> 6 (1, SI): 6–14.</p>
-</div>
-<div>
-<p>Bravo, Adriana, Ana Porzecanski, Eleanor Sterling, Nora Bynum, Michelle Cawthorn, Denny S. Fernandez, Laurie Freeman, et al. 2016. “Teaching for Higher Levels of Thinking: Developing Quantitative and Analytical Skills in Environmental Science Courses.” <em>Ecosphere</em> 7 (4): n/a–n/a. doi:<a href="https://doi.org/10.1002/ecs2.1290">10.1002/ecs2.1290</a>.</p>
-</div>
-<div>
-<p>Finley, AO, S Banerjee, and DW MacFarlane. 2011. “A Hierarchical Model for Quantifying Forest Variables over Large Heterogeneous Landscapes with Uncertain Forest Areas.” <em>Journal Ot the American Statistical Association</em> 106 (493): 31–48.</p>
-</div>
-<div>
+<div id="ref-foster14">
 <p>Foster, J. R., A. W. D’Amato, and J. B. Bradford. 2014. “Looking for Age-Related Growth Decline in Natural Forests: Unexpected Biomass Patterns from Tree Rings and Simulated Mortality.” <em>Oecologia</em> 175 (1): 363–74.</p>
 </div>
-<div>
-<p>Kenefic, Laura S., Nicole S. Rogers, Joshua J. Puhlick, Justin D. Waskiewicz, and John C. Brissette. 2015. “Overstory Tree and Regeneration Data from the ‘Silvicultural Effects on Composition, Structure, and Growth’ Study at Penobscot Experimental Forest. 2nd Edition. Fort Collins, Co: Forest Service Research Data Archive.” <a href="http://dx.doi.org/10.2737/RDS-2012-0008-2" class="uri">http://dx.doi.org/10.2737/RDS-2012-0008-2</a>.</p>
 </div>
-<div>
-<p>Kubiske, Mark E. 2013. “Tree Height and Diameter Data from the Aspen Face Experiment, 1997-2008. Newtown Square, Pa: USDA Forest Service, Northern Research Station.” <a href="http://dx.doi.org/10.2737/RDS-2013-0015" class="uri">http://dx.doi.org/10.2737/RDS-2013-0015</a>.</p>
-</div>
-<div>
-<p>Le Toan, Thuy, S Quegan, MWJ Davidson, Heiko Balzter, Philippe Paillou, K Papathanassiou, S Plummer, et al. 2011. “The Biomass Mission: Mapping Global Forest Biomass to Better Understand the Terrestrial Carbon Cycle.” <em>Remote Sensing of Environment</em> 115 (11). Elsevier: 2850–60.</p>
-</div>
-<div>
-<p>Neigh, CSR, RF Nelson, KJ Ranson, HA Margolis, PM Montesano, G Sun, V Kharuk, E Næsset, MA Wulder, and H Andersen. 2013. “Taking Stock of Circumboreal Forest Carbon with Ground Measurements, Airborne and Spaceborne Lidar.” <em>Remote Sensing of Environment</em> 137: 274–87.</p>
-</div>
-<div>
-<p>Næsset, E. 2011. “Estimating Above-Ground Biomass in Young Forests with Airborne Laser Scanning.” <em>International Journal of Remote Sensing</em> 32 (2): 473–501.</p>
-</div>
-<div>
-<p>Ometto, Jean Pierre, Ana Paula Aguiar, Talita Assis, Luciana Soler, Pedro Valle, Graciela Tejada, David M Lapola, and Patrick Meir. 2014. “Amazon Forest Biomass Density Maps: Tackling the Uncertainty in Carbon Emission Estimates.” <em>Climatic Change</em>. Springer, 1–16.</p>
-</div>
-<div>
-<p>Schimel, David, and Michael Keller. 2015. “Big Questions, Big Science: Meeting the Challenges of Global Ecology.” <em>Oecologia</em> 177 (4): 925–34. doi:<a href="https://doi.org/10.1007/s00442-015-3236-3">10.1007/s00442-015-3236-3</a>.</p>
-</div>
-<div>
-<p>UN-REDD. 2009. “The Un-Redd Programme.” <a href="http://www.un-redd.org/" class="uri">http://www.un-redd.org/</a>.</p>
-</div>
-<div>
-<p>UNFCCC. 2015. “United Nations Framework Convention on Climate Change.” <a href="http://unfccc.int/2860.php" class="uri">http://unfccc.int/2860.php</a>.</p>
-</div>
-<div>
-<p>West, P.W. 2004. <em>Tree and Forest Measurement</em>. Springer. <a href="https://books.google.com/books?id=mi5MDXmMrCcC" class="uri">https://books.google.com/books?id=mi5MDXmMrCcC</a>.</p>
-</div>
-<div>
-<p>Wood, Frederica, James N. Kochenderfer, and Mary B. Adams. 2016. “Felled Tree Biomass for Four Hardwood Species of the Central Appalachians, West Virginia. Fort Collins, Co: Forest Service Research Data Archive.” <a href="http://dx.doi.org/10.2737/RDS-2016-0016" class="uri">http://dx.doi.org/10.2737/RDS-2016-0016</a>.</p>
-</div>
-</div>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
             </section>
 
           </div>
         </div>
       </div>
-<a href="manipulating-data-with-dplyr.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="manipulating-data-with-dplyr.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="references.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook/js/app.min.js"></script>

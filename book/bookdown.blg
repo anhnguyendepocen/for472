@@ -10,45 +10,45 @@ I'm skipping whatever remains of this entry
 Warning--empty journal in Kenefic2015
 Warning--empty journal in Kubiske2013
 Warning--empty journal in Wood2016
-You've used 15 entries,
+You've used 16 entries,
             1935 wiz_defined-function locations,
-            565 strings with 6967 characters,
-and the built_in function-call counts, 6558 in all, are:
-= -- 614
-> -- 380
+            570 strings with 7164 characters,
+and the built_in function-call counts, 6992 in all, are:
+= -- 655
+> -- 398
 < -- 7
-+ -- 142
-- -- 136
-* -- 599
-:= -- 1186
-add.period$ -- 45
-call.type$ -- 15
-change.case$ -- 141
-chr.to.int$ -- 15
-cite$ -- 18
-duplicate$ -- 204
-empty$ -- 380
-format.name$ -- 153
-if$ -- 1218
++ -- 148
+- -- 142
+* -- 641
+:= -- 1261
+add.period$ -- 48
+call.type$ -- 16
+change.case$ -- 149
+chr.to.int$ -- 16
+cite$ -- 19
+duplicate$ -- 218
+empty$ -- 412
+format.name$ -- 160
+if$ -- 1302
 int.to.chr$ -- 1
 int.to.str$ -- 0
-missing$ -- 14
-newline$ -- 78
-num.names$ -- 45
-pop$ -- 122
+missing$ -- 15
+newline$ -- 83
+num.names$ -- 48
+pop$ -- 128
 preamble$ -- 1
-purify$ -- 142
+purify$ -- 150
 quote$ -- 0
-skip$ -- 159
+skip$ -- 169
 stack$ -- 0
-substring$ -- 396
-swap$ -- 15
+substring$ -- 435
+swap$ -- 16
 text.length$ -- 1
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 88
+type$ -- 94
 warning$ -- 3
-while$ -- 49
+while$ -- 52
 width$ -- 0
-write$ -- 191
+write$ -- 204
 (There was 1 error message)
