@@ -25,7 +25,7 @@
 <meta name="author" content="Andrew O. Finley and Jeffrey W. Doser">
 
 
-<meta name="date" content="2018-09-08">
+<meta name="date" content="2018-09-15">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -165,6 +165,18 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="5.8" data-path="manipulating-data-with-dplyr.html"><a href="manipulating-data-with-dplyr.html#creating-new-variables"><i class="fa fa-check"></i><b>5.8</b> Creating New Variables</a></li>
 <li class="chapter" data-level="5.9" data-path="manipulating-data-with-dplyr.html"><a href="manipulating-data-with-dplyr.html#data-summaries-and-grouping"><i class="fa fa-check"></i><b>5.9</b> Data Summaries and Grouping</a></li>
 <li class="chapter" data-level="5.10" data-path="manipulating-data-with-dplyr.html"><a href="manipulating-data-with-dplyr.html#counts"><i class="fa fa-check"></i><b>5.10</b> Counts</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="functions-and-programming.html"><a href="functions-and-programming.html"><i class="fa fa-check"></i><b>6</b> Functions and Programming</a><ul>
+<li class="chapter" data-level="6.1" data-path="functions-and-programming.html"><a href="functions-and-programming.html#r-functions"><i class="fa fa-check"></i><b>6.1</b> R Functions</a></li>
+<li class="chapter" data-level="6.2" data-path="functions-and-programming.html"><a href="functions-and-programming.html#programming-conditional-statements"><i class="fa fa-check"></i><b>6.2</b> Programming: Conditional Statements</a><ul>
+<li class="chapter" data-level="6.2.1" data-path="functions-and-programming.html"><a href="functions-and-programming.html#comparison-and-logical-operators"><i class="fa fa-check"></i><b>6.2.1</b> Comparison and Logical Operators</a></li>
+<li class="chapter" data-level="6.2.2" data-path="functions-and-programming.html"><a href="functions-and-programming.html#functions-with-multiple-returns"><i class="fa fa-check"></i><b>6.2.2</b> Functions with Multiple Returns</a></li>
+<li class="chapter" data-level="6.2.3" data-path="functions-and-programming.html"><a href="functions-and-programming.html#creating-functions"><i class="fa fa-check"></i><b>6.2.3</b> Creating functions</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="functions-and-programming.html"><a href="functions-and-programming.html#more-on-functions"><i class="fa fa-check"></i><b>6.3</b> More on Functions</a><ul>
+<li class="chapter" data-level="6.3.1" data-path="functions-and-programming.html"><a href="functions-and-programming.html#calling-functions"><i class="fa fa-check"></i><b>6.3.1</b> Calling Functions</a></li>
+<li class="chapter" data-level="6.3.2" data-path="functions-and-programming.html"><a href="functions-and-programming.html#the-...-argument"><i class="fa fa-check"></i><b>6.3.2</b> The <code>...</code> Argument</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 </ul>
@@ -350,13 +362,13 @@ F-statistic:   25 on 1 and 13 DF,  p-value: 0.000244</code></pre>
 </div>
 <div id="quality-of-r-code" class="section level2">
 <h2><span class="header-section-number">2.7</span> Quality of R code</h2>
-<div class="figure"><span id="fig:comic"></span>
-<img src="02-introToR/02-images/code_quality.png" alt="xkcd: Code Quality" width="4in" height="4in" />
+<div class="figure"><span id="fig:comic2"></span>
+<img src="02-introToR/02-images/code_quality.png" alt="xkcd: Code Quality" width="370" />
 <p class="caption">
 FIGURE 2.2: xkcd: Code Quality
 </p>
 </div>
-<p>Writing well-organized and well-labeled code allows your code to be more easily read and understood by another person. (See xkcd’s take on code quality in Figure <a href="introduction-to-r-and-rstudio.html#fig:comic">2.2</a>.) More importantly, though, your well-written code is more accessible to you hours, days, or even months later. We are hoping that you can use the code you write in this class in future projects and research.</p>
+<p>Writing well-organized and well-labeled code allows your code to be more easily read and understood by another person. (See xkcd’s take on code quality in Figure <a href="introduction-to-r-and-rstudio.html#fig:comic2">2.2</a>.) More importantly, though, your well-written code is more accessible to you hours, days, or even months later. We are hoping that you can use the code you write in this class in future projects and research.</p>
 <p>Google provides style guides for many programming languages. You can find the R style guide <a href="https://google.github.io/styleguide/Rguide.xml">here</a>. Below are a few of the key points from the guide that we will use right away.</p>
 <div id="naming-files" class="section level3">
 <h3><span class="header-section-number">2.7.1</span> Naming Files</h3>

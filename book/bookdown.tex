@@ -167,7 +167,7 @@
 
 \title{Forestry 472: Ecological Monitoring and Data Analysis}
 \author{Andrew O. Finley and Jeffrey W. Doser}
-\date{2018-09-08}
+\date{2018-09-15}
 
 \usepackage{amsthm}
 \newtheorem{theorem}{Theorem}[chapter]
@@ -1066,7 +1066,7 @@ practice to have a dedicated directory for each R project or exercise.
 
 Writing well-organized and well-labeled code allows your code to be more
 easily read and understood by another person. (See xkcd's take on code
-quality in Figure \ref{fig:comic}.) More importantly, though, your
+quality in Figure \ref{fig:commic}.) More importantly, though, your
 well-written code is more accessible to you hours, days, or even months
 later. We are hoping that you can use the code you write in this class
 in future projects and research.
@@ -4248,6 +4248,778 @@ within each stand. Above, we also group by \texttt{Species} so the
 unique tree count within the stand is also partitioned by species. Now,
 we can see the new variable \texttt{n.trees} is the number of trees by
 species over which \texttt{n.inc} increment measurements were collected.
+
+\chapter{Functions and Programming}\label{functions-and-programming}
+
+We have been working with a wide variety of R functions, from simple
+functions such as \texttt{mean()}, \texttt{sum()}, and \texttt{length()}
+to more complex functions such as those found in the \texttt{dplyr}
+package. Gaining a better understanding of existing functions and the
+ability to write our own functions dramatically increases what you can
+do with R. Learning about R's programming capabilities is an important
+step in gaining facility with functions. Further, functional programming
+basics described in this chapter are found in nearly all programming and
+scripting languages.
+
+\section{R Functions}\label{r-functions}
+
+A function needs to have a name, perhaps some arguments, and a body of
+code that does something. At the end it usually returns an object
+(although it doesn't have to). An important idea behind functions is
+that objects created within the function only exist within the function
+unless they are explicitly returned by the function. Returned means
+passing a value or object back to the environment from which the
+function was called. Several examples will make this more clear.
+
+Let's start with some pseudocode for a function\footnote{Pseudocode is
+  notation resembling a simplified programming language, used in program
+  design.}:
+
+\begin{verbatim}
+name.of.function <- function(argument.1, argument.2){
+  
+    do something
+    
+    return(something)
+}
+\end{verbatim}
+
+Here we are assigning the function definition to
+\texttt{name.of.function}. The syntax
+\texttt{function(argument.1,\ argument.2)} says we are creating a
+function with two arguments, with names \texttt{argument.1} and
+\texttt{argument.2}. What the function will do is defined between the
+curly brackets, i.e., where I wrote \texttt{do\ something}. Finally,
+before we close the function definition we return something we've
+created. This last step is optional, but most functions we write do
+return something.
+
+The argument can be any type of object (like a single value, a matrix, a
+data frame, a vector, a logical, etc.). Here are a few simple examples
+of functions.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\OperatorTok{>}\StringTok{ }\NormalTok{my.first.function <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{() \{}
+\OperatorTok{+}\StringTok{   }\KeywordTok{print}\NormalTok{(}\StringTok{"Ever stop to think, and forget to start again?"}\NormalTok{)}
+\OperatorTok{+}\StringTok{ }\NormalTok{\}}
+\OperatorTok{>}\StringTok{ }
+\ErrorTok{>}\StringTok{ }\KeywordTok{my.first.function}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] "Ever stop to think, and forget to start again?"
+\end{verbatim}
+
+Here we define a function called \texttt{my.first.function()}. This
+function has no arguments, i.e., nothing is defined between the
+parentheses in \texttt{function()}. When the function is called, by
+writing \texttt{my.first.function()} on the command line, the function
+prints a fun quote by Alan A. Milne. No values or objects are formally
+returned by this function.
+
+Now let's define a function that takes two arguments, the first value is
+raised by the second, and the result is returned.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\OperatorTok{>}\StringTok{ }\NormalTok{pow <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(x, v) \{}
+\OperatorTok{+}\StringTok{   }\NormalTok{result <-}\StringTok{ }\NormalTok{x}\OperatorTok{^}\NormalTok{v}
+\OperatorTok{+}\StringTok{   }\KeywordTok{return}\NormalTok{(result)}
+\OperatorTok{+}\StringTok{ }\NormalTok{\}}
+\OperatorTok{>}\StringTok{ }
+\ErrorTok{>}\StringTok{ }\KeywordTok{pow}\NormalTok{(}\DecValTok{2}\NormalTok{, }\DecValTok{5}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] 32
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\OperatorTok{>}\StringTok{ }\KeywordTok{pow}\NormalTok{(}\DecValTok{5}\NormalTok{, }\DecValTok{0}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] 1
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\OperatorTok{>}\StringTok{ }\KeywordTok{pow}\NormalTok{(}\OtherTok{TRUE}\NormalTok{, }\OtherTok{FALSE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] 1
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\OperatorTok{>}\StringTok{ }\KeywordTok{pow}\NormalTok{(}\StringTok{"a"}\NormalTok{, }\StringTok{"b"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+Error in x^v: non-numeric argument to binary operator
+\end{verbatim}
+
+Not surprisingly the last test of this function throws an error. Perhaps
+we should modify the function to first test if both \texttt{x} and
+\texttt{v} are numeric. There are lots of ways to perform this check
+(several of which we'll cover in a subsequent section), but for now
+consider this particularly convenient function call
+\texttt{stopifnot()}. If any logical tests in the \texttt{stopifnot()}
+function are \texttt{FALSE} then an error message is returned and the
+function evaluation is stopped. So let's revise the \texttt{pow()}
+function by adding a test that ensures both arguments are numeric.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\OperatorTok{>}\StringTok{ }\NormalTok{pow <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(x, v) \{}
+\OperatorTok{+}\StringTok{   }\KeywordTok{stopifnot}\NormalTok{(}\KeywordTok{is.numeric}\NormalTok{(x), }\KeywordTok{is.numeric}\NormalTok{(v))}
+\OperatorTok{+}\StringTok{   }\NormalTok{result <-}\StringTok{ }\NormalTok{x}\OperatorTok{^}\NormalTok{v}
+\OperatorTok{+}\StringTok{   }\KeywordTok{return}\NormalTok{(result)}
+\OperatorTok{+}\StringTok{ }\NormalTok{\}}
+\OperatorTok{>}\StringTok{ }
+\ErrorTok{>}\StringTok{ }\KeywordTok{pow}\NormalTok{(}\DecValTok{2}\NormalTok{, }\DecValTok{5}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] 32
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\OperatorTok{>}\StringTok{ }\KeywordTok{pow}\NormalTok{(}\StringTok{"a"}\NormalTok{, }\StringTok{"b"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+Error: is.numeric(x) is not TRUE
+\end{verbatim}
+
+Let's motivate learning some more function features using data from one
+plot worth of tree measurements from the PEF. Below we read in tree
+measurements taken on plot 4 within management units 7A.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\OperatorTok{>}\StringTok{ }\NormalTok{file.name <-}\StringTok{ "http://blue.for.msu.edu/FOR472/data/PEF-mu7A-plot4.csv"}
+\OperatorTok{>}\StringTok{ }\NormalTok{trees.p4 <-}\StringTok{ }\KeywordTok{read.csv}\NormalTok{(file.name, }\DataTypeTok{header =} \OtherTok{TRUE}\NormalTok{)}
+\OperatorTok{>}\StringTok{ }\NormalTok{trees.p4}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+   TreeID dbh Expf         CommonName
+1  620377 4.6    5         balsam fir
+2  620378 5.3    5         balsam fir
+3  620379 4.8    5         balsam fir
+4  620380 5.3    5       white spruce
+5  620385 6.1    5 eastern white pine
+6  620384 5.6    5 eastern white pine
+7  620388 5.3    5 eastern white pine
+8  620382 5.2    5 eastern white pine
+9  620383 4.8    5 eastern white pine
+10 620386 4.6    5 eastern white pine
+11 620387 5.1    5 eastern white pine
+12 620381 6.4    5 eastern white pine
+13 620389 5.6    5 eastern white pine
+14 620390 5.0    5      quaking aspen
+15 620391 4.8    5      quaking aspen
+16 620392 5.6    5      quaking aspen
+\end{verbatim}
+
+Here, \texttt{TreeID} is a unique tree identifier, \texttt{dbh} is the
+diameter at breast height measured in inches, \texttt{Expf} is the
+expansion factor used to convert each stem to a per acre basis, and
+\texttt{CommonName} is tree species. Note, this is a 1/5-th acre fixed
+area plot, hence the expansion factor is 5 (i.e., the inverse of the
+plot area).
+
+We will work toward developing a function that returns basal area and
+stem biomass given a tree's DBH and species. Let's start simple with a
+function that returns basal area given DBH.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\OperatorTok{>}\StringTok{ }\NormalTok{ba <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(dbh) \{}
+\OperatorTok{+}\StringTok{   }\NormalTok{ba.sq.ft <-}\StringTok{ }\NormalTok{pi }\OperatorTok{*}\StringTok{ }\NormalTok{dbh}\OperatorTok{^}\DecValTok{2}\OperatorTok{/}\NormalTok{(}\DecValTok{4} \OperatorTok{*}\StringTok{ }\DecValTok{144}\NormalTok{)}
+\OperatorTok{+}\StringTok{   }\KeywordTok{return}\NormalTok{(ba.sq.ft)}
+\OperatorTok{+}\StringTok{ }\NormalTok{\}}
+\OperatorTok{>}\StringTok{ }
+\ErrorTok{>}\StringTok{ }\NormalTok{tree.}\FloatTok{1.}\NormalTok{dbh <-}\StringTok{ }\NormalTok{trees.p4}\OperatorTok{$}\NormalTok{dbh[}\DecValTok{1}\NormalTok{]}
+\OperatorTok{>}\StringTok{ }\KeywordTok{ba}\NormalTok{(tree.}\FloatTok{1.}\NormalTok{dbh)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] 0.1154
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\OperatorTok{>}\StringTok{ }\KeywordTok{ba}\NormalTok{(trees.p4}\OperatorTok{$}\NormalTok{dbh)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+ [1] 0.1154 0.1532 0.1257 0.1532 0.2029 0.1710 0.1532
+ [8] 0.1475 0.1257 0.1154 0.1419 0.2234 0.1710 0.1364
+[15] 0.1257 0.1710
+\end{verbatim}
+
+A few things to notice here. Our function name is \texttt{ba}, it takes
+DBH as an argument, and returns basal area in square feet. The formula
+in the \texttt{ba()} function assumes DBH is given in inches. We tested
+the function twice. The first call to \texttt{ba()} passes in DBH for
+the first tree in \texttt{trees.p4} and returns the corresponding basal
+area. The second call to \texttt{ba()} passes in the DBH vector for
+trees in \texttt{trees.p4} and returns the corresponding basal area
+vector.
+
+Now let's think about modifying our function to return biomass estimates
+given DBH and species. We can use allometric equations published by
+\citet{jenkins03} that take the form
+
+\begin{equation}
+  bm = \exp(\beta_0 + \beta_1 \ln(DBH))
+  \label{eq:jenkBio}
+\end{equation}
+
+where
+
+\begin{itemize}
+\tightlist
+\item
+  \(bm\) is total aboveground biomass (km) for trees 2.5 cm DBH and
+  larger
+\item
+  DBH is diameter at breast height in cm
+\item
+  \(\exp\) is the exponential function
+\item
+  \(\ln\) is the natural logarithm, i.e., inverse function of the
+  exponential function
+\end{itemize}
+
+Table 4 in \citet{jenkins03} provides species specific values for the
+regression coefficients \(\beta_0\) and \(\beta_1\). Table
+\ref{tab:jenks} below provides the regression coefficients for the
+species in our PEF plot 4 data.
+
+\begin{table}
+
+\caption{\label{tab:jenks}Parameters for estimating total aboveground biomass for species in the United States}
+\centering
+\begin{tabular}[t]{lrr}
+\toprule
+species & beta.0 & beta.1\\
+\midrule
+quaking aspen & -2.209 & 2.387\\
+balsam fir & -2.538 & 2.481\\
+white spruce & -2.077 & 2.332\\
+eastern white pine & -2.536 & 2.435\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Here are some things we'll need to accommodate in our function:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Jenkins allometric equations are parameterized for cm DBH, so the
+  PEF's DBH will need to be converted from inches to cm.
+\item
+  There is a different set of regression coefficients for each species,
+  so we'll need to pass in species and have the function apply the
+  correct set of regression coefficients.
+\end{enumerate}
+
+No problem addressing the first point in the list above, we can easily
+convert inches to cm. However, the second point will require some
+conditional statement tests. We'll tackle this in the next section.
+
+\section{Programming: Conditional
+Statements}\label{programming-conditional-statements}
+
+We often want to apply different code conditional on characteristics of
+the data or objects at hand. This can be accomplished using an
+\texttt{if()} function. The argument of the \texttt{if()} function is a
+single logical value, i.e., \texttt{TRUE} or \texttt{FALSE}. If
+\texttt{TRUE}, the code within the \texttt{if()} function is evaluated.
+If \texttt{FALSE}, the \texttt{if()} function is skipped. Consider this
+simple example.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\OperatorTok{>}\StringTok{ }\NormalTok{my.if.example <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(x) \{}
+\OperatorTok{+}\StringTok{   }\ControlFlowTok{if}\NormalTok{ (x) \{}
+\OperatorTok{+}\StringTok{     }\KeywordTok{print}\NormalTok{(}\StringTok{"x is TRUE"}\NormalTok{)}
+\OperatorTok{+}\StringTok{   }\NormalTok{\}}
+\OperatorTok{+}\StringTok{   }
+\OperatorTok{+}\StringTok{   }\ControlFlowTok{if}\NormalTok{ (}\OperatorTok{!}\NormalTok{x) \{}
+\OperatorTok{+}\StringTok{     }\KeywordTok{print}\NormalTok{(}\StringTok{"x is FALSE"}\NormalTok{)}
+\OperatorTok{+}\StringTok{   }\NormalTok{\}}
+\OperatorTok{+}\StringTok{ }\NormalTok{\}}
+\OperatorTok{>}\StringTok{ }
+\ErrorTok{>}\StringTok{ }\KeywordTok{my.if.example}\NormalTok{(}\OtherTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] "x is TRUE"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\OperatorTok{>}\StringTok{ }\KeywordTok{my.if.example}\NormalTok{(}\OtherTok{FALSE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] "x is FALSE"
+\end{verbatim}
+
+To better understand and use \texttt{if()} statements, we need to
+understand comparison operators and logical operators.
+
+\subsection{Comparison and Logical
+Operators}\label{comparison-and-logical-operators}
+
+We have made use of some of the comparison operators in R. These include
+
+\begin{itemize}
+\tightlist
+\item
+  Equal: \texttt{==}
+\item
+  Not equal: \texttt{!=}
+\item
+  Greater than: \texttt{\textgreater{}}
+\item
+  Less than: \texttt{\textless{}}
+\item
+  Greater than or equal to: \texttt{\textgreater{}=}
+\item
+  Less than or equal to: \texttt{\textless{}=}
+\end{itemize}
+
+Special care needs to be taken with the \texttt{=} and \texttt{!=}
+operators because of how numbers are represented on computers.
+
+There are also three logical operators, with two variants of the ``and''
+operator and the ``or'' operator.
+
+\begin{itemize}
+\tightlist
+\item
+  and: Either \texttt{\&} or \texttt{\&\&}
+\item
+  or: Either \texttt{\textbar{}} or \texttt{\textbar{}\textbar{}}
+\item
+  not: \texttt{!}
+\end{itemize}
+
+The ``double'' operators \texttt{\&\&} and \texttt{\textbar{}\textbar{}}
+just examine the first element of the two vectors, whereas the
+``single'' operators \texttt{\&} and \texttt{\textbar{}} compare element
+by element.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\OperatorTok{>}\StringTok{ }\KeywordTok{c}\NormalTok{(}\OtherTok{FALSE}\NormalTok{, }\OtherTok{TRUE}\NormalTok{, }\OtherTok{FALSE}\NormalTok{) }\OperatorTok{||}\StringTok{ }\KeywordTok{c}\NormalTok{(}\OtherTok{TRUE}\NormalTok{, }\OtherTok{FALSE}\NormalTok{, }\OtherTok{FALSE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] TRUE
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\OperatorTok{>}\StringTok{ }\KeywordTok{c}\NormalTok{(}\OtherTok{FALSE}\NormalTok{, }\OtherTok{TRUE}\NormalTok{, }\OtherTok{FALSE}\NormalTok{) }\OperatorTok{|}\StringTok{ }\KeywordTok{c}\NormalTok{(}\OtherTok{TRUE}\NormalTok{, }\OtherTok{FALSE}\NormalTok{, }\OtherTok{FALSE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1]  TRUE  TRUE FALSE
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\OperatorTok{>}\StringTok{ }\KeywordTok{c}\NormalTok{(}\OtherTok{FALSE}\NormalTok{, }\OtherTok{TRUE}\NormalTok{, }\OtherTok{FALSE}\NormalTok{) }\OperatorTok{&&}\StringTok{ }\KeywordTok{c}\NormalTok{(}\OtherTok{TRUE}\NormalTok{, }\OtherTok{TRUE}\NormalTok{, }\OtherTok{FALSE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] FALSE
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\OperatorTok{>}\StringTok{ }\KeywordTok{c}\NormalTok{(}\OtherTok{FALSE}\NormalTok{, }\OtherTok{TRUE}\NormalTok{, }\OtherTok{FALSE}\NormalTok{) }\OperatorTok{&}\StringTok{ }\KeywordTok{c}\NormalTok{(}\OtherTok{TRUE}\NormalTok{, }\OtherTok{TRUE}\NormalTok{, }\OtherTok{FALSE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] FALSE  TRUE FALSE
+\end{verbatim}
+
+Often we want to evaluate one expression if the condition is true, and
+evaluate a different expression if the condition is false. That is
+accomplished using the \texttt{else\ if()} statement. Here we determine
+whether a number is positive, negative, or zero.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\OperatorTok{>}\StringTok{ }\NormalTok{sign <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(x) \{}
+\OperatorTok{+}\StringTok{   }\ControlFlowTok{if}\NormalTok{ (x }\OperatorTok{<}\StringTok{ }\DecValTok{0}\NormalTok{) \{}
+\OperatorTok{+}\StringTok{     }\KeywordTok{print}\NormalTok{(}\StringTok{"the number is negative"}\NormalTok{)}
+\OperatorTok{+}\StringTok{   }\NormalTok{\} }\ControlFlowTok{else} \ControlFlowTok{if}\NormalTok{ (x }\OperatorTok{>}\StringTok{ }\DecValTok{0}\NormalTok{) \{}
+\OperatorTok{+}\StringTok{     }\KeywordTok{print}\NormalTok{(}\StringTok{"the number is positive"}\NormalTok{)}
+\OperatorTok{+}\StringTok{   }\NormalTok{\} }\ControlFlowTok{else}\NormalTok{ \{}
+\OperatorTok{+}\StringTok{     }\KeywordTok{print}\NormalTok{(}\StringTok{"the number is zero"}\NormalTok{)}
+\OperatorTok{+}\StringTok{   }\NormalTok{\}}
+\OperatorTok{+}\StringTok{ }\NormalTok{\}}
+\OperatorTok{>}\StringTok{ }\KeywordTok{sign}\NormalTok{(}\DecValTok{3}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] "the number is positive"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\OperatorTok{>}\StringTok{ }\KeywordTok{sign}\NormalTok{(}\OperatorTok{-}\DecValTok{3}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] "the number is negative"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\OperatorTok{>}\StringTok{ }\KeywordTok{sign}\NormalTok{(}\DecValTok{0}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] "the number is zero"
+\end{verbatim}
+
+Notice the sequence of conditional tests starts with \texttt{if()}. If
+this is not \texttt{TRUE}, moves to the \texttt{else\ if()} statement.
+If this is not \texttt{TRUE}, the sequence is terminated in an
+\texttt{else}. That final \texttt{else} acts as a catchall when all
+conditional tests above it are \texttt{FALSE}. Above, we have only one
+\texttt{else\ if} test, but you can have as many as you need, e.g., see
+the example below.
+
+Okay, let's return to our PEF example and develop a function that
+applies the regression equation \eqref{eq:jenkBio} using species specific
+regression coefficients given in Table \ref{tab:jenks}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\OperatorTok{>}\StringTok{ }\NormalTok{bio <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(dbh.in, species) \{}
+\OperatorTok{+}\StringTok{   }
+\OperatorTok{+}\StringTok{   }\NormalTok{dbh.cm <-}\StringTok{ }\NormalTok{dbh.in }\OperatorTok{*}\StringTok{ }\FloatTok{2.54}
+\OperatorTok{+}\StringTok{   }
+\OperatorTok{+}\StringTok{   }\ControlFlowTok{if}\NormalTok{ (dbh.cm }\OperatorTok{<}\StringTok{ }\FloatTok{2.5}\NormalTok{) \{}
+\OperatorTok{+}\StringTok{     }\KeywordTok{stop}\NormalTok{(}\StringTok{"Only valid for trees greater than 2.5 cm DBH"}\NormalTok{)}
+\OperatorTok{+}\StringTok{   }\NormalTok{\}}
+\OperatorTok{+}\StringTok{   }
+\OperatorTok{+}\StringTok{   }\ControlFlowTok{if}\NormalTok{ (species }\OperatorTok{==}\StringTok{ "quaking aspen"}\NormalTok{) \{}
+\OperatorTok{+}\StringTok{     }\NormalTok{beta.}\DecValTok{0}\NormalTok{ <-}\StringTok{ }\OperatorTok{-}\FloatTok{2.2094}
+\OperatorTok{+}\StringTok{     }\NormalTok{beta.}\DecValTok{1}\NormalTok{ <-}\StringTok{ }\FloatTok{2.3867}
+\OperatorTok{+}\StringTok{   }\NormalTok{\} }\ControlFlowTok{else} \ControlFlowTok{if}\NormalTok{ (species }\OperatorTok{==}\StringTok{ "balsam fir"}\NormalTok{) \{}
+\OperatorTok{+}\StringTok{     }\NormalTok{beta.}\DecValTok{0}\NormalTok{ <-}\StringTok{ }\OperatorTok{-}\FloatTok{2.5384}
+\OperatorTok{+}\StringTok{     }\NormalTok{beta.}\DecValTok{1}\NormalTok{ <-}\StringTok{ }\FloatTok{2.4814}
+\OperatorTok{+}\StringTok{   }\NormalTok{\} }\ControlFlowTok{else} \ControlFlowTok{if}\NormalTok{ (species }\OperatorTok{==}\StringTok{ "white spruce"}\NormalTok{) \{}
+\OperatorTok{+}\StringTok{     }\NormalTok{beta.}\DecValTok{0}\NormalTok{ <-}\StringTok{ }\OperatorTok{-}\FloatTok{2.0773}
+\OperatorTok{+}\StringTok{     }\NormalTok{beta.}\DecValTok{1}\NormalTok{ <-}\StringTok{ }\FloatTok{2.3323}
+\OperatorTok{+}\StringTok{   }\NormalTok{\} }\ControlFlowTok{else} \ControlFlowTok{if}\NormalTok{ (species }\OperatorTok{==}\StringTok{ "eastern white pine"}\NormalTok{) \{}
+\OperatorTok{+}\StringTok{     }\NormalTok{beta.}\DecValTok{0}\NormalTok{ <-}\StringTok{ }\OperatorTok{-}\FloatTok{2.5356}
+\OperatorTok{+}\StringTok{     }\NormalTok{beta.}\DecValTok{1}\NormalTok{ <-}\StringTok{ }\FloatTok{2.4349}
+\OperatorTok{+}\StringTok{   }\NormalTok{\} }\ControlFlowTok{else}\NormalTok{ \{}
+\OperatorTok{+}\StringTok{     }\KeywordTok{stop}\NormalTok{(}\StringTok{"No coefficients available for the given species"}\NormalTok{)}
+\OperatorTok{+}\StringTok{   }\NormalTok{\}}
+\OperatorTok{+}\StringTok{   }
+\OperatorTok{+}\StringTok{   }\NormalTok{bm <-}\StringTok{ }\KeywordTok{exp}\NormalTok{(beta.}\DecValTok{0} \OperatorTok{+}\StringTok{ }\NormalTok{beta.}\DecValTok{1} \OperatorTok{*}\StringTok{ }\KeywordTok{log}\NormalTok{(dbh.cm))}
+\OperatorTok{+}\StringTok{   }
+\OperatorTok{+}\StringTok{   }\KeywordTok{return}\NormalTok{(bm)}
+\OperatorTok{+}\StringTok{ }\NormalTok{\}}
+\OperatorTok{>}\StringTok{ }
+\ErrorTok{>}\StringTok{ }\KeywordTok{bio}\NormalTok{(}\DecValTok{5}\NormalTok{, }\StringTok{"balsam fir"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] 43.31
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\OperatorTok{>}\StringTok{ }\KeywordTok{bio}\NormalTok{(}\DecValTok{2}\NormalTok{, }\StringTok{"quaking aspen"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] 5.311
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\OperatorTok{>}\StringTok{ }\KeywordTok{bio}\NormalTok{(}\DecValTok{3}\NormalTok{, }\StringTok{"Quaking aspen"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+Error in bio(3, "Quaking aspen"): No coefficients available for the given species
+\end{verbatim}
+
+Consider our new function \texttt{bio()} above that takes DBH (in) and
+species common name as arguments, \texttt{dbh.in} and \texttt{species},
+respectively, and returns biomass (kg). The first line in the function's
+body converts DBH in inches to cm, because that's what the
+\citet{jenkins03} biomass equation expects. The \texttt{if()} statement
+that follows checks if DBH is at least 2.5 cm. If DBH is less than 2.5
+cm then the \texttt{stop()} function stops the \texttt{bio()} function
+and reports the error message ``Only valid for trees greater than 2.5 cm
+DBH.'' Next we go into a series of \texttt{if()} and \texttt{else\ if()}
+statements that identify the species specific values for the regression
+coefficients \texttt{beta.0} and \texttt{beta.1}. If the
+\texttt{species} argument is not one of the four species for which we
+have regression coefficients then the last \texttt{else} is reached and
+the code \texttt{stop()} is executed, which again terminates the
+\texttt{bio()} function followed by an explanation about why the
+function was stopped. The second to last line in \texttt{bio()}'s body
+is the regression equation defined in equation \eqref{eq:jenkBio}, now
+with the species specific regression coefficients \texttt{beta.0} and
+\texttt{beta.1}. Finally, \texttt{return(bm)} returns the resulting
+biomass (kg).
+
+\subsection{Functions with Multiple
+Returns}\label{functions-with-multiple-returns}
+
+We often want a function to return multiple objects. This is most easily
+done by making the return object be a list with elements corresponding
+to the different objects we want returned. Recall lists can hold any
+combination of R objects. Here's a simple example. Let's make a function
+called \texttt{quick.summary} that returns the mean, median, and
+variance of a numeric vector. We can try it out using the DBH vector
+from \texttt{trees.p4}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\OperatorTok{>}\StringTok{ }\NormalTok{quick.summary <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(x) \{}
+\OperatorTok{+}\StringTok{   }
+\OperatorTok{+}\StringTok{   }\NormalTok{a <-}\StringTok{ }\KeywordTok{mean}\NormalTok{(x)}
+\OperatorTok{+}\StringTok{   }\NormalTok{b <-}\StringTok{ }\KeywordTok{median}\NormalTok{(x)}
+\OperatorTok{+}\StringTok{   }\NormalTok{c <-}\StringTok{ }\KeywordTok{var}\NormalTok{(x)}
+\OperatorTok{+}\StringTok{   }
+\OperatorTok{+}\StringTok{   }\NormalTok{result <-}\StringTok{ }\KeywordTok{list}\NormalTok{(}\DataTypeTok{mean =}\NormalTok{ a, }\DataTypeTok{median =}\NormalTok{ b, }\DataTypeTok{var =}\NormalTok{ c)}
+\OperatorTok{+}\StringTok{   }
+\OperatorTok{+}\StringTok{   }\KeywordTok{return}\NormalTok{(result)}
+\OperatorTok{+}\StringTok{ }\NormalTok{\}}
+\OperatorTok{>}\StringTok{ }
+\ErrorTok{>}\StringTok{ }\KeywordTok{quick.summary}\NormalTok{(trees.p4}\OperatorTok{$}\NormalTok{dbh)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+$mean
+[1] 5.256
+
+$median
+[1] 5.25
+
+$var
+[1] 0.264
+\end{verbatim}
+
+\subsection{Creating functions}\label{creating-functions}
+
+Creating very short functions at the command prompt is a reasonable
+strategy. For longer functions, one option is to write the function in a
+script window and then submit the whole function. Or a function can be
+written in any text editor, saved as a plain text file (possibly with a
+\texttt{.R} extension), and then read into R using the \texttt{source()}
+command.
+
+\section{More on Functions}\label{more-on-functions}
+
+Understanding functions deeply requires a careful study of the scoping
+rules of R, as well as a good understanding of environments in R. That's
+beyond the scope of this book, but we will briefly discuss some issues
+that are most salient. For a more in-depth treatment, see ``Advanced R''
+by Hadley Wickham, especially the chapters on functions and
+environments.
+
+\subsection{Calling Functions}\label{calling-functions}
+
+When using a function, the function arguments can be specified in three
+ways:
+
+\begin{itemize}
+\tightlist
+\item
+  By the full name of the argument.
+\item
+  By the position of the argument.
+\item
+  By a partial name of the argument.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\OperatorTok{>}\StringTok{ }\NormalTok{tmp_function <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(first.arg, second.arg, third.arg, }
+\OperatorTok{+}\StringTok{   }\NormalTok{fourth.arg) \{}
+\OperatorTok{+}\StringTok{   }\KeywordTok{return}\NormalTok{(}\KeywordTok{c}\NormalTok{(first.arg, second.arg, third.arg, fourth.arg))}
+\OperatorTok{+}\StringTok{ }\NormalTok{\}}
+\OperatorTok{>}\StringTok{ }\KeywordTok{tmp_function}\NormalTok{(}\DecValTok{34}\NormalTok{, }\DecValTok{15}\NormalTok{, }\DataTypeTok{third.arg =} \DecValTok{11}\NormalTok{, }\DataTypeTok{fou =} \DecValTok{99}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] 34 15 11 99
+\end{verbatim}
+
+Positional matching of arguments is convenient, but should be used
+carefully, and probably limited to the first few and most commonly used
+arguments in a function. Partial matching also has some pitfalls
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\OperatorTok{>}\StringTok{ }\NormalTok{tmp_function <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(first.arg, fourth.arg) \{}
+\OperatorTok{+}\StringTok{   }\KeywordTok{return}\NormalTok{(}\KeywordTok{c}\NormalTok{(first.arg, fourth.arg))}
+\OperatorTok{+}\StringTok{ }\NormalTok{\}}
+\OperatorTok{>}\StringTok{ }\KeywordTok{tmp_function}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DataTypeTok{f =} \DecValTok{2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+Error in tmp_function(1, f = 2): argument 2 matches multiple formal arguments
+\end{verbatim}
+
+A partially specified argument must unambiguously match exactly one
+argument.
+
+\subsection{\texorpdfstring{The \texttt{...}
+Argument}{The ... Argument}}\label{the-...-argument}
+
+In defining a function, a special argument denoted by \texttt{...} can
+be used. Sometimes this is called the ``ellipsis'' argument, sometimes
+the ``three dot'' argument, sometimes the ``dot dot dot'' argument, etc.
+The R language definition
+\url{https://cran.r-project.org/doc/manuals/r-release/R-lang.html}
+describes the argument in this way:
+
+\begin{quote}
+The special type of argument `\ldots{}' can contain any number of
+supplied arguments. It is used for a variety of purposes. It allows you
+to write a function that takes an arbitrary number of arguments. It can
+be used to absorb some arguments into an intermediate function which can
+then be extracted by functions called subsequently.
+\end{quote}
+
+Consider for example the \texttt{sum()} function.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\OperatorTok{>}\StringTok{ }\KeywordTok{sum}\NormalTok{(}\DecValTok{1}\OperatorTok{:}\DecValTok{5}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] 15
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\OperatorTok{>}\StringTok{ }\KeywordTok{sum}\NormalTok{(}\DecValTok{1}\OperatorTok{:}\DecValTok{5}\NormalTok{, }\KeywordTok{c}\NormalTok{(}\DecValTok{3}\NormalTok{, }\DecValTok{4}\NormalTok{, }\DecValTok{90}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] 112
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\OperatorTok{>}\StringTok{ }\KeywordTok{sum}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{3}\NormalTok{, }\KeywordTok{c}\NormalTok{(}\DecValTok{3}\NormalTok{, }\DecValTok{4}\NormalTok{, }\DecValTok{90}\NormalTok{), }\DecValTok{1}\OperatorTok{:}\DecValTok{5}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] 118
+\end{verbatim}
+
+Think about writing such a function. There is no way to predict in
+advance the number of arguments a user might specify. So the function is
+defined with \texttt{...} as the first argument:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\OperatorTok{>}\StringTok{ }\NormalTok{sum}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+function (..., na.rm = FALSE)  .Primitive("sum")
+\end{verbatim}
+
+This is true of many commonly-used functions in R such as \texttt{c()}
+among others.
+
+Next, consider a function which calls another function in its body. For
+example, suppose that a collaborator always supplies comma delimited
+files which have five lines of description, followed by a line
+containing variable names, followed by the data. You are tired of having
+to specify \texttt{skip\ =\ 5}, \texttt{header\ =\ TRUE}, and
+\texttt{sep\ =\ ","} to \texttt{read.table()} and want to create a
+function \texttt{my.read()} which uses these as defaults.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\OperatorTok{>}\StringTok{ }\NormalTok{my.read <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(file, }\DataTypeTok{header =} \OtherTok{TRUE}\NormalTok{, }\DataTypeTok{sep =} \StringTok{","}\NormalTok{, }\DataTypeTok{skip =} \DecValTok{5}\NormalTok{, }
+\OperatorTok{+}\StringTok{   }\NormalTok{...) \{}
+\OperatorTok{+}\StringTok{   }\KeywordTok{read.table}\NormalTok{(}\DataTypeTok{file =}\NormalTok{ file, }\DataTypeTok{header =}\NormalTok{ header, }\DataTypeTok{sep =}\NormalTok{ sep, }
+\OperatorTok{+}\StringTok{     }\DataTypeTok{skip =}\NormalTok{ skip, ...)}
+\OperatorTok{+}\StringTok{ }\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+The \texttt{...} in the definition of \texttt{my.read()} allows the user
+to specify other arguments, for example,
+\texttt{stringsAsFactors\ =\ FALSE}. These will be passed on to the
+\texttt{read.table()} function. In fact, that is how \texttt{read.csv()}
+is defined.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\OperatorTok{>}\StringTok{ }\NormalTok{read.csv}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+function (file, header = TRUE, sep = ",", quote = "\"", dec = ".", 
+    fill = TRUE, comment.char = "", ...) 
+read.table(file = file, header = header, sep = sep, quote = quote, 
+    dec = dec, fill = fill, comment.char = comment.char, ...)
+<bytecode: 0x561687c06980>
+<environment: namespace:utils>
+\end{verbatim}
 
 \bibliography{text.bib}
 
