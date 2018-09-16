@@ -85,6 +85,11 @@ Schimel, D. and Keller, M. (2015).
 \newblock Big questions, big science: meeting the challenges of global ecology.
 \newblock {\em Oecologia}, 177(4):925--934.
 
+\bibitem[Spector, 2008]{SpectorDataManipulation}
+Spector, P. (2008).
+\newblock {\em Data Manipulation With {R}}.
+\newblock Use R!
+
 \bibitem[UN-REDD, 2009]{REDD2009}
 UN-REDD (2009).
 \newblock The un-redd programme.

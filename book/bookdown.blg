@@ -7,48 +7,57 @@ Repeated entry---line 109 of file text.bib.bib
  : @article{ometto2014
  :                    ,
 I'm skipping whatever remains of this entry
+Warning--string name "pub-sv" is undefined
+--line 213 of file text.bib.bib
+Warning--string name "pub-sv:adr" is undefined
+--line 214 of file text.bib.bib
+Repeated entry---line 307 of file text.bib.bib
+ : @book{SpectorDataManipulation
+ :                              ,
+I'm skipping whatever remains of this entry
 Warning--empty journal in Kenefic2015
 Warning--empty journal in Kubiske2013
+Warning--empty publisher in SpectorDataManipulation
 Warning--empty journal in Wood2016
-You've used 17 entries,
+You've used 18 entries,
             1935 wiz_defined-function locations,
-            577 strings with 7347 characters,
-and the built_in function-call counts, 7434 in all, are:
-= -- 698
-> -- 421
-< -- 7
-+ -- 156
-- -- 150
-* -- 684
-:= -- 1339
-add.period$ -- 51
-call.type$ -- 17
-change.case$ -- 158
-chr.to.int$ -- 17
-cite$ -- 20
-duplicate$ -- 232
-empty$ -- 440
-format.name$ -- 169
-if$ -- 1385
+            584 strings with 7449 characters,
+and the built_in function-call counts, 7716 in all, are:
+= -- 724
+> -- 428
+< -- 8
++ -- 158
+- -- 152
+* -- 704
+:= -- 1391
+add.period$ -- 54
+call.type$ -- 18
+change.case$ -- 163
+chr.to.int$ -- 18
+cite$ -- 22
+duplicate$ -- 246
+empty$ -- 463
+format.name$ -- 172
+if$ -- 1440
 int.to.chr$ -- 1
 int.to.str$ -- 0
-missing$ -- 16
-newline$ -- 88
-num.names$ -- 51
-pop$ -- 135
+missing$ -- 18
+newline$ -- 93
+num.names$ -- 54
+pop$ -- 142
 preamble$ -- 1
-purify$ -- 159
+purify$ -- 165
 quote$ -- 0
-skip$ -- 179
+skip$ -- 189
 stack$ -- 0
-substring$ -- 466
-swap$ -- 17
+substring$ -- 478
+swap$ -- 18
 text.length$ -- 1
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 100
-warning$ -- 3
-while$ -- 56
+type$ -- 104
+warning$ -- 4
+while$ -- 58
 width$ -- 0
-write$ -- 217
-(There was 1 error message)
+write$ -- 229
+(There were 2 error messages)

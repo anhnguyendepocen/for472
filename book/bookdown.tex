@@ -167,7 +167,7 @@
 
 \title{Forestry 472: Ecological Monitoring and Data Analysis}
 \author{Andrew O. Finley and Jeffrey W. Doser}
-\date{2018-09-15}
+\date{2018-09-16}
 
 \usepackage{amsthm}
 \newtheorem{theorem}{Theorem}[chapter]
@@ -5017,9 +5017,295 @@ function (file, header = TRUE, sep = ",", quote = "\"", dec = ".",
     fill = TRUE, comment.char = "", ...) 
 read.table(file = file, header = header, sep = sep, quote = quote, 
     dec = dec, fill = fill, comment.char = comment.char, ...)
-<bytecode: 0x561687c06980>
+<bytecode: 0x55e2614ebd58>
 <environment: namespace:utils>
 \end{verbatim}
+
+\chapter{Working with Data Sources}\label{working-with-data-sources}
+
+Bringing data into R, exporting data from R in a form that is readable
+by other software, cleaning and reshaping data, and other data
+manipulation tasks are an important and often overlooked component of
+data science. The book \citet{SpectorDataManipulation}, while a few
+years old, is still an excellent reference for data-related issues. And
+the \emph{R Data Import/Export} manual, available online at
+\url{https://cran.r-project.org/doc/manuals/r-release/R-data.html}, is
+an up-to-date (and free) reference on importing a wide variety of
+datasets into R and on exporting data in various forms.
+
+\section{Reading Data into R}\label{reading-data-into-r}
+
+Data come in a dizzying variety of forms. It might be in a proprietary
+format such as a .xlsx Excel file, a .sav SPSS file, or a .mtw Minitab
+file. It might be structured using a
+\href{https://en.wikipedia.org/wiki/Relational_model}{relational model},
+for example, the USDA Forest Service
+\href{https://www.fia.fs.fed.us/tools-data/}{Forest Inventory and
+Analysis database}. It might be a data-interchange format such as
+\href{http://www.json.org/}{JSON} (JavaScript Object Notation), or a
+markup language format such as
+\href{https://en.wikipedia.org/wiki/XML}{XML} (Extensible Markup
+Language), perhaps with specialized standards for describing ecological
+information, see, e.g.,
+\href{https://en.wikipedia.org/wiki/Ecological_Metadata_Language}{EML}
+(Ecological Metadata Language). Both XML and EML are common data
+metadata formats (i.e., data that provides information about other
+data). Fortunately many datasets are (or can be) saved as plain text
+files, and most software can both read and write such files, so our
+initial focus will be on reading plain text files into R and saving data
+from R in plain text format. RStudio provides a handy
+\href{http://www.rstudio.com/resources/cheatsheets}{data import cheat
+sheet} for many of the read functions detailed in this section.
+
+The \texttt{foreign} R package provides functions to directly read data
+saved in some of the proprietary formats into R, which is sometimes
+unavoidable, but if possible it is good to save data from another
+package as plain text and then read this plain text file into R.
+
+The function \texttt{read.table()} and its offshoots such as
+\texttt{read.csv()} are used to read in rectangular data from a text
+file. For example, the file \texttt{FEF-trees.csv} described in Section
+\ref{fef} contains biomass information for trees measured on plots
+within different watersheds across years. Below are the first seven rows
+and columns of that file:
+
+\begin{verbatim}
+watershed,year,plot,species,dbh_in,height_ft,stem_green_kg
+3,1991,29,Acer rubrum,6,48,92.2
+3,1991,33,Acer rubrum,6.9,48,102.3
+3,1991,35,Acer rubrum,6.4,48,124.4
+3,1991,39,Acer rubrum,6.5,49,91.7
+3,1991,44,Acer rubrum,7.2,51,186.2
+3,1992,26,Acer rubrum,3.1,40,20.8
+\end{verbatim}
+
+As is evident, the first line of the file contains the names of the
+variables, separated (delimited) by commas. Each subsequent line
+contains information about each tree's location (watershed code),
+measurement year, plot (within watershed), species, DBH, height, and
+weight of various components of the tree (e.g., \texttt{stem\_green\_kg}
+is the green weight of the stem in kilograms).\footnote{The metadata for
+  the FEF are at
+  \url{http://www.fs.usda.gov/rds/archive/Product/RDS-2016-0016}. For
+  convenience I renamed the data file from the original
+  \texttt{felled\_tree\_biomass.csv} to \texttt{FEF-trees.csv}.}
+
+This file is accessible at
+\url{http://blue.for.msu.edu/FOR472/data/FEF-trees.csv}. The
+\texttt{read.table()} function is used to read these data into an R data
+frame.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\OperatorTok{>}\StringTok{ }\NormalTok{fef.file <-}\StringTok{ "http://blue.for.msu.edu/FOR472/data/FEF-trees.csv"}
+\OperatorTok{>}\StringTok{ }\NormalTok{fef.trees <-}\StringTok{ }\KeywordTok{read.table}\NormalTok{(}\DataTypeTok{file =}\NormalTok{ fef.file, }\DataTypeTok{header =} \OtherTok{TRUE}\NormalTok{, }
+\OperatorTok{+}\StringTok{   }\DataTypeTok{sep =} \StringTok{","}\NormalTok{)}
+\OperatorTok{>}\StringTok{ }\KeywordTok{head}\NormalTok{(fef.trees[, }\DecValTok{1}\OperatorTok{:}\DecValTok{6}\NormalTok{])}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+  watershed year plot     species dbh_in height_ft
+1         3 1991   29 Acer rubrum    6.0        48
+2         3 1991   33 Acer rubrum    6.9        48
+3         3 1991   35 Acer rubrum    6.4        48
+4         3 1991   39 Acer rubrum    6.5        49
+5         3 1991   44 Acer rubrum    7.2        51
+6         3 1992   26 Acer rubrum    3.1        40
+\end{verbatim}
+
+The arguments used in this call to \texttt{read.table()} include:
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{file\ =\ fef.file} tells R the location of the file. In this
+  case the string
+  \texttt{http://blue.for.msu.edu/FOR472/data/FEF-trees.csv} giving the
+  location is rather long, so it was first assigned to the object
+  \texttt{fef.file}.
+\item
+  \texttt{header\ =\ TRUE} tells R the first line of the file gives the
+  names of the variables.
+\item
+  \texttt{sep\ =\ ","} tells R that a comma separates the fields in the
+  file.
+\end{itemize}
+
+The function \texttt{read.csv()} is the same as \texttt{read.table()}
+except the default separator is a comma, whereas the default separator
+for \texttt{read.table()} is whitespace.
+
+The file \texttt{FEF-trees.tsv} contains the same data, except a tab is
+used in place of a comma to separate fields. The only change needed to
+read in the data in this file is in the \texttt{sep} argument (and of
+course the \texttt{file} argument, since the data are stored in a
+different file):
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\OperatorTok{>}\StringTok{ }\NormalTok{fef.file <-}\StringTok{ "http://blue.for.msu.edu/FOR472/data/FEF-trees.tsv"}
+\OperatorTok{>}\StringTok{ }\NormalTok{fef.trees <-}\StringTok{ }\KeywordTok{read.table}\NormalTok{(}\DataTypeTok{file =}\NormalTok{ fef.file, }\DataTypeTok{header =} \OtherTok{TRUE}\NormalTok{, }
+\OperatorTok{+}\StringTok{   }\DataTypeTok{sep =} \StringTok{"}\CharTok{\textbackslash{}t}\StringTok{"}\NormalTok{)}
+\OperatorTok{>}\StringTok{ }\KeywordTok{head}\NormalTok{(fef.trees[, }\DecValTok{1}\OperatorTok{:}\DecValTok{6}\NormalTok{])}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+  watershed year plot     species dbh_in height_ft
+1         3 1991   29 Acer rubrum    6.0        48
+2         3 1991   33 Acer rubrum    6.9        48
+3         3 1991   35 Acer rubrum    6.4        48
+4         3 1991   39 Acer rubrum    6.5        49
+5         3 1991   44 Acer rubrum    7.2        51
+6         3 1992   26 Acer rubrum    3.1        40
+\end{verbatim}
+
+File extensions, e.g., \texttt{.csv} or \texttt{.tsv}, are naming
+conventions only and are there to remind us how the columns are
+delimited, i.e., they have no influence on R's file read functions.
+
+A third file,
+\href{http://blue.for.msu.edu/FOR472/data/FEF-trees.txt}{\texttt{FEF-trees.txt}},
+contains the same data, but also contains a few lines of explanatory
+text above the names of the variables. It also uses whitespace rather
+than a comma or a tab as a delimiter. Here are the first several lines
+of the file and six columns of data.
+
+\begin{verbatim}
+This file includes felled tree biomass by tree component for hardwood 
+species sampled on the Fernow Experimental Forest (FEF), West Virginia. 
+A total of 88 trees were sampled from plots within two watersheds. 
+
+"watershed" "year" "plot" "species" "dbh_in" "height_ft" "stem_green_kg"
+3 1991 29 "Acer rubrum" 6 48 92.2
+3 1991 33 "Acer rubrum" 6.9 48 102.3
+3 1991 35 "Acer rubrum" 6.4 48 124.4
+3 1991 39 "Acer rubrum" 6.5 49 91.7
+3 1991 44 "Acer rubrum" 7.2 51 186.2
+3 1992 26 "Acer rubrum" 3.1 40 20.8
+\end{verbatim}
+
+Notice that in this file column (variable) names are put inside of
+quotation marks. Also, variable values that are characters are also
+quoted. This is necessary because character strings could include
+whitespace, and hence R would assume these are column delimiters.
+
+To read in this file we need to tell R to skip the first four lines
+above the header and also that whitespace is the delimiter. The
+\texttt{skip} argument handles the first, and the \texttt{sep} argument
+the second.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\OperatorTok{>}\StringTok{ }\NormalTok{fef.file <-}\StringTok{ "http://blue.for.msu.edu/FOR472/data/FEF-trees.txt"}
+\OperatorTok{>}\StringTok{ }\NormalTok{fef.trees <-}\StringTok{ }\KeywordTok{read.table}\NormalTok{(}\DataTypeTok{file =}\NormalTok{ fef.file, }\DataTypeTok{header =} \OtherTok{TRUE}\NormalTok{, }
+\OperatorTok{+}\StringTok{   }\DataTypeTok{sep =} \StringTok{" "}\NormalTok{, }\DataTypeTok{skip =} \DecValTok{4}\NormalTok{)}
+\OperatorTok{>}\StringTok{ }\KeywordTok{head}\NormalTok{(fef.trees[, }\DecValTok{1}\OperatorTok{:}\DecValTok{6}\NormalTok{])}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+  watershed year plot     species dbh_in height_ft
+1         3 1991   29 Acer rubrum    6.0        48
+2         3 1991   33 Acer rubrum    6.9        48
+3         3 1991   35 Acer rubrum    6.4        48
+4         3 1991   39 Acer rubrum    6.5        49
+5         3 1991   44 Acer rubrum    7.2        51
+6         3 1992   26 Acer rubrum    3.1        40
+\end{verbatim}
+
+For fun, see what happens when the \texttt{skip} argument is left out of
+the \texttt{read.table} call.
+
+\section{Reading Data with missing
+observations}\label{reading-data-with-missing-observations}
+
+Missing data are represented in many ways. Sometimes missing data are
+just that, i.e., the place where they should be in the file is blank.
+Other times specific numbers such as \(-9999\) or specific symbols are
+used. The \texttt{read.table()} function has an argument
+\texttt{na.string} which allows the user to specify how missing data are
+indicated in the source file.
+
+The site \url{http://www.wunderground.com/history/} makes weather data
+available for locations around the world, and for dates going back to
+1945. The file \texttt{WeatherKLAN2014.csv} contains weather data for
+Lansing, Michigan for the year 2014. Here are the first few lines of
+that file:
+
+\begin{verbatim}
+EST,Max TemperatureF,Min TemperatureF, Events
+1/1/14,14,9,Snow
+1/2/14,13,-3,Snow
+1/3/14,13,-11,Snow
+1/4/14,31,13,Snow
+1/5/14,29,16,Fog-Snow
+1/6/14,16,-12,Fog-Snow
+1/7/14,2,-13,Snow
+1/8/14,17,-1,Snow
+1/9/14,21,2,Snow
+1/10/14,39,21,Fog-Rain-Snow
+1/11/14,41,32,Fog-Rain
+1/12/14,39,31,
+\end{verbatim}
+
+Look at the last line, and notice that instead of an event such as
+\texttt{Snow} or \texttt{Fog-Snow} there is nothing after the comma.
+This observation is missing, but rather than using an explicit code such
+as \texttt{NA}, the site just leaves that entry blank. To read these
+data into R we will supply the argument \texttt{na.string\ =\ ""} which
+tells R the file indicates missing data by leaving the appropriate entry
+blank.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\OperatorTok{>}\StringTok{ }\NormalTok{u.weather <-}\StringTok{ "http://blue.for.msu.edu/FOR875/data/WeatherKLAN2014.csv"}
+\OperatorTok{>}\StringTok{ }\NormalTok{WeatherKLAN2014 <-}\StringTok{ }\KeywordTok{read.csv}\NormalTok{(u.weather, }\DataTypeTok{header=}\OtherTok{TRUE}\NormalTok{, }
+\OperatorTok{+}\StringTok{                             }\DataTypeTok{stringsAsFactors =} \OtherTok{FALSE}\NormalTok{, }\DataTypeTok{na.string =} \StringTok{""}\NormalTok{)}
+\OperatorTok{>}\StringTok{ }\NormalTok{WeatherKLAN2014[}\DecValTok{1}\OperatorTok{:}\DecValTok{15}\NormalTok{,]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+       EST Max.TemperatureF Min.TemperatureF
+1   1/1/14               14                9
+2   1/2/14               13               -3
+3   1/3/14               13              -11
+4   1/4/14               31               13
+5   1/5/14               29               16
+6   1/6/14               16              -12
+7   1/7/14                2              -13
+8   1/8/14               17               -1
+9   1/9/14               21                2
+10 1/10/14               39               21
+11 1/11/14               41               32
+12 1/12/14               39               31
+13 1/13/14               44               34
+14 1/14/14               37               26
+15 1/15/14               27               18
+          Events
+1           Snow
+2           Snow
+3           Snow
+4           Snow
+5       Fog-Snow
+6       Fog-Snow
+7           Snow
+8           Snow
+9           Snow
+10 Fog-Rain-Snow
+11      Fog-Rain
+12          <NA>
+13          Rain
+14     Rain-Snow
+15          Snow
+\end{verbatim}
+
+Also, in the code above, notice I use
+\texttt{stringsAsFactors\ =\ FALSE} to prevent the character variables
+to be converted to factors, which R does by default (which can be quite
+annoying).
 
 \bibliography{text.bib}
 
