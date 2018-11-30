@@ -75,10 +75,10 @@
 \contentsline {section}{\numberline {8.4}Coordinate Reference Systems}{115}{section.8.4}
 \contentsline {section}{\numberline {8.5}Illustration using \texttt {ggmap}}{116}{section.8.5}
 \contentsline {section}{\numberline {8.6}Illustration using \texttt {leaflet}}{125}{section.8.6}
-\contentsline {section}{\numberline {8.7}Subsetting Spatial Data}{126}{section.8.7}
+\contentsline {section}{\numberline {8.7}Subsetting Spatial Data}{127}{section.8.7}
 \contentsline {subsection}{\numberline {8.7.1}Fetching and Cropping Data using \texttt {raster}}{127}{subsection.8.7.1}
-\contentsline {subsection}{\numberline {8.7.2}Logical, Index, and Name Subsetting}{129}{subsection.8.7.2}
-\contentsline {subsection}{\numberline {8.7.3}Spatial Subsetting and Overlay}{130}{subsection.8.7.3}
-\contentsline {subsection}{\numberline {8.7.4}Spatial Aggregation}{134}{subsection.8.7.4}
+\contentsline {subsection}{\numberline {8.7.2}Logical, Index, and Name Subsetting}{130}{subsection.8.7.2}
+\contentsline {subsection}{\numberline {8.7.3}Spatial Subsetting and Overlay}{131}{subsection.8.7.3}
+\contentsline {subsection}{\numberline {8.7.4}Spatial Aggregation}{135}{subsection.8.7.4}
 \contentsline {section}{\numberline {8.8}Where to go from here}{137}{section.8.8}
 \contentsline {fm}{Bibliography}{139}{chapter*.22}
