@@ -167,7 +167,7 @@
 
 \title{Forestry 472: Ecological Monitoring and Data Analysis}
 \author{Andrew O. Finley and Jeffrey W. Doser}
-\date{2018-09-16}
+\date{2018-11-30}
 
 \usepackage{amsthm}
 \newtheorem{theorem}{Theorem}[chapter]
@@ -4400,7 +4400,7 @@ function by adding a test that ensures both arguments are numeric.
 \end{Shaded}
 
 \begin{verbatim}
-Error: is.numeric(x) is not TRUE
+Error in pow("a", "b"): is.numeric(x) is not TRUE
 \end{verbatim}
 
 Let's motivate learning some more function features using data from one
@@ -5017,7 +5017,7 @@ function (file, header = TRUE, sep = ",", quote = "\"", dec = ".",
     fill = TRUE, comment.char = "", ...) 
 read.table(file = file, header = header, sep = sep, quote = quote, 
     dec = dec, fill = fill, comment.char = comment.char, ...)
-<bytecode: 0x55e2614ebd58>
+<bytecode: 0x55a67a5d9d60>
 <environment: namespace:utils>
 \end{verbatim}
 
@@ -5306,6 +5306,1533 @@ Also, in the code above, notice I use
 \texttt{stringsAsFactors\ =\ FALSE} to prevent the character variables
 to be converted to factors, which R does by default (which can be quite
 annoying).
+
+\chapter{Spatial Data Visualization and
+Analysis}\label{spatial-data-visualization-and-analysis}
+
+\section{Overview}\label{overview}
+
+Recall, a data structure is a format for organizing and storing data.
+The structure is designed so that data can be accessed and worked with
+in specific ways. Statistical software and programming languages have
+methods (or functions) designed to operate on different kinds of data
+structures.
+
+This chapter focuses on spatial data structures and some of the R
+functions that work with these data. Spatial data comprise values
+associated with locations, such as temperature data at a given latitude,
+longitude, and perhaps elevation. Spatial data are typically organized
+into \textbf{vector} or \textbf{raster} data types. (See Figure
+\ref{fig:raster}).
+
+\begin{itemize}
+\tightlist
+\item
+  Vector data represent features such as discrete points, lines, and
+  polygons.
+\item
+  Raster data represent surfaces as a rectangular matrix of square cells
+  or pixels.
+\end{itemize}
+
+\begin{figure}
+
+{\centering \includegraphics[width=1\linewidth]{08-spatialData/08-images/rasterVector} 
+
+}
+
+\caption{Raster/Vector Comparison @imageRaster}\label{fig:raster}
+\end{figure}
+
+Whether or not you use vector or raster data depends on the type of
+problem, the type of maps you need, and the data source. Each data
+structure has strengths and weaknesses in terms of functionality and
+representation. As you gain more experience working with spatial data,
+you will be able to determine which structure to use for a particular
+application.
+
+There is a large set of R packages available for working with spatial
+(and space-time) data. These packages are described in the
+\href{https://CRAN.R-project.org/view=Spatial}{Cran Task View: Analysis
+of Spatial Data}. The CRAN task view attempts to organize the various
+packages into categories, such as \emph{Handling spatial data},
+\emph{Reading and writing spatial data}, \emph{Visualization}, and
+\emph{Disease mapping and areal data analysis}, so users can quickly
+identify package options given their project needs.
+
+Exploring the extent of the excellent spatial data tools available in R
+is beyond the scope of this book. Rather, we would point you to subject
+texts like \emph{Applied Spatial Data Analysis with R} by
+\citet{Bivand13} (available for free via the MSU library system), and
+numerous online tutorials on pretty much any aspect of spatial data
+analysis with R. These tools make R a full-blown
+\href{https://en.wikipedia.org/wiki/Geographic_information_system}{Geographic
+Information System} (GIS) capable of spatial data manipulation and
+analysis on par with commercial GIS systems such as
+\href{http://www.esri.com/arcgis/about-arcgis}{ESRI's ArcGIS}.
+
+\subsection{Some Spatial Data
+Packages}\label{some-spatial-data-packages}
+
+This chapter will focus on a few R packages for manipulating and
+visualizing spatial data. Specifically we will touch on the following
+packages
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{sp}: spatial data structures and methods
+\item
+  \texttt{rgdal}: interface to the C/C\texttt{++} spatial data
+  Geospatial Data Abstraction Library
+\item
+  \texttt{ggmap}: extends \texttt{ggplot2} language to handle spatial
+  data
+\item
+  \texttt{leaflet}: generates dynamic online maps
+\end{itemize}
+
+\section{Motivating Data}\label{motivating-data}
+
+We motivate the topics introduced in this chapter using some forestry
+data from the
+\href{https://www.nrs.fs.fed.us/ef/locations/me/penobscot\%7D\%7BPenobscot\%20Experimental\%20Forest}{Penobscot
+Experimental Forest} (PEF) located in Maine (which you've previously
+seen throughout the course). The PEF is a long-term experimental forest
+that is used to understand the effects of silviculture (i.e., science of
+tending trees) treatments on forest growth and composition. The PEF is
+divided into non-overlapping management units that receive different
+harvesting treatments. Within each management unit is a series of
+observation point locations (called forest inventory plots) where forest
+variables have been measured. Ultimately, we want to summarize the
+inventory plots measurements by management unit and map the results.
+
+\section{Reading Spatial Data into R}\label{reading-spatial-data-into-r}
+
+Spatial data come in a variety of file formats. Examples of popular
+vector file formats for points, lines, and polygons, include ESRI's
+\href{https://en.wikipedia.org/wiki/Shapefile}{shapefile} and open
+standard \href{https://en.wikipedia.org/wiki/GeoJSON}{GeoJSON}. Common
+raster file formats include
+\href{https://en.wikipedia.org/wiki/GeoTIFF}{GeoTIFF} and
+\href{https://en.wikipedia.org/wiki/NetCDF}{netCDF}\footnote{A longer
+  list of spatial data file formats is available at
+  \url{https://en.wikipedia.org/wiki/GIS_file_formats}.}.
+
+The \texttt{rgdal} function \texttt{readOGR} will read a large variety
+of vector data file formats (there is also a \texttt{writeOGR()} for
+writing vector data files). Raster data file formats can be read using
+the \texttt{rgdal} function \texttt{readGDAL} (yup, also a
+\texttt{writeGDAL()}) or read functions in the \texttt{raster} package.
+All of these functions automatically cast the data into an appropriate R
+spatial data object (i.e., data structure), which are defined in the
+\texttt{sp} or \texttt{raster} packages. Table \ref{tab:spatialObjs}
+provides an abbreviated list of these R spatial objects\footnote{A more
+  complete list of the \texttt{sp} package's spatial data classes and
+  methods is detailed in the package's vignette
+  \url{https://cran.r-project.org/web/packages/sp/vignettes/intro_sp.pdf}.}.
+The \emph{Without attributes }column gives the \texttt{sp} package's
+spatial data object classes for points, lines, polygons, and raster
+pixels that do not have data associated with the spatial objects (i.e.,
+without attributes in GIS speak). \texttt{DataFrame} is appended to the
+object class name once data, in the form of variables, are added to the
+spatial object.
+
+\begin{table}
+
+\caption{\label{tab:spatialObjs}An abbreviated list of `sp` and `raster` data objects and associated classes for the fundamental spatial data types}
+\centering
+\begin{tabular}[t]{lll}
+\toprule
+ & Without Attributes & With Attributes\\
+\midrule
+Polygons & SpatialPolygons & SpatialPolygonsDataFrame\\
+Points & SpatialPoints & SpatialPointsDataFrame\\
+Lines & SpatialLines & SpatialLinesDataFrame\\
+Raster & SpatialGrid & SpatialGridDataFrame\\
+Raster & SpatialPixels & SpatialPixelsDataFrame\\
+\addlinespace
+Raster &  & RasterLayer\\
+Raster &  & RasterBrick\\
+Raster &  & RasterStack\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+You can create your own spatial data objects in R. Below, for example,
+we create a \texttt{SpatialPoints} object consisting of four points.
+Then add some data to the points to make it a
+\texttt{SpatialPointsDataFrame}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\OperatorTok{>}\StringTok{ }\KeywordTok{library}\NormalTok{(sp)}
+\OperatorTok{>}\StringTok{ }\KeywordTok{library}\NormalTok{(dplyr)}
+\OperatorTok{>}\StringTok{ }
+\ErrorTok{>}\StringTok{ }\NormalTok{x <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{3}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{5}\NormalTok{, }\DecValTok{6}\NormalTok{)}
+\OperatorTok{>}\StringTok{ }\NormalTok{y <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{, }\DecValTok{5}\NormalTok{, }\DecValTok{6}\NormalTok{, }\DecValTok{7}\NormalTok{)}
+\OperatorTok{>}\StringTok{ }
+\ErrorTok{>}\StringTok{ }\NormalTok{coords <-}\StringTok{ }\KeywordTok{cbind}\NormalTok{(x, y)}
+\OperatorTok{>}\StringTok{ }
+\ErrorTok{>}\StringTok{ }\NormalTok{sp.pts <-}\StringTok{ }\KeywordTok{SpatialPoints}\NormalTok{(coords)}
+\OperatorTok{>}\StringTok{ }
+\ErrorTok{>}\StringTok{ }\KeywordTok{class}\NormalTok{(sp.pts)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] "SpatialPoints"
+attr(,"package")
+[1] "sp"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\OperatorTok{>}\StringTok{ }\NormalTok{some.data <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(}\DataTypeTok{var.1 =} \KeywordTok{c}\NormalTok{(}\StringTok{"a"}\NormalTok{, }\StringTok{"b"}\NormalTok{, }\StringTok{"c"}\NormalTok{, }\StringTok{"d"}\NormalTok{), }\DataTypeTok{var.2 =} \DecValTok{1}\OperatorTok{:}\DecValTok{4}\NormalTok{)}
+\OperatorTok{>}\StringTok{ }
+\ErrorTok{>}\StringTok{ }\NormalTok{sp.pts.df <-}\StringTok{ }\KeywordTok{SpatialPointsDataFrame}\NormalTok{(sp.pts, some.data)}
+\OperatorTok{>}\StringTok{ }
+\ErrorTok{>}\StringTok{ }\KeywordTok{class}\NormalTok{(sp.pts.df)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] "SpatialPointsDataFrame"
+attr(,"package")
+[1] "sp"
+\end{verbatim}
+
+If, for example, you already have a data frame that includes the spatial
+coordinate columns and other variables, then you can promote it to a
+\texttt{SpatialPointsDataFrame} by indicating which columns contain
+point coordinates. You can extract or access the data frame associated
+with the spatial object using \texttt{@data}. You can also access
+individual variables directly from the spatial object using \texttt{\$}
+or by name or column number to the right of the comma in
+\texttt{{[},{]}} (analogues to accessing variables in a data frame).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\OperatorTok{>}\StringTok{ }\NormalTok{df <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(}\DataTypeTok{x =} \KeywordTok{c}\NormalTok{(}\DecValTok{3}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{5}\NormalTok{, }\DecValTok{6}\NormalTok{), }\DataTypeTok{y =} \KeywordTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{, }\DecValTok{5}\NormalTok{, }\DecValTok{6}\NormalTok{, }\DecValTok{7}\NormalTok{), }\DataTypeTok{var.1 =} \KeywordTok{c}\NormalTok{(}\StringTok{"a"}\NormalTok{, }
+\OperatorTok{+}\StringTok{   "b"}\NormalTok{, }\StringTok{"c"}\NormalTok{, }\StringTok{"d"}\NormalTok{), }\DataTypeTok{var.2 =} \DecValTok{1}\OperatorTok{:}\DecValTok{4}\NormalTok{)}
+\OperatorTok{>}\StringTok{ }\KeywordTok{class}\NormalTok{(df)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] "data.frame"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\OperatorTok{>}\StringTok{ }\CommentTok{# promote to a SpatialPointsDataFrame}
+\ErrorTok{>}\StringTok{ }\KeywordTok{coordinates}\NormalTok{(df) <-}\StringTok{ }\ErrorTok{~}\NormalTok{x }\OperatorTok{+}\StringTok{ }\NormalTok{y}
+\OperatorTok{>}\StringTok{ }
+\ErrorTok{>}\StringTok{ }\KeywordTok{class}\NormalTok{(df)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] "SpatialPointsDataFrame"
+attr(,"package")
+[1] "sp"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\OperatorTok{>}\StringTok{ }\CommentTok{# access entire data frame}
+\ErrorTok{>}\StringTok{ }\NormalTok{df}\OperatorTok{@}\NormalTok{data}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+  var.1 var.2
+1     a     1
+2     b     2
+3     c     3
+4     d     4
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\OperatorTok{>}\StringTok{ }\KeywordTok{class}\NormalTok{(df}\OperatorTok{@}\NormalTok{data)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] "data.frame"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\OperatorTok{>}\StringTok{ }\CommentTok{# access columns directly}
+\ErrorTok{>}\StringTok{ }\NormalTok{df}\OperatorTok{$}\NormalTok{var.}\DecValTok{1}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] a b c d
+Levels: a b c d
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\OperatorTok{>}\StringTok{ }\NormalTok{df[, }\KeywordTok{c}\NormalTok{(}\StringTok{"var.1"}\NormalTok{, }\StringTok{"var.2"}\NormalTok{)]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+  coordinates var.1 var.2
+1      (3, 2)     a     1
+2      (2, 5)     b     2
+3      (5, 6)     c     3
+4      (6, 7)     d     4
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\OperatorTok{>}\StringTok{ }\NormalTok{df[, }\DecValTok{2}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+  coordinates var.2
+1      (3, 2)     1
+2      (2, 5)     2
+3      (5, 6)     3
+4      (6, 7)     4
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\OperatorTok{>}\StringTok{ }\CommentTok{# get the bounding box}
+\ErrorTok{>}\StringTok{ }\KeywordTok{bbox}\NormalTok{(df)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+  min max
+x   2   6
+y   2   7
+\end{verbatim}
+
+Here, the data frame \texttt{df} is promoted to a
+\texttt{SpatialPointsDataFrame} by indicating the column names that hold
+the longitude and latitude (i.e., \texttt{x} and \texttt{y}
+respectively) using the \texttt{coordinates} function. Here too, the
+\texttt{@data} is used to retrieve the data frame associated with the
+points. We also illustrate how variables can be accessed directly from
+the spatial object. The \texttt{bbox} function is used to return the
+bounding box that is defined by the spatial extent of the point
+coordinates. The other spatial objects noted in Table
+\ref{tab:spatialObjs} can be created, and their data accessed, in a
+similar way\footnote{This
+  cheatsheet(www.maths.lancs.ac.uk/\textasciitilde{}rowlings/Teaching/UseR2012/cheatsheet.html)
+  written by Barry Rowlingson is a useful reference
+  www.maths.lancs.ac.uk/\textasciitilde{}rowlings/Teaching/UseR2012/cheatsheet.html}.
+
+More than often we find ourselves reading existing spatial data files
+into R. The code below uses the \texttt{downloader} package to download
+all of the PEF data we'll use in this chapter. The data are compressed
+in a single zip file, which is then extracted into the working directory
+using the \texttt{unzip} function. A look into the PEF directory using
+\texttt{list.files} shows nine files\footnote{The \texttt{list.files}
+  function does not read data into R; it simply prints the contents of a
+  directory.}. Those named \texttt{MU-bounds.*} comprise the shapefile
+that holds the PEF's management unit boundaries in the form of polygons.
+Like other spatial data file formats, shapefiles are made up of several
+different files (with different file extensions) that are linked
+together to form a spatial data object. The \texttt{plots.csv} file
+holds the spatial coordinates and other information about the PEF's
+forest inventory plots. The \texttt{roads.*} shapefile holds roads and
+trails in and around the PEF.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\OperatorTok{>}\StringTok{ }\KeywordTok{library}\NormalTok{(downloader)}
+\OperatorTok{>}\StringTok{ }
+\ErrorTok{>}\StringTok{ }\KeywordTok{download}\NormalTok{(}\StringTok{"http://blue.for.msu.edu/FOR875/data/PEF.zip"}\NormalTok{, }
+\OperatorTok{+}\StringTok{          }\DataTypeTok{destfile=}\StringTok{"./PEF.zip"}\NormalTok{, }\DataTypeTok{mode=}\StringTok{"wb"}\NormalTok{) }
+\OperatorTok{>}\StringTok{ }
+\ErrorTok{>}\StringTok{ }\KeywordTok{unzip}\NormalTok{(}\StringTok{"PEF.zip"}\NormalTok{, }\DataTypeTok{exdir =} \StringTok{"."}\NormalTok{)}
+\OperatorTok{>}\StringTok{ }
+\ErrorTok{>}\StringTok{ }\KeywordTok{list.files}\NormalTok{(}\StringTok{"PEF"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+ [1] "MU-bounds.dbf" "MU-bounds.prj" "MU-bounds.qpj"
+ [4] "MU-bounds.shp" "MU-bounds.shx" "plots.csv"    
+ [7] "plots.dbf"     "plots.prj"     "plots.qpj"    
+[10] "plots.shp"     "plots.shx"     "roads.dbf"    
+[13] "roads.prj"     "roads.shp"     "roads.shx"    
+\end{verbatim}
+
+Next we read the MU-bounds shapefile into R using
+\texttt{readOGR()}\footnote{The authors of the \texttt{rgdal} library
+  decided to have some information about the version of GDAL and other
+  software specifics be printed when the library is loaded. Don't let it
+  distract you.} and explore the resulting \texttt{mu} object. Notice
+that when we read a shapefile into R, we do not include a file extension
+with the shapefile name because a shapefile is always composed of
+multiple files.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\OperatorTok{>}\StringTok{ }\KeywordTok{library}\NormalTok{(rgdal)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+rgdal: version: 1.3-6, (SVN revision 773)
+ Geospatial Data Abstraction Library extensions to R successfully loaded
+ Loaded GDAL runtime: GDAL 2.2.3, released 2017/11/20
+ Path to GDAL shared files: /usr/share/gdal/2.2
+ GDAL binary built with GEOS: TRUE 
+ Loaded PROJ.4 runtime: Rel. 4.9.3, 15 August 2016, [PJ_VERSION: 493]
+ Path to PROJ.4 shared files: (autodetected)
+ Linking to sp version: 1.3-1 
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\OperatorTok{>}\StringTok{ }\NormalTok{mu <-}\StringTok{ }\KeywordTok{readOGR}\NormalTok{(}\StringTok{"PEF"}\NormalTok{, }\StringTok{"MU-bounds"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+OGR data source with driver: ESRI Shapefile 
+Source: "/home/jeffdoser/Dropbox/teaching/for472/text/book/PEF", layer: "MU-bounds"
+with 40 features
+It has 1 fields
+\end{verbatim}
+
+When called, the \texttt{readOGR} function provides a bit of information
+about the object being read in. Here, we see that it read the MU-bounds
+shapefile from PEF directory and the shapefile had 40 features (i.e.,
+polygons) and 1 field (i.e., field is synonymous with column or variable
+in the data frame).
+
+You can think of the resulting \texttt{mu} object as a data frame where
+each row corresponds to a polygon and each column holds information
+about the polygon\footnote{Much of the actual spatial information is
+  hidden from you in other parts of the data structure, but is available
+  if you ask nicely for it (see subsequent sections).}. More
+specifically, the \texttt{mu} object is a
+\texttt{SpatialPolygonsDataFrame}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\OperatorTok{>}\StringTok{ }\KeywordTok{class}\NormalTok{(mu)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] "SpatialPolygonsDataFrame"
+attr(,"package")
+[1] "sp"
+\end{verbatim}
+
+As illustrated using the made-up point data in the example above, you
+can access the data frame associated with the polygons using
+\texttt{@data}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\OperatorTok{>}\StringTok{ }\KeywordTok{class}\NormalTok{(mu}\OperatorTok{@}\NormalTok{data)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] "data.frame"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\OperatorTok{>}\StringTok{ }\KeywordTok{dim}\NormalTok{(mu}\OperatorTok{@}\NormalTok{data)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] 40  1
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\OperatorTok{>}\StringTok{ }\KeywordTok{head}\NormalTok{(mu}\OperatorTok{@}\NormalTok{data)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+  mu_id
+0   C15
+1   C17
+2   C16
+3   C27
+4   U18
+5   U31
+\end{verbatim}
+
+Above, a call to \texttt{class()} confirms we have accessed the data
+frame, \texttt{dim()} shows there are 40 rows (one row for each polygon)
+and one column, and \texttt{head()} shows the first six values of the
+column named \texttt{mu\_id}. The \texttt{mu\_id} values are unique
+identifiers for each management unit polygon across the PEF.
+
+\section{Coordinate Reference
+Systems}\label{coordinate-reference-systems}
+
+One of the more challenging aspects of working with spatial data is
+getting used to the idea of a coordinate reference system. A
+\emph{coordinate reference system} (CRS) is a system that uses one or
+more numbers, or coordinates, to uniquely determine the position of a
+point or other geometric element (e.g., line, polygon, raster). For
+spatial data, there are two common coordinate systems:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Spherical coordinate system, such as latitude-longitude, often
+  referred to as a \emph{geographic coordinate system}.
+\item
+  Projected coordinate system based on a map projection, which is a
+  systematic transformation of the latitudes and longitudes that aims to
+  minimize distortion occurring from projecting maps of the earth's
+  spherical surface onto a two-dimensional Cartesian coordinate plane.
+  Projected coordinate systems are sometimes referred to as \emph{map
+  projections}.
+\end{enumerate}
+
+There are numerous map projections\footnote{See partial list of map
+  projections at
+  \url{https://en.wikipedia.org/wiki/List/_of/_map/_projections}. See a
+  humorous discussion of map projections at
+  \url{http://brilliantmaps.com/xkcd/}.}. One of the more frustrating
+parts of working with spatial data is that it seems like each data
+source you find offers its data in a different map projection and hence
+you spend a great deal of time \emph{reprojecting} (i.e., transforming
+from one CRS to another) data into a common CRS such that they overlay
+correctly. Reprojecting is accomplished using the \texttt{sp} package's
+\texttt{spTransform} function as demonstrated in Section \ref{ggmap}.
+
+In R, a spatial object's CRS is accessed via the \texttt{sp} package
+\texttt{proj4string} function. The code below shows the current
+projection of \texttt{mu}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\OperatorTok{>}\StringTok{ }\KeywordTok{proj4string}\NormalTok{(mu)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] "+proj=utm +zone=19 +datum=NAD83 +units=m +no_defs +ellps=GRS80 +towgs84=0,0,0"
+\end{verbatim}
+
+The cryptic looking string returned by \texttt{proj4string()} is a set
+of directives understood by the \href{http://proj4.org/}{proj.4} C
+library, which is part of \texttt{sp}, and used to map geographic
+longitude and latitude coordinates into the projected Cartesian
+coordinates. This CRS tells us the \texttt{mu} object is in
+\href{https://en.wikipedia.org/wiki/Universal_Transverse_Mercator_coordinate_system}{Universal
+Transverse Mercator (UTM)} zone 19 coordinate system.\footnote{If you
+  start dealing with a lot of spatial data and reprojecting,
+  \url{http://spatialreference.org} is an excellent resources for
+  finding and specifying coordinate reference systems.}
+
+\section{\texorpdfstring{Illustration using
+\texttt{ggmap}}{Illustration using ggmap}}\label{ggmap}
+
+Let's begin by making a map of PEF management unit boundaries over top
+of a satellite image using the \texttt{ggmap} package. Given an address,
+location, or bounding box, the \texttt{ggmap} package's
+\texttt{get\_map} function will query Google Maps, OpenStreetMap, Stamen
+Maps, or Naver Map servers for a user-specified map type. The
+\texttt{get\_map} function requires the location or bounding box
+coordinates be in a geographic coordinate system (i.e.,
+latitude-longitude). This means we need to reproject \texttt{mu} from
+UTM zone 19 to latitude-longitude geographic coordinates, which is
+defined by the
+\texttt{\textquotesingle{}"proj=longlat\ +datum=WGS84"\textquotesingle{}}
+proj.4 string. As seen below, the first argument in \texttt{spTransform}
+function is the spatial object to reproject and the second argument is a
+CRS object created by passing a proj.4 string into the \texttt{CRS}
+function.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\OperatorTok{>}\StringTok{ }\NormalTok{mu <-}\StringTok{ }\KeywordTok{spTransform}\NormalTok{(mu, }\KeywordTok{CRS}\NormalTok{(}\StringTok{"+proj=longlat +datum=WGS84"}\NormalTok{))}
+\OperatorTok{>}\StringTok{ }\KeywordTok{proj4string}\NormalTok{(mu)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] "+proj=longlat +datum=WGS84 +ellps=WGS84 +towgs84=0,0,0"
+\end{verbatim}
+
+Unfortunately, we cannot just feed the \texttt{SpatialPolygonsDataFrame}
+\texttt{mu} into \texttt{ggplot} (perhaps some day soon this will
+possible). Rather, we need to first convert the
+\texttt{SpatialPolygonsDataFrame} into a specially formatted data frame
+using the \texttt{fortify} function that is part of the \texttt{ggplot2}
+package\footnote{\texttt{ggmap} depends on \texttt{ggplot2} so
+  \texttt{ggplot2} will be automatically loaded when you call
+  \texttt{library(ggmap)}.}. The \texttt{fortify} function will also
+need a unique identifier for each polygon specified using the
+\texttt{region} argument, which for \texttt{mu} is the \texttt{mu\_id}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\OperatorTok{>}\StringTok{ }\KeywordTok{library}\NormalTok{(ggmap)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+Google Maps API Terms of Service: http://developers.google.com/maps/terms.
+\end{verbatim}
+
+\begin{verbatim}
+Please cite ggmap if you use it: see citation("ggmap") for details.
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\OperatorTok{>}\StringTok{ }\NormalTok{mu.f <-}\StringTok{ }\KeywordTok{fortify}\NormalTok{(mu, }\DataTypeTok{region =} \StringTok{"mu_id"}\NormalTok{)}
+\OperatorTok{>}\StringTok{ }\KeywordTok{head}\NormalTok{(mu.f)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+    long   lat order  hole piece  id group
+1 -68.62 44.86     1 FALSE     1 C12 C12.1
+2 -68.62 44.86     2 FALSE     1 C12 C12.1
+3 -68.62 44.86     3 FALSE     1 C12 C12.1
+4 -68.62 44.86     4 FALSE     1 C12 C12.1
+5 -68.62 44.86     5 FALSE     1 C12 C12.1
+6 -68.62 44.86     6 FALSE     1 C12 C12.1
+\end{verbatim}
+
+Notice the \texttt{id} column in the fortified version of \texttt{mu}
+holds each polygon's \texttt{mu\_id} value (this will be important later
+when we link data to the polygons).
+
+Next, we query the satellite imagery used to underlay the management
+units (we'll generally refer to this underlying map as the basemap). As
+of October 2018, Google now requires you to set up a Google API account
+in order to run the following maps. This is free, but it does require a
+credit card to obtain the API Key that is required to make the
+\texttt{ggmap} package work. Here I provide you with an API key for a
+project I created for this class that should allow you to run the
+following function if you desire. If you are interested in obtaining
+your own API key, see the page
+\href{https://developers.google.com/maps/documentation/geocoding/get-api-key}{here}
+for learning about how to use Google maps web services.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\OperatorTok{>}\StringTok{ }\KeywordTok{register_google}\NormalTok{(}\DataTypeTok{key =} \StringTok{"AIzaSyBPAwSY5x8vQqlnG-QwiCAWQW12U3CTLZY"}\NormalTok{)}
+\OperatorTok{>}\StringTok{ }\NormalTok{mu.bbox <-}\StringTok{ }\KeywordTok{bbox}\NormalTok{(mu)}
+\OperatorTok{>}\StringTok{ }
+\ErrorTok{>}\StringTok{ }\NormalTok{basemap <-}\StringTok{ }\KeywordTok{get_map}\NormalTok{(}\DataTypeTok{location=}\NormalTok{mu.bbox, }\DataTypeTok{zoom =} \DecValTok{14}\NormalTok{, }\DataTypeTok{maptype=}\StringTok{"satellite"}\NormalTok{)}
+\OperatorTok{>}\StringTok{ }
+\ErrorTok{>}\StringTok{ }\KeywordTok{ggmap}\NormalTok{(basemap) }\OperatorTok{+}
+\OperatorTok{+}\StringTok{     }\KeywordTok{geom_polygon}\NormalTok{(}\DataTypeTok{data=}\NormalTok{mu.f, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ long, }\DataTypeTok{y =}\NormalTok{ lat, }\DataTypeTok{group=}\NormalTok{group), }
+\OperatorTok{+}\StringTok{                  }\DataTypeTok{fill=}\OtherTok{NA}\NormalTok{, }\DataTypeTok{size=}\FloatTok{0.2}\NormalTok{, }\DataTypeTok{color=}\StringTok{"orange"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{bookdown_files/figure-latex/unnamed-chunk-88-1.pdf}
+
+Looks pretty good! Take a look at the \texttt{get\_map} function manual
+page and try different options for \texttt{maptype} (e.g.,
+\texttt{maptype="terrain"}).
+
+Next we'll add the forest inventory plots to the map. Begin by reading
+in the PEF forest inventory plot data held in ``plots.csv''. Recall,
+foresters have measured forest variables at a set of locations (i.e.,
+inventory plots) within each management unit. The following statement
+reads these data and displays the resulting data frame structure.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\OperatorTok{>}\StringTok{ }\NormalTok{plots <-}\StringTok{ }\KeywordTok{read.csv}\NormalTok{(}\StringTok{"PEF/plots.csv"}\NormalTok{, }\DataTypeTok{stringsAsFactors =} \OtherTok{FALSE}\NormalTok{)}
+\OperatorTok{>}\StringTok{ }\KeywordTok{str}\NormalTok{(plots)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+'data.frame':   451 obs. of  8 variables:
+ $ mu_id           : chr  "U10" "U10" "U10" "U10" ...
+ $ plot            : int  11 13 21 22 23 24 31 32 33 34 ...
+ $ easting         : num  529699 529777 529774 529814 529850 ...
+ $ northing        : num  4966333 4966471 4966265 4966336 4966402 ...
+ $ biomass_mg_ha   : num  96.3 115.7 121.6 72 122.3 ...
+ $ stems_ha        : int  5453 2629 3385 7742 7980 10047 5039 5831 2505 7325 ...
+ $ diameter_cm     : num  4.8 6.9 6.1 3.1 4.7 1.6 4.1 5.2 5.7 3.3 ...
+ $ basal_area_m2_ha: num  22 23.2 23 16.1 29.2 19.1 14.1 27.4 21.6 15 ...
+\end{verbatim}
+
+In \texttt{plots} each row is a forest inventory plot and columns are:
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{mu\_id} identifies the management unit within which the plot
+  is located
+\item
+  \texttt{plot} unique plot number within the management unit
+\item
+  \texttt{easting} longitude coordinate in UTM zone 19
+\item
+  \texttt{northing} latitude coordinate in UTM zone 19
+\item
+  \texttt{biomass\_mg\_ha} tree biomass in metric ton (per hectare
+  basis)
+\item
+  \texttt{stocking\_stems\_ha} number of tree (per hectare basis)
+\item
+  \texttt{diameter\_cm} average tree diameter measured 130 cm up the
+  tree trunk
+\item
+  \texttt{basal\_area\_m2\_ha} total cross-sectional area at 130 cm up
+  the tree trunk (per hectare basis)
+\end{itemize}
+
+There is nothing inherently spatial about this data structure---it is
+simply a data frame. We make \texttt{plots} into a spatial object by
+identifying which columns hold the coordinates. This is done below using
+the \texttt{coordinates} function, which promotes the \texttt{plots}
+data frame to a \texttt{SpatialPointsDataFrame}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\OperatorTok{>}\StringTok{ }\KeywordTok{coordinates}\NormalTok{(plots) <-}\StringTok{ }\ErrorTok{~}\NormalTok{easting}\OperatorTok{+}\NormalTok{northing}
+\OperatorTok{>}\StringTok{ }
+\ErrorTok{>}\StringTok{ }\KeywordTok{class}\NormalTok{(plots)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] "SpatialPointsDataFrame"
+attr(,"package")
+[1] "sp"
+\end{verbatim}
+
+Although \texttt{plots} is now a \texttt{SpatialPointsDataFrame}, it
+does not know to which CRS the coordinates belong; hence, the
+\texttt{NA} when \texttt{proj4string(plots)} is called below. As noted
+in the \texttt{plots} file description above, \texttt{easting} and
+\texttt{northing} are in UTM zone 19. This CRS is set using the second
+call to \texttt{proj4string} below.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\OperatorTok{>}\StringTok{ }\KeywordTok{proj4string}\NormalTok{(plots)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] NA
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\OperatorTok{>}\StringTok{ }\KeywordTok{proj4string}\NormalTok{(plots) <-}\StringTok{ }\KeywordTok{CRS}\NormalTok{(}\StringTok{"+proj=utm +zone=19 +datum=NAD83 +units=m }
+\StringTok{+                              +no_defs +ellps=GRS80 +towgs84=0,0,0"}\NormalTok{)                   }
+\end{Highlighting}
+\end{Shaded}
+
+Now let's reproject \texttt{plots} to share a common CRS with
+\texttt{mu}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\OperatorTok{>}\StringTok{ }\NormalTok{plots <-}\StringTok{ }\KeywordTok{spTransform}\NormalTok{(plots, }\KeywordTok{CRS}\NormalTok{(}\StringTok{"+proj=longlat +datum=WGS84"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+Note, because \texttt{mu} is already in the projection we want for
+\texttt{plots}, we could have replaced the second argument in the
+\texttt{spTransform} call above with \texttt{proj4string(mu)} and saved
+some typing.
+
+We're now ready to add the forest inventory plots to the existing
+basemap with management units. Specifically, let's map the
+\texttt{biomass\_mg\_ha} variable to show changes in biomass across the
+forest. No need to fortify \texttt{plots}, \texttt{ggplot} is happy to
+take \texttt{geom\_point}'s \texttt{data} argument as a data frame
+(although we do need to convert \texttt{plots} from a
+\texttt{SpatialPointsDataFrame} to a data frame using the
+\texttt{as.data.frame} function). Check out the
+\texttt{scale\_color\_gradient} function in your favorite
+\texttt{ggplot2} reference to understand how the color scale is set.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\OperatorTok{>}\StringTok{ }\KeywordTok{ggmap}\NormalTok{(basemap) }\OperatorTok{+}
+\OperatorTok{+}\StringTok{     }\KeywordTok{geom_polygon}\NormalTok{(}\DataTypeTok{data=}\NormalTok{mu.f, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ long, }\DataTypeTok{y =}\NormalTok{ lat, }\DataTypeTok{group=}\NormalTok{group), }
+\OperatorTok{+}\StringTok{                  }\DataTypeTok{fill=}\OtherTok{NA}\NormalTok{, }\DataTypeTok{size=}\FloatTok{0.2}\NormalTok{, }\DataTypeTok{color=}\StringTok{"orange"}\NormalTok{) }\OperatorTok{+}
+\OperatorTok{+}\StringTok{     }\KeywordTok{geom_point}\NormalTok{(}\DataTypeTok{data=}\KeywordTok{as.data.frame}\NormalTok{(plots), }
+\OperatorTok{+}\StringTok{                }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ easting, }\DataTypeTok{y =}\NormalTok{ northing, }\DataTypeTok{color=}\NormalTok{biomass_mg_ha)) }\OperatorTok{+}\StringTok{ }
+\OperatorTok{+}\StringTok{     }\KeywordTok{scale_color_gradient}\NormalTok{(}\DataTypeTok{low=}\StringTok{"white"}\NormalTok{, }\DataTypeTok{high=}\StringTok{"darkblue"}\NormalTok{) }\OperatorTok{+}
+\OperatorTok{+}\StringTok{     }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{color =} \StringTok{"Biomass (mg/ha)"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{bookdown_files/figure-latex/unnamed-chunk-93-1.pdf}
+
+There is something subtle and easy to miss in the code above. Notice the
+\texttt{aes} function arguments in \texttt{geom\_points} take geographic
+longitude and latitude, \texttt{x} and \texttt{y} respectively, from the
+\texttt{points} data frame (but recall \texttt{easting} and
+\texttt{northing} were in UTM zone 19). This works because we applied
+\texttt{spTransform} to reproject the \texttt{points}
+\texttt{SpatialPointsDataFrame} to geographic coordinates. \texttt{sp}
+then replaces the values in \texttt{easting} and \texttt{northing}
+columns with the reprojected coordinate values when converting a
+\texttt{SpatialPointsDataFrame} to a data frame via
+\texttt{as.data.frame()}.
+
+Foresters use the inventory plot measurements to estimate forest
+variables within management units, e.g., the average or total management
+unit biomass. Next we'll make a plot with management unit polygons
+colored by average \texttt{biomass\_mg\_ha}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\OperatorTok{>}\StringTok{ }\NormalTok{mu.bio <-}\StringTok{ }\NormalTok{plots}\OperatorTok{@}\NormalTok{data }\OperatorTok{%>%}\StringTok{ }\KeywordTok{group_by}\NormalTok{(mu_id) }\OperatorTok{%>%}\StringTok{ }
+\OperatorTok{+}\StringTok{     }\KeywordTok{summarize}\NormalTok{(}\DataTypeTok{biomass_mu =} \KeywordTok{mean}\NormalTok{(biomass_mg_ha))}
+\OperatorTok{>}\StringTok{ }\KeywordTok{print}\NormalTok{(mu.bio)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+# A tibble: 33 x 2
+   mu_id biomass_mu
+   <chr>      <dbl>
+ 1 C12        124. 
+ 2 C15         49.9
+ 3 C16        128. 
+ 4 C17        112. 
+ 5 C20        121. 
+ 6 C21        134. 
+ 7 C22         65.2
+ 8 C23A       108. 
+ 9 C23B       153. 
+10 C24        126. 
+# ... with 23 more rows
+\end{verbatim}
+
+Recall from Section \ref{pipes} this one-liner can be read as ``get the
+data frame from \texttt{plots}'s \texttt{SpatialPointsDataFrame}
+\emph{then} group by management unit \emph{then} make a new variable
+called \texttt{biomass\_mu} that is the average of
+\texttt{biomass\_mg\_ha} and assign it to the \texttt{mu.bio} tibble.''
+
+The management unit specific \texttt{biomass\_mu} can now be joined to
+the \texttt{mu} polygons using the common \texttt{mu\_id} value.
+Remember when we created the fortified version of \texttt{mu} called
+\texttt{mu.f}? The \texttt{fortify} function \texttt{region} argument
+was \texttt{mu\_id} which is the \texttt{id} variable in the resulting
+\texttt{mu.f}. This \texttt{id} variable in \texttt{mu.f} can be linked
+to the \texttt{mu\_id} variable in \texttt{mu.bio} using
+\texttt{dplyr}'s \texttt{left\_join} function as illustrated below.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\OperatorTok{>}\StringTok{ }\KeywordTok{head}\NormalTok{(mu.f, }\DataTypeTok{n =} \DecValTok{2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+    long   lat order  hole piece  id group
+1 -68.62 44.86     1 FALSE     1 C12 C12.1
+2 -68.62 44.86     2 FALSE     1 C12 C12.1
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\OperatorTok{>}\StringTok{ }\NormalTok{mu.f <-}\StringTok{ }\KeywordTok{left_join}\NormalTok{(mu.f, mu.bio, }\DataTypeTok{by =} \KeywordTok{c}\NormalTok{(}\DataTypeTok{id =} \StringTok{"mu_id"}\NormalTok{))}
+\OperatorTok{>}\StringTok{ }
+\ErrorTok{>}\StringTok{ }\KeywordTok{head}\NormalTok{(mu.f, }\DataTypeTok{n =} \DecValTok{2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+    long   lat order  hole piece  id group biomass_mu
+1 -68.62 44.86     1 FALSE     1 C12 C12.1      123.7
+2 -68.62 44.86     2 FALSE     1 C12 C12.1      123.7
+\end{verbatim}
+
+The calls to \texttt{head()} show the first few rows of \texttt{mu.f}
+pre- and post-join. After the join, \texttt{mu.f} includes
+\texttt{biomass\_mu}, which is used used below for
+\texttt{geom\_polygon}'s \texttt{fill} argument to color the polygons
+accordingly.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\OperatorTok{>}\StringTok{ }\KeywordTok{ggmap}\NormalTok{(basemap) }\OperatorTok{+}
+\OperatorTok{+}\StringTok{     }\KeywordTok{geom_polygon}\NormalTok{(}\DataTypeTok{data=}\NormalTok{mu.f, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ long, }\DataTypeTok{y =}\NormalTok{ lat, }
+\OperatorTok{+}\StringTok{                                 }\DataTypeTok{group=}\NormalTok{group, }\DataTypeTok{fill=}\NormalTok{biomass_mu), }
+\OperatorTok{+}\StringTok{                  }\DataTypeTok{size=}\FloatTok{0.2}\NormalTok{, }\DataTypeTok{color=}\StringTok{"orange"}\NormalTok{) }\OperatorTok{+}
+\OperatorTok{+}\StringTok{     }\KeywordTok{scale_fill_gradient}\NormalTok{(}\DataTypeTok{low=}\StringTok{"white"}\NormalTok{, }\DataTypeTok{high=}\StringTok{"darkblue"}\NormalTok{, }
+\OperatorTok{+}\StringTok{                         }\DataTypeTok{na.value=}\StringTok{"transparent"}\NormalTok{) }\OperatorTok{+}
+\OperatorTok{+}\StringTok{     }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{fill=}\StringTok{"Biomass (mg/ha)"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{bookdown_files/figure-latex/unnamed-chunk-96-1.pdf}
+
+Let's add the roads and some more descriptive labels as a finishing
+touch. The roads data include a variable called \texttt{type} that
+identifies the road type. To color roads by type in the map, we need to
+join the \texttt{roads} data frame with the fortified roads
+\texttt{roads.f} using the common variable \texttt{id} as a road segment
+specific identifier. Then \texttt{geom\_path}'s \texttt{color} argument
+gets this \texttt{type} variable as a factor to create road-specific
+color. The default coloring of the roads blends in too much with the
+polygon colors, so we manually set the road colors using the
+\texttt{scale\_color\_brewer} function. The \texttt{palette} argument in
+this function accepts a set of key words, e.g., \texttt{"Dark2"}, that
+specify sets of diverging colors chosen to make map object difference
+optimally distinct (see, the manual page for
+\texttt{scale\_color\_brewer}, \url{http://colorbrewer2.org}, and blog
+\href{https://www.r-bloggers.com/r-using-rcolorbrewer-to-colour-your-figures-in-r}{here}.)\footnote{Install
+  the \texttt{RColorBrewer} package and run
+  \texttt{library(RColorBrewer);\ display.brewer.all()} to get a
+  graphical list of available palettes.}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\OperatorTok{>}\StringTok{ }\NormalTok{roads <-}\StringTok{ }\KeywordTok{readOGR}\NormalTok{(}\StringTok{"PEF"}\NormalTok{, }\StringTok{"roads"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+OGR data source with driver: ESRI Shapefile 
+Source: "/home/jeffdoser/Dropbox/teaching/for472/text/book/PEF", layer: "roads"
+with 33 features
+It has 2 fields
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\OperatorTok{>}\StringTok{ }\NormalTok{roads <-}\StringTok{ }\KeywordTok{spTransform}\NormalTok{(roads, }\KeywordTok{proj4string}\NormalTok{(mu))}
+\OperatorTok{>}\StringTok{ }
+\ErrorTok{>}\StringTok{ }\NormalTok{roads.f <-}\StringTok{ }\KeywordTok{fortify}\NormalTok{(roads, }\DataTypeTok{region=}\StringTok{"id"}\NormalTok{)}
+\OperatorTok{>}\StringTok{ }\NormalTok{roads.f <-}\StringTok{ }\KeywordTok{left_join}\NormalTok{(roads.f, roads}\OperatorTok{@}\NormalTok{data, }\DataTypeTok{by =} \KeywordTok{c}\NormalTok{(}\StringTok{'id'}\NormalTok{ =}\StringTok{ 'id'}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+Warning: Column `id` joining character vector and
+factor, coercing into character vector
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\OperatorTok{>}\StringTok{ }\KeywordTok{ggmap}\NormalTok{(basemap) }\OperatorTok{+}
+\OperatorTok{+}\StringTok{     }\KeywordTok{geom_polygon}\NormalTok{(}\DataTypeTok{data=}\NormalTok{mu.f, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ long, }\DataTypeTok{y =}\NormalTok{ lat, }\DataTypeTok{group=}\NormalTok{group, }
+\OperatorTok{+}\StringTok{                                 }\DataTypeTok{fill=}\NormalTok{biomass_mu), }
+\OperatorTok{+}\StringTok{                  }\DataTypeTok{size=}\FloatTok{0.2}\NormalTok{, }\DataTypeTok{color=}\StringTok{"orange"}\NormalTok{) }\OperatorTok{+}
+\OperatorTok{+}\StringTok{     }\KeywordTok{geom_path}\NormalTok{(}\DataTypeTok{data=}\NormalTok{roads.f, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ long, }\DataTypeTok{y =}\NormalTok{ lat, }
+\OperatorTok{+}\StringTok{                                 }\DataTypeTok{group=}\NormalTok{group, }\DataTypeTok{color=}\KeywordTok{factor}\NormalTok{(type))) }\OperatorTok{+}
+\OperatorTok{+}\StringTok{     }\KeywordTok{scale_fill_gradient}\NormalTok{(}\DataTypeTok{low=}\StringTok{"white"}\NormalTok{, }\DataTypeTok{high=}\StringTok{"darkblue"}\NormalTok{, }
+\OperatorTok{+}\StringTok{                         }\DataTypeTok{na.value=}\StringTok{"transparent"}\NormalTok{) }\OperatorTok{+}
+\OperatorTok{+}\StringTok{     }\KeywordTok{scale_color_brewer}\NormalTok{(}\DataTypeTok{palette=}\StringTok{"Dark2"}\NormalTok{) }\OperatorTok{+}
+\OperatorTok{+}\StringTok{     }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{fill=}\StringTok{"Biomass (mg/ha)"}\NormalTok{, }\DataTypeTok{color=}\StringTok{"Road type"}\NormalTok{, }\DataTypeTok{xlab=}\StringTok{"Longitude"}\NormalTok{, }
+\OperatorTok{+}\StringTok{          }\DataTypeTok{ylab=}\StringTok{"Latitude"}\NormalTok{, }\DataTypeTok{title=}\StringTok{"PEF forest biomass"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+Warning: Removed 616 rows containing missing values
+(geom_path).
+\end{verbatim}
+
+\includegraphics{bookdown_files/figure-latex/unnamed-chunk-97-1.pdf}
+
+The second, and more cryptic, of the two warnings from this code occurs
+because some of the roads extend beyond the range of the map axes and
+are removed (nothing to worry about).
+
+\section{\texorpdfstring{Illustration using
+\texttt{leaflet}}{Illustration using leaflet}}\label{illustration-using-leaflet}
+
+Leaflet is one of the most popular open-source JavaScript libraries for
+interactive maps. As noted on the official
+\href{https://rstudio.github.io/leaflet}{R leaflet website}, it's used
+by websites ranging from \emph{The New York Times} and \emph{The
+Washington Post} to GitHub and Flickr, as well as by GIS specialists
+like OpenStreetMap, Mapbox, and CartoDB.
+
+The \href{https://rstudio.github.io/leaflet}{R leaflet website} is an
+excellent resource to learn leaflet basics, and should serve as a
+reference to gain a better understanding of the topics we briefly
+explore below.
+
+You create a leaflet map using these basic steps:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Create a map by calling \texttt{leaflet()}
+\item
+  Add data layers to the map using layer functions such as,
+  \texttt{addTiles()}, \texttt{addMarkers()}, \texttt{addPolygons()},
+  \texttt{addCircleMarkers()}, \texttt{addPolylines()},
+  \texttt{addRasterImage()} and other \texttt{add...} functions
+\item
+  Repeat step 2 to add more layers to the map
+\item
+  Print the map to display it
+\end{enumerate}
+
+Here's a brief example.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\OperatorTok{>}\StringTok{ }\KeywordTok{library}\NormalTok{(leaflet)}
+\OperatorTok{>}\StringTok{ }
+\ErrorTok{>}\StringTok{ }\NormalTok{m <-}\StringTok{ }\KeywordTok{leaflet}\NormalTok{() }\OperatorTok{%>%}
+\OperatorTok{+}\StringTok{       }\KeywordTok{addTiles}\NormalTok{() }\OperatorTok{%>%}\StringTok{  }\CommentTok{# Add default OpenStreetMap map tiles}
+\OperatorTok{+}\StringTok{       }\KeywordTok{addMarkers}\NormalTok{(}\DataTypeTok{lng=}\OperatorTok{-}\FloatTok{84.482004}\NormalTok{, }\DataTypeTok{lat=}\FloatTok{42.727516}\NormalTok{, }
+\OperatorTok{+}\StringTok{                  }\DataTypeTok{popup=}\StringTok{"<b>Here I am!</b>"}\NormalTok{) }\CommentTok{# Add a clickable marker}
+\OperatorTok{>}\StringTok{ }\NormalTok{m  }\CommentTok{# Print the map}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{htmlwidget-457d518f433363e38ed7}{}
+
+There are a couple things to note in the code. First, we use the pipe
+operator \texttt{\%\textgreater{}\%} just like in \texttt{dplyr}
+functions. Second, the \texttt{popup} argument in \texttt{addMarkers()}
+takes standard HTML and clicking on the marker makes the text popup.
+Third, the html version of this text provides the full interactive,
+dynamic map, so we encourage you to read and interact with the html
+version of this textbook for this section. The PDF document will simply
+display a static version of this map and will not do justice to how
+awesome \texttt{leaflet} truly is!
+
+As seen in the \texttt{leaflet()} call above, the various
+\texttt{add...} functions can take longitude (i.e., \texttt{lng}) and
+latitude (i.e., \texttt{lat}). Alternatively, these functions can
+extract the necessary spatial information from \texttt{sp} objects,
+e.g., Table \ref{tab:spatialObjs}, when passed to the data argument
+(which greatly simplifies life compared with map making using
+\texttt{ggmap}).
+
+\section{Subsetting Spatial Data}\label{subsetting-spatial-data}
+
+You can imagine that we might want to subset spatial objects to map
+specific points, lines, or polygons that meet some criteria, or perhaps
+extract values from polygons or raster surfaces at a set of points or
+geographic extent. These, and similar types, of operations are easy in R
+(as long as all spatial objects are in a common CRS). Recall from
+Chapter \ref{data-structures} how handy it is to subset data structures,
+e.g., vectors and data frames, using the \texttt{{[}{]}} operator and
+logical vectors? Well it's just as easy to subset spatial objects,
+thanks to the authors of \texttt{sp}, \texttt{raster}, and other spatial
+data packages.
+
+\subsection{\texorpdfstring{Fetching and Cropping Data using
+\texttt{raster}}{Fetching and Cropping Data using raster}}\label{fetching-and-cropping-data-using-raster}
+
+In order to motivate our exploration of spatial data subsetting and to
+illustrate some useful functionality of the \texttt{raster} package,
+let's download some elevation data for the PEF. The \texttt{raster}
+package has a rich set of functions for manipulating raster data as well
+as functions for downloading data from open source repositories. We'll
+focus on the package's \texttt{getData} function, which, given a
+location in geographic longitude and latitude or location name, will
+download data from
+\href{http://www.gadm.org/\%7D\%7BGlobal\%20Administrative\%20Boundaries}{GADM},
+\href{https://www2.jpl.nasa.gov/srtm/\%7D\%7BShuttle\%20Radar\%20Topography\%20Mission}{Shuttle
+Radar Topography Mission}, \href{http://www.worldclim.org/}{Global
+Climate Data}, and other sources commonly used in spatial data
+applications.
+
+Let's download SRTM surface elevation data for the PEF, check the
+resulting object's class and CRS, and display it using the
+\texttt{raster} package's \texttt{image} function along with the PEF
+forest inventory plots.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\OperatorTok{>}\StringTok{ }\KeywordTok{library}\NormalTok{(raster)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+
+Attaching package: 'raster'
+\end{verbatim}
+
+\begin{verbatim}
+The following object is masked from 'package:dplyr':
+
+    select
+\end{verbatim}
+
+\begin{verbatim}
+The following object is masked from 'package:tidyr':
+
+    extract
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\OperatorTok{>}\StringTok{ }\NormalTok{pef.centroid <-}\StringTok{ }\KeywordTok{as.data.frame}\NormalTok{(plots) }\OperatorTok{%>%}\StringTok{ }
+\OperatorTok{+}\StringTok{     }\KeywordTok{summarize}\NormalTok{(}\DataTypeTok{mu.x =} \KeywordTok{mean}\NormalTok{(easting), }\DataTypeTok{mu.y =} \KeywordTok{mean}\NormalTok{(northing))}
+\OperatorTok{>}\StringTok{ }
+\ErrorTok{>}\StringTok{ }\NormalTok{srtm <-}\StringTok{ }\KeywordTok{getData}\NormalTok{(}\StringTok{"SRTM"}\NormalTok{, }\DataTypeTok{lon =}\NormalTok{ pef.centroid[, }\DecValTok{1}\NormalTok{], }\DataTypeTok{lat =}\NormalTok{ pef.centroid[, }\DecValTok{2}\NormalTok{])}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+Error in .SRTM(..., download = download, path = path): file not found
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\OperatorTok{>}\StringTok{ }\NormalTok{srtm <-}\StringTok{ }\KeywordTok{raster}\NormalTok{(}\StringTok{"srtm_23_04.tif"}\NormalTok{)}
+\OperatorTok{>}\StringTok{ }\KeywordTok{proj4string}\NormalTok{(srtm) <-}\StringTok{ "+proj=longlat +datum=WGS84 +ellps=WGS84 +towgs84=0,0,0"}
+\OperatorTok{>}\StringTok{ }
+\ErrorTok{>}\StringTok{ }\KeywordTok{class}\NormalTok{(srtm)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] "RasterLayer"
+attr(,"package")
+[1] "raster"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\OperatorTok{>}\StringTok{ }\KeywordTok{proj4string}\NormalTok{(srtm)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] "+proj=longlat +datum=WGS84 +ellps=WGS84 +towgs84=0,0,0"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\OperatorTok{>}\StringTok{ }\KeywordTok{image}\NormalTok{(srtm)}
+\OperatorTok{>}\StringTok{ }\KeywordTok{plot}\NormalTok{(plots, }\DataTypeTok{add =} \OtherTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{bookdown_files/figure-latex/unnamed-chunk-99-1.pdf}
+
+A few things to notice in the code above. First the \texttt{getData}
+function needs the longitude \texttt{lon} and latitude \texttt{lat} to
+identify which SRTM raster tile to return (SRTM data come in large
+raster tiles that cover the globe). As usual, look at the
+\texttt{getData} function documentation for a description of the
+arguments. To estimate the PEF's centroid coordinate, we averaged the
+forest inventory plots' latitude and longitude then assigned the result
+to \texttt{pef.centroid}. Second, there is currently a bug with
+downloading \texttt{SRTM} data using the \texttt{getData()} function.
+All the data are downloaded into your current directory, but the
+function does not properly load them into \texttt{R}. If you run this
+line yourself and get an error, continue going through the code we have.
+In the next line we load the data in ourselves using the call to
+\texttt{raster("srtm\_23\_04.tiff")}. I also manually change the
+coordinate system using the \texttt{proj4string} function. The
+\texttt{srtm} object result from our code to get around the bug is a
+\texttt{RasterLayer}, see Table \ref{tab:spatialObjs}. Third,
+\texttt{srtm} is in a longitude latitude geographic CRS (same as our
+other PEF data). Finally, the image shows SRTM elevation along the coast
+of Maine, the PEF plots are those tiny specks of black in the northwest
+quadrant, and the white region of the image is the Atlantic Ocean.
+
+Okay, this is a start, but it would be good to crop the SRTM image to
+the PEF's extent. This is done using \texttt{raster}'s \texttt{crop}
+function. This function can use many different kinds of spatial objects
+in the second argument to calculate the extent at which to crop the
+object in the first argument. Here, I set \texttt{mu} as the second
+argument and save the resulting SRTM subset over the larger tile (the
+\texttt{srtm} object).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\OperatorTok{>}\StringTok{ }\NormalTok{srtm <-}\StringTok{ }\KeywordTok{crop}\NormalTok{(srtm, mu)}
+\OperatorTok{>}\StringTok{ }
+\ErrorTok{>}\StringTok{ }\KeywordTok{image}\NormalTok{(srtm)}
+\OperatorTok{>}\StringTok{ }\KeywordTok{plot}\NormalTok{(mu, }\DataTypeTok{add =} \OtherTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{bookdown_files/figure-latex/unnamed-chunk-100-1.pdf}
+
+The \texttt{crop} is in effect doing a spatial setting of the raster
+data. We'll return to the \texttt{srtm} data and explore different kinds
+of subsetting in the subsequent sections.
+
+\subsection{Logical, Index, and Name
+Subsetting}\label{logical-index-and-name-subsetting}
+
+As promised, we can subset spatial objects using the \texttt{{[}{]}}
+operator and a logical, index, or name vector. The key is that
+\texttt{sp} objects behave like data frames, see Section
+\ref{data-frames}. A logical or index vector to the left of the comma in
+\texttt{{[},{]}} accesses points, lines, polygons, or pixels. Similarly,
+a logical, index, or name vector to the right of the comma accesses
+variables.
+
+For example, say we want to map forest inventory plots with more than
+10,000 stems per hectare, \texttt{stems\_ha} (the \texttt{min()} was
+added below to double check that the subset worked correctly.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\OperatorTok{>}\StringTok{ }\KeywordTok{min}\NormalTok{(plots}\OperatorTok{$}\NormalTok{stems_ha)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] 119
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\OperatorTok{>}\StringTok{ }\NormalTok{plots.10k <-}\StringTok{ }\NormalTok{plots[plots}\OperatorTok{$}\NormalTok{stems_ha }\OperatorTok{>}\StringTok{ }\DecValTok{10000}\NormalTok{, ]}
+\OperatorTok{>}\StringTok{ }
+\ErrorTok{>}\StringTok{ }\KeywordTok{min}\NormalTok{(plots.10k}\OperatorTok{$}\NormalTok{stems_ha)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] 10008
+\end{verbatim}
+
+You can also add new variables to the spatial objects.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\OperatorTok{>}\StringTok{ }\NormalTok{plots}\OperatorTok{$}\NormalTok{diameter_in <-}\StringTok{ }\NormalTok{plots}\OperatorTok{$}\NormalTok{diameter_cm}\OperatorTok{/}\FloatTok{2.54}
+\OperatorTok{>}\StringTok{ }
+\ErrorTok{>}\StringTok{ }\KeywordTok{head}\NormalTok{(plots)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+  mu_id plot biomass_mg_ha stems_ha diameter_cm
+1   U10   11         96.35     5453         4.8
+2   U10   13        115.70     2629         6.9
+3   U10   21        121.58     3385         6.1
+4   U10   22         71.97     7742         3.1
+5   U10   23        122.26     7980         4.7
+6   U10   24         85.85    10047         1.6
+  basal_area_m2_ha diameter_in
+1             22.0      1.8898
+2             23.2      2.7165
+3             23.0      2.4016
+4             16.1      1.2205
+5             29.2      1.8504
+6             19.1      0.6299
+\end{verbatim}
+
+\subsection{Spatial Subsetting and
+Overlay}\label{spatial-subsetting-and-overlay}
+
+A spatial overlay retrieves the indexes or variables from object \(A\)
+using the location of object \(B\). With some spatial objects this
+operation can be done using the \texttt{{[}{]}} operator. For example,
+say we want to select and map all management units in \texttt{mu}, i.e.,
+\(A\), that contain plots with more than 10,000 stems per ha, i.e.,
+\(B\).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\OperatorTok{>}\StringTok{ }\NormalTok{mu.10k <-}\StringTok{ }\NormalTok{mu[plots.10k, ]  ## A[B,]}
+\OperatorTok{>}\StringTok{ }
+\ErrorTok{>}\StringTok{ }\NormalTok{mu.10k.f <-}\StringTok{ }\KeywordTok{fortify}\NormalTok{(mu.10k, }\DataTypeTok{region =} \StringTok{"mu_id"}\NormalTok{)}
+\OperatorTok{>}\StringTok{ }
+\ErrorTok{>}\StringTok{ }\KeywordTok{ggmap}\NormalTok{(basemap) }\OperatorTok{+}\StringTok{ }\KeywordTok{geom_polygon}\NormalTok{(}\DataTypeTok{data =}\NormalTok{ mu.10k.f, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ long, }
+\OperatorTok{+}\StringTok{   }\DataTypeTok{y =}\NormalTok{ lat, }\DataTypeTok{group =}\NormalTok{ group), }\DataTypeTok{fill =} \StringTok{"transparent"}\NormalTok{, }\DataTypeTok{size =} \FloatTok{0.2}\NormalTok{, }
+\OperatorTok{+}\StringTok{   }\DataTypeTok{color =} \StringTok{"orange"}\NormalTok{) }\OperatorTok{+}\StringTok{ }\KeywordTok{geom_point}\NormalTok{(}\DataTypeTok{data =} \KeywordTok{as.data.frame}\NormalTok{(plots.10k), }
+\OperatorTok{+}\StringTok{   }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ easting, }\DataTypeTok{y =}\NormalTok{ northing), }\DataTypeTok{color =} \StringTok{"white"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{bookdown_files/figure-latex/unnamed-chunk-103-1.pdf}
+
+More generally, however, the \texttt{over} function offers consistent
+overlay operations for \texttt{sp} objects and can return either indexes
+or variables from object \(A\) given locations from object \(B\), i.e.,
+\texttt{over(B,\ A)} or, equivalently, \texttt{B\%over\%A}. The code
+below duplicates the result from the preceding example using
+\texttt{over}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\OperatorTok{>}\StringTok{ }\NormalTok{mu.10k <-}\StringTok{ }\NormalTok{mu[mu}\OperatorTok{$}\NormalTok{mu_id }\OperatorTok{%in%}\StringTok{ }\KeywordTok{unique}\NormalTok{(}\KeywordTok{over}\NormalTok{(plots.10k, mu)}\OperatorTok{$}\NormalTok{mu_id), }
+\OperatorTok{+}\StringTok{   }\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+Yes, this requires more code but \texttt{over} provides a more flexible
+and general purpose function for overlays on the variety of \texttt{sp}
+objects. Let's unpack this one-liner into its five steps.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\OperatorTok{>}\StringTok{ }\NormalTok{i <-}\StringTok{ }\KeywordTok{over}\NormalTok{(plots.10k, mu)}
+\OperatorTok{>}\StringTok{ }\NormalTok{ii <-}\StringTok{ }\NormalTok{i}\OperatorTok{$}\NormalTok{mu_id}
+\OperatorTok{>}\StringTok{ }\NormalTok{iii <-}\StringTok{ }\KeywordTok{unique}\NormalTok{(ii)}
+\OperatorTok{>}\StringTok{ }\NormalTok{iv <-}\StringTok{ }\NormalTok{mu}\OperatorTok{$}\NormalTok{mu_id }\OperatorTok{%in%}\StringTok{ }\NormalTok{iii}
+\OperatorTok{>}\StringTok{ }\NormalTok{v <-}\StringTok{ }\NormalTok{mu[iv, ]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{enumerate}
+\def\labelenumi{\roman{enumi}.}
+\tightlist
+\item
+  The \texttt{over} function returns variables for \texttt{mu}'s
+  polygons that coincide with the 85 points in \texttt{plots.10k}. No
+  points fall outside the polygons and the polygons do not overlap, so
+  \(i\) should be a data frame with 85 rows. If polygons did overlap and
+  a point fell within the overlap region, then variables for the
+  coinciding polygons are returned.
+\item
+  Select the unique \texttt{mu} identifier \texttt{mu\_id} (this step is
+  actually not necessary here because \texttt{mu} only has one
+  variable).
+\item
+  Because some management units contain multiple plots there will be
+  repeat values of \texttt{mu\_id} in \emph{ii}, so apply the
+  \texttt{unique} function to get rid of duplicates.
+\item
+  Use the \texttt{\%in\%} operator to create a logical vector that
+  identifies which polygons should be in the final map.
+\item
+  Subset \texttt{mu} using the logical vector created in \(iv\).
+\end{enumerate}
+
+Now let's do something similar using the \texttt{srtm} elevation raster.
+Say we want to map elevation along trails, winter roads, and gravel
+roads across the PEF. We could subset \texttt{srtm} using the
+\texttt{roads} \texttt{SpatialLinesDataFrame}; however, mapping the
+resulting pixel values along the road segments using \texttt{ggmap}
+requires a bit more massaging. So, to simplify things for this example,
+\texttt{roads} is first coerced into a \texttt{SpatialPointsDataFrame}
+called \texttt{roads.pts} that is used to extract spatially coinciding
+\texttt{srtm} pixel values which themselves are coerced from
+\texttt{raster}'s \texttt{RasterLayer} to \texttt{sp}'s
+\texttt{SpatialPixelsDataFrame} called \texttt{srtm.sp} so that we can
+use the \texttt{over} function. We also choose a different basemap just
+for fun.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\OperatorTok{>}\StringTok{ }\NormalTok{hikes <-}\StringTok{ }\NormalTok{roads[roads}\OperatorTok{$}\NormalTok{type }\OperatorTok{%in%}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"Trail"}\NormalTok{, }\StringTok{"Winter"}\NormalTok{, }\StringTok{"Gravel"}\NormalTok{),]}
+\OperatorTok{>}\StringTok{  }
+\ErrorTok{>}\StringTok{ }\NormalTok{hikes.pts <-}\StringTok{ }\KeywordTok{as}\NormalTok{(hikes, }\StringTok{"SpatialPointsDataFrame"}\NormalTok{)}
+\OperatorTok{>}\StringTok{ }\NormalTok{srtm.sp <-}\StringTok{ }\KeywordTok{as}\NormalTok{(srtm, }\StringTok{"SpatialPixelsDataFrame"}\NormalTok{)}
+\OperatorTok{>}\StringTok{ }
+\ErrorTok{>}\StringTok{ }\NormalTok{hikes.pts}\OperatorTok{$}\NormalTok{srtm <-}\StringTok{ }\KeywordTok{over}\NormalTok{(hikes.pts, srtm.sp)}
+\OperatorTok{>}\StringTok{ }
+\ErrorTok{>}\StringTok{ }\NormalTok{basemap <-}\StringTok{ }\KeywordTok{get_map}\NormalTok{(}\DataTypeTok{location=}\NormalTok{mu.bbox,  }\DataTypeTok{zoom =} \DecValTok{14}\NormalTok{, }\DataTypeTok{maptype=}\StringTok{"terrain"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+Warning: bounding box given to google - spatial extent
+only approximate.
+\end{verbatim}
+
+\begin{verbatim}
+converting bounding box to center/zoom specification. (experimental)
+\end{verbatim}
+
+\begin{verbatim}
+Source : https://maps.googleapis.com/maps/api/staticmap?center=44.852323,-68.625803&zoom=14&size=640x640&scale=2&maptype=terrain&language=en-EN&key=AIzaSyBPAwSY5x8vQqlnG-QwiCAWQW12U3CTLZY
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\OperatorTok{>}\StringTok{ }\NormalTok{color.vals <-}\StringTok{ }\NormalTok{srtm}\OperatorTok{@}\NormalTok{data}\OperatorTok{@}\NormalTok{values[}\DecValTok{1}\OperatorTok{:}\KeywordTok{length}\NormalTok{(hikes.pts)]}
+\OperatorTok{>}\StringTok{ }
+\ErrorTok{>}\StringTok{ }\KeywordTok{ggmap}\NormalTok{(basemap) }\OperatorTok{+}
+\OperatorTok{+}\StringTok{     }\KeywordTok{geom_point}\NormalTok{(}\DataTypeTok{data=}\KeywordTok{as.data.frame}\NormalTok{(hikes.pts),}
+\OperatorTok{+}\StringTok{                }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ coords.x1, }\DataTypeTok{y =}\NormalTok{ coords.x2, }\DataTypeTok{color =}\NormalTok{ color.vals)) }\OperatorTok{+}
+\OperatorTok{+}\StringTok{     }\KeywordTok{scale_color_gradient}\NormalTok{(}\DataTypeTok{low=}\StringTok{"green"}\NormalTok{, }\DataTypeTok{high=}\StringTok{"red"}\NormalTok{) }\OperatorTok{+}
+\OperatorTok{+}\StringTok{     }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{color =} \StringTok{"Hiking trail elevation}\CharTok{\textbackslash{}n}\StringTok{(m above sea level)"}\NormalTok{,}
+\OperatorTok{+}\StringTok{          }\DataTypeTok{xlab=}\StringTok{"Longitude"}\NormalTok{, }\DataTypeTok{ylab=}\StringTok{"Latitude"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+Warning: Removed 483 rows containing missing values
+(geom_point).
+\end{verbatim}
+
+\includegraphics{bookdown_files/figure-latex/unnamed-chunk-106-1.pdf}
+
+In the call to \texttt{geom\_point} above, \texttt{coords.x1}
+\texttt{coords.x2} are the default names given to longitude and
+latitude, respectively, when \texttt{sp} coerces \texttt{hikes} to
+\texttt{hikes.pts}. These points represent the vertices along line
+segments. I create the vector \texttt{color.vals} that contains the
+values from \texttt{srtm} that I use in the map argument \texttt{color}.
+Normally, I would be able to simply use the argument
+\texttt{color\ =\ srtm} in the graph, but since there is a bug in the
+\texttt{getData} function I mentioned earlier, we need to do another
+workaround here.
+
+Overlay operations involving lines and polygons over polygons require
+the \texttt{rgeos} package which provides an interface to the
+\href{https://trac.osgeo.org/geos/}{Geometry Engine - Open Source}
+(GEOS) \texttt{C++} library for topology operations on geometries. We'll
+leave it to you to explore these capabilities.
+
+\subsection{Spatial Aggregation}\label{spatial-aggregation}
+
+We have seen aggregation operations before when using \texttt{dplyr}'s
+\texttt{summarize} function. The \texttt{summarize} function is
+particularly powerful when combined with \texttt{group\_by()}, which can
+apply a function specified in \texttt{summarize()} to a variable
+partitioned using a grouping variable. The \texttt{aggregate} function
+in \texttt{sp} works in a similar manner, except groups are delineated
+by the spatial extent of a thematic variable. In fact, the work we did
+to create \texttt{mu.bio} using \texttt{dplyr} functions can be
+accomplished with \texttt{aggregate()}. Using \texttt{aggregate()} will,
+however, require a slightly different approach for joining the derived
+average \texttt{biomass\_mg\_ha} to the fortified \texttt{mu}. This is
+because the \texttt{aggregate} function will apply the user specified
+function to all variables in the input object, which, in our case,
+results in an \texttt{NA} for the linking variable \texttt{mu\_id} as
+demonstrated below.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\OperatorTok{>}\StringTok{ }\NormalTok{mu.ag <-}\StringTok{ }\KeywordTok{aggregate}\NormalTok{(plots[, }\KeywordTok{c}\NormalTok{(}\StringTok{"mu_id"}\NormalTok{, }\StringTok{"biomass_mg_ha"}\NormalTok{)], }
+\OperatorTok{+}\StringTok{   }\DataTypeTok{by =}\NormalTok{ mu, }\DataTypeTok{FUN =}\NormalTok{ mean)}
+\OperatorTok{>}\StringTok{ }
+\ErrorTok{>}\StringTok{ }\KeywordTok{head}\NormalTok{(mu.ag}\OperatorTok{@}\NormalTok{data, }\DataTypeTok{n =} \DecValTok{2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+  mu_id biomass_mg_ha
+0  <NA>         49.86
+1  <NA>        112.17
+\end{verbatim}
+
+With \texttt{mu\_id} rendered useless, we do not have a variable that
+uniquely identifies each polygon for use in \texttt{fortify}'s
+\texttt{region} argument; hence no way to subsequently join the
+unfortified and fortified versions of \texttt{mu.bio.ag}. Here's the
+work around. If the \texttt{region} is not specified, \texttt{fortify()}
+uses an internal unique polygon ID that is part of the \texttt{sp} data
+object and accessed via \texttt{row.names()}\footnote{With other data,
+  there is a chance the row names differ from the unique polygon IDs.
+  Therefore a more reliable approach to getting a unique ID is to use
+  \texttt{sapply(slot(mu.ag,\ \textquotesingle{}polygons\textquotesingle{}),\ function(x)\ slot(x,\ \textquotesingle{}ID\textquotesingle{}))},
+  but replace \texttt{mu.ag} with your
+  \texttt{SpatialPolygonsDataFrame}. Also, this approach will work with
+  other \texttt{sp} objects in the right column of Table
+  \ref{tab:spatialObjs}.} So, the trick is to add this unique polygon ID
+to the \texttt{aggregate()} output prior to calling \texttt{fortify()}
+as demonstrated below.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\OperatorTok{>}\StringTok{ }\NormalTok{mu.ag}\OperatorTok{$}\NormalTok{id <-}\StringTok{ }\KeywordTok{row.names}\NormalTok{(mu.ag)}
+\OperatorTok{>}\StringTok{ }
+\ErrorTok{>}\StringTok{ }\NormalTok{mu.ag.f <-}\StringTok{ }\KeywordTok{fortify}\NormalTok{(mu.ag)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+Regions defined for each Polygons
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\OperatorTok{>}\StringTok{ }\NormalTok{mu.ag.f <-}\StringTok{ }\KeywordTok{left_join}\NormalTok{(mu.ag.f, mu.ag}\OperatorTok{@}\NormalTok{data)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+Joining, by = "id"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\OperatorTok{>}\StringTok{ }\KeywordTok{ggmap}\NormalTok{(basemap) }\OperatorTok{+}\StringTok{ }\KeywordTok{geom_polygon}\NormalTok{(}\DataTypeTok{data =}\NormalTok{ mu.ag.f, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ long, }
+\OperatorTok{+}\StringTok{   }\DataTypeTok{y =}\NormalTok{ lat, }\DataTypeTok{group =}\NormalTok{ group, }\DataTypeTok{fill =}\NormalTok{ biomass_mg_ha), }\DataTypeTok{size =} \FloatTok{0.2}\NormalTok{, }
+\OperatorTok{+}\StringTok{   }\DataTypeTok{color =} \StringTok{"orange"}\NormalTok{) }\OperatorTok{+}\StringTok{ }\KeywordTok{scale_fill_gradient}\NormalTok{(}\DataTypeTok{low =} \StringTok{"white"}\NormalTok{, }
+\OperatorTok{+}\StringTok{   }\DataTypeTok{high =} \StringTok{"darkblue"}\NormalTok{, }\DataTypeTok{na.value =} \StringTok{"transparent"}\NormalTok{) }\OperatorTok{+}\StringTok{ }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{fill =} \StringTok{"Biomass (mg/ha)"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{bookdown_files/figure-latex/unnamed-chunk-108-1.pdf}
+
+The \texttt{aggregate()} function will work with all \texttt{sp}
+objects. For example let's map the variance of pixel values in
+\texttt{srtm.sp} by management unit. Notice that \texttt{aggregate()} is
+happy to take a user-specified function for \texttt{FUN}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\OperatorTok{>}\StringTok{ }\NormalTok{mu.srtm <-}\StringTok{ }\KeywordTok{aggregate}\NormalTok{(srtm.sp, }\DataTypeTok{by=}\NormalTok{mu,}
+\OperatorTok{+}\StringTok{                      }\DataTypeTok{FUN=}\ControlFlowTok{function}\NormalTok{(x)\{}\KeywordTok{sqrt}\NormalTok{(}\KeywordTok{var}\NormalTok{(x))\})}
+\OperatorTok{>}\StringTok{ }
+\ErrorTok{>}\StringTok{ }\NormalTok{mu.srtm}\OperatorTok{$}\NormalTok{id <-}\StringTok{ }\KeywordTok{row.names}\NormalTok{(mu.srtm)}
+\OperatorTok{>}\StringTok{ }
+\ErrorTok{>}\StringTok{ }\NormalTok{mu.srtm.f <-}\StringTok{ }\KeywordTok{fortify}\NormalTok{(mu.srtm)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+Regions defined for each Polygons
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\OperatorTok{>}\StringTok{ }\NormalTok{mu.srtm.f <-}\StringTok{ }\KeywordTok{left_join}\NormalTok{(mu.srtm.f, mu.srtm}\OperatorTok{@}\NormalTok{data)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+Joining, by = "id"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\OperatorTok{>}\StringTok{ }\KeywordTok{ggmap}\NormalTok{(basemap) }\OperatorTok{+}
+\OperatorTok{+}\StringTok{     }\KeywordTok{geom_polygon}\NormalTok{(}\DataTypeTok{data=}\NormalTok{mu.srtm.f, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ long, }\DataTypeTok{y =}\NormalTok{ lat, }\DataTypeTok{group=}\NormalTok{group, }
+\OperatorTok{+}\StringTok{                                      }\DataTypeTok{fill=}\NormalTok{srtm_23_}\DecValTok{04}\NormalTok{), }
+\OperatorTok{+}\StringTok{                  }\DataTypeTok{size=}\FloatTok{0.2}\NormalTok{, }\DataTypeTok{color=}\StringTok{"orange"}\NormalTok{) }\OperatorTok{+}
+\OperatorTok{+}\StringTok{     }\KeywordTok{scale_fill_gradient}\NormalTok{(}\DataTypeTok{low=}\StringTok{"green"}\NormalTok{, }\DataTypeTok{high=}\StringTok{"red"}\NormalTok{) }\OperatorTok{+}
+\OperatorTok{+}\StringTok{         }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{fill =} \StringTok{"Elevation standard deviation}\CharTok{\textbackslash{}n}\StringTok{(m above sea level)"}\NormalTok{, }
+\OperatorTok{+}\StringTok{          }\DataTypeTok{xlab=}\StringTok{"Longitude"}\NormalTok{, }\DataTypeTok{ylab=}\StringTok{"Latitude"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{bookdown_files/figure-latex/unnamed-chunk-109-1.pdf}
+
+\section{Where to go from here}\label{where-to-go-from-here}
+
+This chapter just scratches the surface of R's spatial data manipulation
+and visualization capabilities. The basic ideas we presented here should
+allow you to take a deeper look into \texttt{sp}, \texttt{rgdal},
+\texttt{rgeos}, \texttt{ggmap}, \texttt{leaflet}, and a myriad of other
+excellent user-contributed R spatial data packages. A good place to
+start is with Edzer Pebesma's excellent vignette on the use of the map
+overlay and spatial aggregation, available
+\href{https://cran.r-project.org/web/packages/sp/vignettes/over.pdf}{here},
+as well as \emph{Applied Spatial Data Analysis with R} by
+\cite{Bivand13}.
 
 \bibliography{text.bib}
 

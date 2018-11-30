@@ -19,45 +19,45 @@ Warning--empty journal in Kenefic2015
 Warning--empty journal in Kubiske2013
 Warning--empty publisher in SpectorDataManipulation
 Warning--empty journal in Wood2016
-You've used 18 entries,
+You've used 19 entries,
             1935 wiz_defined-function locations,
-            584 strings with 7449 characters,
-and the built_in function-call counts, 7716 in all, are:
-= -- 724
-> -- 428
+            589 strings with 7587 characters,
+and the built_in function-call counts, 8057 in all, are:
+= -- 754
+> -- 446
 < -- 8
-+ -- 158
-- -- 152
-* -- 704
-:= -- 1391
-add.period$ -- 54
-call.type$ -- 18
-change.case$ -- 163
-chr.to.int$ -- 18
-cite$ -- 22
-duplicate$ -- 246
-empty$ -- 463
-format.name$ -- 172
-if$ -- 1440
++ -- 164
+- -- 158
+* -- 731
+:= -- 1454
+add.period$ -- 57
+call.type$ -- 19
+change.case$ -- 170
+chr.to.int$ -- 19
+cite$ -- 23
+duplicate$ -- 260
+empty$ -- 486
+format.name$ -- 179
+if$ -- 1505
 int.to.chr$ -- 1
 int.to.str$ -- 0
-missing$ -- 18
-newline$ -- 93
-num.names$ -- 54
-pop$ -- 142
+missing$ -- 20
+newline$ -- 98
+num.names$ -- 57
+pop$ -- 153
 preamble$ -- 1
-purify$ -- 165
+purify$ -- 173
 quote$ -- 0
-skip$ -- 189
+skip$ -- 198
 stack$ -- 0
-substring$ -- 478
-swap$ -- 18
+substring$ -- 490
+swap$ -- 19
 text.length$ -- 1
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 104
+type$ -- 108
 warning$ -- 4
-while$ -- 58
+while$ -- 60
 width$ -- 0
-write$ -- 229
+write$ -- 241
 (There were 2 error messages)
