@@ -25,7 +25,7 @@
 <meta name="author" content="Andrew O. Finley and Jeffrey W. Doser">
 
 
-<meta name="date" content="2018-09-16">
+<meta name="date" content="2018-11-30">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -47,6 +47,14 @@
 
 
 
+<script src="libs/htmlwidgets/htmlwidgets.js"></script>
+<link href="libs/leaflet/leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet/leaflet.js"></script>
+<link href="libs/leafletfix/leafletfix.css" rel="stylesheet" />
+<script src="libs/Proj4Leaflet/proj4-compressed.js"></script>
+<script src="libs/Proj4Leaflet/proj4leaflet.js"></script>
+<link href="libs/rstudio_leaflet/rstudio_leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-binding/leaflet.js"></script>
 
 
 <style type="text/css">
@@ -181,6 +189,23 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="7" data-path="working-with-data-sources.html"><a href="working-with-data-sources.html"><i class="fa fa-check"></i><b>7</b> Working with Data Sources</a><ul>
 <li class="chapter" data-level="7.1" data-path="working-with-data-sources.html"><a href="working-with-data-sources.html#reading-data-into-r"><i class="fa fa-check"></i><b>7.1</b> Reading Data into R</a></li>
 <li class="chapter" data-level="7.2" data-path="working-with-data-sources.html"><a href="working-with-data-sources.html#reading-data-with-missing-observations"><i class="fa fa-check"></i><b>7.2</b> Reading Data with missing observations</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="spatial-data-visualization-and-analysis.html"><a href="spatial-data-visualization-and-analysis.html"><i class="fa fa-check"></i><b>8</b> Spatial Data Visualization and Analysis</a><ul>
+<li class="chapter" data-level="8.1" data-path="spatial-data-visualization-and-analysis.html"><a href="spatial-data-visualization-and-analysis.html#overview"><i class="fa fa-check"></i><b>8.1</b> Overview</a><ul>
+<li class="chapter" data-level="8.1.1" data-path="spatial-data-visualization-and-analysis.html"><a href="spatial-data-visualization-and-analysis.html#some-spatial-data-packages"><i class="fa fa-check"></i><b>8.1.1</b> Some Spatial Data Packages</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="spatial-data-visualization-and-analysis.html"><a href="spatial-data-visualization-and-analysis.html#motivating-data"><i class="fa fa-check"></i><b>8.2</b> Motivating Data</a></li>
+<li class="chapter" data-level="8.3" data-path="spatial-data-visualization-and-analysis.html"><a href="spatial-data-visualization-and-analysis.html#reading-spatial-data-into-r"><i class="fa fa-check"></i><b>8.3</b> Reading Spatial Data into R</a></li>
+<li class="chapter" data-level="8.4" data-path="spatial-data-visualization-and-analysis.html"><a href="spatial-data-visualization-and-analysis.html#coordinate-reference-systems"><i class="fa fa-check"></i><b>8.4</b> Coordinate Reference Systems</a></li>
+<li class="chapter" data-level="8.5" data-path="spatial-data-visualization-and-analysis.html"><a href="spatial-data-visualization-and-analysis.html#ggmap"><i class="fa fa-check"></i><b>8.5</b> Illustration using <code>ggmap</code></a></li>
+<li class="chapter" data-level="8.6" data-path="spatial-data-visualization-and-analysis.html"><a href="spatial-data-visualization-and-analysis.html#illustration-using-leaflet"><i class="fa fa-check"></i><b>8.6</b> Illustration using <code>leaflet</code></a></li>
+<li class="chapter" data-level="8.7" data-path="spatial-data-visualization-and-analysis.html"><a href="spatial-data-visualization-and-analysis.html#subsetting-spatial-data"><i class="fa fa-check"></i><b>8.7</b> Subsetting Spatial Data</a><ul>
+<li class="chapter" data-level="8.7.1" data-path="spatial-data-visualization-and-analysis.html"><a href="spatial-data-visualization-and-analysis.html#fetching-and-cropping-data-using-raster"><i class="fa fa-check"></i><b>8.7.1</b> Fetching and Cropping Data using <code>raster</code></a></li>
+<li class="chapter" data-level="8.7.2" data-path="spatial-data-visualization-and-analysis.html"><a href="spatial-data-visualization-and-analysis.html#logical-index-and-name-subsetting"><i class="fa fa-check"></i><b>8.7.2</b> Logical, Index, and Name Subsetting</a></li>
+<li class="chapter" data-level="8.7.3" data-path="spatial-data-visualization-and-analysis.html"><a href="spatial-data-visualization-and-analysis.html#spatial-subsetting-and-overlay"><i class="fa fa-check"></i><b>8.7.3</b> Spatial Subsetting and Overlay</a></li>
+<li class="chapter" data-level="8.7.4" data-path="spatial-data-visualization-and-analysis.html"><a href="spatial-data-visualization-and-analysis.html#spatial-aggregation"><i class="fa fa-check"></i><b>8.7.4</b> Spatial Aggregation</a></li>
+</ul></li>
+<li class="chapter" data-level="8.8" data-path="spatial-data-visualization-and-analysis.html"><a href="spatial-data-visualization-and-analysis.html#where-to-go-from-here"><i class="fa fa-check"></i><b>8.8</b> Where to go from here</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 </ul>
