@@ -74,10 +74,10 @@ Notice the full results are not printed. For example, when we asked for the data
 Another common task is to restrict attention to some subset of variables in the data set. This is accomplished using the `select` function.  Like `filter`, the data frame or tibble is the first argument in the `select` function, followed by additional arguments identifying variables you want to include or exclude. Consider the examples below.
 
 ```{r}
-select(mn.trees.tbl, Year, DBH)
-select(mn.trees.tbl, 2:4)
-select(mn.trees.tbl, -c(2,3,4))
-select(mn.trees.tbl, ends_with("ID"))
+dplyr::select(mn.trees.tbl, Year, DBH)
+dplyr::select(mn.trees.tbl, 2:4)
+dplyr::select(mn.trees.tbl, -c(2,3,4))
+dplyr::select(mn.trees.tbl, ends_with("ID"))
 ```
 
 Notice a few things. Variables can be selected by name or column number. As usual a negative sign tells R to leave something out. Also, there are special *helper* functions such as `ends_with` that provide ways to match part of a variable's name. Other very handy helper functions you should investigate are `begins_with`, `contains`, `matches`, `num_range`, `one_of`, and `everything`.
@@ -87,7 +87,7 @@ Notice a few things. Variables can be selected by name or column number. As usua
 Consider selecting the `Age` and `rad.inc` for the two aspen species POTR or POGR (*Populus tremuloides* and *Populus grandifolia*). One possibility is to nest a `filter` call within `select`.
 
 ```{r}
-select(filter(mn.trees.tbl, Species %in% c("POTR", "POGR")), Age, rad.inc)
+dplyr::select(filter(mn.trees.tbl, Species %in% c("POTR", "POGR")), Age, rad.inc)
 ```
 
 Even a two-step process like this becomes hard to follow in this nested form, and often we will want to perform more than two operations. There is a nice feature in `dplyr` that allows us to "feed" results of one function into the first argument of a subsequent function. Another way of saying this is that we are "piping" the results into another function. The `%>%` operator does the piping.
@@ -95,7 +95,7 @@ Even a two-step process like this becomes hard to follow in this nested form, an
 ```{r, tidy = FALSE}
 mn.trees.tbl %>% 
   filter(Species %in% c("POTR", "POGR")) %>% 
-  select(Age, rad.inc)
+  dplyr::select(Age, rad.inc)
 ```
 
 It can help to think of `%>%` as representing the word "then." The above can be read as, "Start with the data frame `mn.trees.tbl`, *then* filter it to select data from the species POTR and POGR, *then* select the variables age and radial growth increment from these data."
@@ -118,7 +118,7 @@ Let's start with arranging in ascending order `BA.inc` for tree 1 in plot 1 in s
 ```{r, tidy=FALSE}
 mn.trees.tbl %>% 
   filter(StandID == 1 & PlotID == 1 & TreeID == 1) %>% 
-  select(StandID, PlotID, TreeID, BA.inc) %>% 
+  dplyr::select(StandID, PlotID, TreeID, BA.inc) %>% 
   arrange(BA.inc) 
 ```
 
@@ -127,7 +127,7 @@ Possibly we want these data to be in decreasing (descending) order. Here, `desc(
 ```{r, tidy=FALSE}
 mn.trees.tbl %>% 
   filter(StandID == 1 & PlotID == 1 & TreeID == 1) %>% 
-  select(StandID, PlotID, TreeID, BA.inc) %>% 
+  dplyr::select(StandID, PlotID, TreeID, BA.inc) %>% 
   arrange(desc(BA.inc))
 ```
 
@@ -135,7 +135,7 @@ Passing multiple variables to `arrange` results in nested ordering. The subseque
 
 ```{r, tidy=FALSE}
 mn.trees.tbl %>% 
-  select(Species, Year, BA.inc) %>% 
+  dplyr::select(Species, Year, BA.inc) %>% 
   arrange(Species, Year, BA.inc) 
 ```
 

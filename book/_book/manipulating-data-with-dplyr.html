@@ -1,15 +1,14 @@
 <!DOCTYPE html>
-<html >
-
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
 <head>
 
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Forestry 472: Ecological Monitoring and Data Analysis</title>
-  <meta name="description" content="Course book for FOR472: Ecological Monitoring and Data Analysis">
-  <meta name="generator" content="bookdown 0.7 and GitBook 2.6.7">
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 5 Manipulating Data with dplyr | Forestry 472: Ecological Monitoring and Data Analysis</title>
+  <meta name="description" content="Course book for FOR472: Ecological Monitoring and Data Analysis" />
+  <meta name="generator" content="bookdown 0.10 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Forestry 472: Ecological Monitoring and Data Analysis" />
+  <meta property="og:title" content="Chapter 5 Manipulating Data with dplyr | Forestry 472: Ecological Monitoring and Data Analysis" />
   <meta property="og:type" content="book" />
   
   
@@ -17,25 +16,26 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Forestry 472: Ecological Monitoring and Data Analysis" />
+  <meta name="twitter:title" content="Chapter 5 Manipulating Data with dplyr | Forestry 472: Ecological Monitoring and Data Analysis" />
   
   <meta name="twitter:description" content="Course book for FOR472: Ecological Monitoring and Data Analysis" />
   
 
-<meta name="author" content="Andrew O. Finley and Jeffrey W. Doser">
+<meta name="author" content="Andrew O. Finley and Jeffrey W. Doser" />
 
 
-<meta name="date" content="2018-11-30">
+<meta name="date" content="2019-05-18" />
 
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
 <link rel="prev" href="data-structures.html">
 <link rel="next" href="functions-and-programming.html">
 <script src="libs/jquery/jquery.min.js"></script>
 <link href="libs/gitbook/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook/css/plugin-bookdown.css" rel="stylesheet" />
 <link href="libs/gitbook/css/plugin-highlight.css" rel="stylesheet" />
 <link href="libs/gitbook/css/plugin-search.css" rel="stylesheet" />
@@ -58,41 +58,67 @@
 
 
 <style type="text/css">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
-td.sourceCode { padding-left: 5px; }
-code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code > span.dt { color: #902000; } /* DataType */
-code > span.dv { color: #40a070; } /* DecVal */
-code > span.bn { color: #40a070; } /* BaseN */
-code > span.fl { color: #40a070; } /* Float */
-code > span.ch { color: #4070a0; } /* Char */
-code > span.st { color: #4070a0; } /* String */
-code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code > span.ot { color: #007020; } /* Other */
-code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code > span.fu { color: #06287e; } /* Function */
-code > span.er { color: #ff0000; font-weight: bold; } /* Error */
-code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-code > span.cn { color: #880000; } /* Constant */
-code > span.sc { color: #4070a0; } /* SpecialChar */
-code > span.vs { color: #4070a0; } /* VerbatimString */
-code > span.ss { color: #bb6688; } /* SpecialString */
-code > span.im { } /* Import */
-code > span.va { color: #19177c; } /* Variable */
-code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #666666; } /* Operator */
-code > span.bu { } /* BuiltIn */
-code > span.ex { } /* Extension */
-code > span.pp { color: #bc7a00; } /* Preprocessor */
-code > span.at { color: #7d9029; } /* Attribute */
-code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 <link rel="stylesheet" href="css/style.css" type="text/css" />
@@ -113,9 +139,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="1.1" data-path="data.html"><a href="data.html#fef"><i class="fa fa-check"></i><b>1.1</b> FEF Tree Biomass Data Set</a></li>
 <li class="chapter" data-level="1.2" data-path="data.html"><a href="data.html#face-experiment-data-set"><i class="fa fa-check"></i><b>1.2</b> FACE Experiment Data Set</a></li>
 <li class="chapter" data-level="1.3" data-path="data.html"><a href="data.html#pef"><i class="fa fa-check"></i><b>1.3</b> PEF Inventory and LiDAR Data Set</a></li>
-<li class="chapter" data-level="1.4" data-path="data.html"><a href="data.html#zf"><i class="fa fa-check"></i><b>1.4</b> Zurichberg Forest inventory data set</a></li>
-<li class="chapter" data-level="1.5" data-path="data.html"><a href="data.html#looking-forward"><i class="fa fa-check"></i><b>1.5</b> Looking Forward</a></li>
-<li class="chapter" data-level="1.6" data-path="data.html"><a href="data.html#how-to-learn-the-most-important-section-in-this-book"><i class="fa fa-check"></i><b>1.6</b> How to Learn (The Most Important Section in This Book!)</a></li>
+<li class="chapter" data-level="1.4" data-path="data.html"><a href="data.html#looking-forward"><i class="fa fa-check"></i><b>1.4</b> Looking Forward</a></li>
+<li class="chapter" data-level="1.5" data-path="data.html"><a href="data.html#how-to-learn-the-most-important-section-in-this-book"><i class="fa fa-check"></i><b>1.5</b> How to Learn (The Most Important Section in This Book!)</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="introduction-to-r-and-rstudio.html"><a href="introduction-to-r-and-rstudio.html"><i class="fa fa-check"></i><b>2</b> Introduction to R and RStudio</a><ul>
 <li class="chapter" data-level="2.1" data-path="introduction-to-r-and-rstudio.html"><a href="introduction-to-r-and-rstudio.html#obtaining-and-installing-r"><i class="fa fa-check"></i><b>2.1</b> Obtaining and Installing R</a></li>
@@ -239,9 +264,9 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div id="minnesota-tree-growth-data" class="section level2">
 <h2><span class="header-section-number">5.1</span> Minnesota tree growth data</h2>
 <p>We’ll use some tree growth data to motivate the methods presented in this chapter. The data were collected in 2010 from 35 forest stands in and around Superior National Forest in northeastern Minnesota. See <span class="citation">Foster, D’Amato, and Bradford (<a href="#ref-foster14">2014</a>)</span> for details about data collection and preparation.</p>
-<p>The tree growth data set consists of radial growth increments (collected using an increment borer) for 521 trees located in 105 forest plots in northeastern Minnesota from 1978 to 2007. The forest plots are distributed across 35 forest stands (3 plots per stand). Each stand represents an area with similar species composition and approximately homogeneous forest characteristics (e.g., trees/acre, tree size distribution, tree age distribution). In total, 15 species are present in the sample data. The “mn_trees.csv”&quot; file that is read into the <code>mn.trees</code> data frame below contains the dated (<code>Year</code>) annual radial growth increment (<code>rad.inc</code> annual growth ring width in mm) and basal area increment (<code>BA.inc</code> cross-sectional area of annual growth in cm<span class="math inline">\(^2\)</span>) estimates for each tree, along with ancillary tree-level information including species, diameter at breast height (DBH), and age. The data frame also includes a stand, plot, and tree identification number for each tree, i.e., <code>StandID</code>, <code>PlotID</code>, and <code>TreeID</code>, respectively. Each tree can be uniquely identified by its combined stand, plot, and tree ID values. For illustration, each line in Figure <a href="manipulating-data-with-dplyr.html#fig:mntrees">5.1</a> is an individual tree’s diameter growth over time from one stand colored by species. We also load the <code>dplyr</code> library for subsequent use<a href="#fn22" class="footnoteRef" id="fnref22"><sup>22</sup></a>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="op">&gt;</span><span class="st"> </span>mn.trees &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;http://blue.for.msu.edu/FOR472/data/mn_trees.csv&quot;</span>)
-<span class="op">&gt;</span><span class="st"> </span><span class="kw">str</span>(mn.trees)</code></pre></div>
+<p>The tree growth data set consists of radial growth increments (collected using an increment borer) for 521 trees located in 105 forest plots in northeastern Minnesota from 1978 to 2007. The forest plots are distributed across 35 forest stands (3 plots per stand). Each stand represents an area with similar species composition and approximately homogeneous forest characteristics (e.g., trees/acre, tree size distribution, tree age distribution). In total, 15 species are present in the sample data. The “mn_trees.csv”&quot; file that is read into the <code>mn.trees</code> data frame below contains the dated (<code>Year</code>) annual radial growth increment (<code>rad.inc</code> annual growth ring width in mm) and basal area increment (<code>BA.inc</code> cross-sectional area of annual growth in cm<span class="math inline">\(^2\)</span>) estimates for each tree, along with ancillary tree-level information including species, diameter at breast height (DBH), and age. The data frame also includes a stand, plot, and tree identification number for each tree, i.e., <code>StandID</code>, <code>PlotID</code>, and <code>TreeID</code>, respectively. Each tree can be uniquely identified by its combined stand, plot, and tree ID values. For illustration, each line in Figure <a href="manipulating-data-with-dplyr.html#fig:mntrees">5.1</a> is an individual tree’s diameter growth over time from one stand colored by species. We also load the <code>dplyr</code> library for subsequent use<a href="#fn22" class="footnote-ref" id="fnref22"><sup>22</sup></a>.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="op">&gt;</span><span class="st"> </span>mn.trees &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;http://blue.for.msu.edu/FOR472/data/mn_trees.csv&quot;</span>)
+<span class="op">&gt;</span><span class="st"> </span><span class="kw">str</span>(mn.trees)</code></pre>
 <pre><code>&#39;data.frame&#39;:   15301 obs. of  9 variables:
  $ StandID: int  1 1 1 1 1 1 1 1 1 1 ...
  $ PlotID : int  1 1 1 1 1 1 1 1 1 1 ...
@@ -252,7 +277,12 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
  $ DBH    : num  5.23 5.44 5.56 5.75 5.99 ...
  $ rad.inc: num  0.92 1.035 0.61 0.935 1.245 ...
  $ BA.inc : num  1.48 1.73 1.05 1.66 2.3 ...</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="op">&gt;</span><span class="st"> </span><span class="kw">library</span>(dplyr)</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="op">&gt;</span><span class="st"> </span><span class="kw">library</span>(dplyr)</code></pre>
+<pre><code>Registered S3 methods overwritten by &#39;ggplot2&#39;:
+  method         from 
+  [.quosures     rlang
+  c.quosures     rlang
+  print.quosures rlang</code></pre>
 <pre><code>
 Attaching package: &#39;dplyr&#39;</code></pre>
 <pre><code>The following objects are masked from &#39;package:stats&#39;:
@@ -270,17 +300,17 @@ FIGURE 5.1: Tree core derived diameter at breast height (DBH cm) by year for sam
 </div>
 <div id="improved-data-frames" class="section level2">
 <h2><span class="header-section-number">5.2</span> Improved Data Frames</h2>
-<p>The <code>dplyr</code> package provides two functions that offer improvements on data frames. First, the <code>data_frame</code> function is a trimmed down version of the <code>data.frame</code> that is somewhat more user friendly, and won’t be discussed here. Second, the <code>tbl_df</code> function creates a data frame like object called a tibble<a href="#fn23" class="footnoteRef" id="fnref23"><sup>23</sup></a>. A tibble has two advantages over a data frame. First, when printing, it only prints the first ten rows and the columns that fit on the page, as well as some additional information about the table’s dimension, data type of variables, and non-printed columns. Second, recall that subsetting a data frame can sometimes return a vector rather than a data frame (if only one row or column is the result of the subset). A tibble does not have this behavior. Here is an example using the <code>mn.trees</code> data frame.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="op">&gt;</span><span class="st"> </span><span class="kw">is.data.frame</span>(mn.trees[, <span class="dv">1</span>])</code></pre></div>
+<p>The <code>dplyr</code> package provides two functions that offer improvements on data frames. First, the <code>data_frame</code> function is a trimmed down version of the <code>data.frame</code> that is somewhat more user friendly, and won’t be discussed here. Second, the <code>tbl_df</code> function creates a data frame like object called a tibble<a href="#fn23" class="footnote-ref" id="fnref23"><sup>23</sup></a>. A tibble has two advantages over a data frame. First, when printing, it only prints the first ten rows and the columns that fit on the page, as well as some additional information about the table’s dimension, data type of variables, and non-printed columns. Second, recall that subsetting a data frame can sometimes return a vector rather than a data frame (if only one row or column is the result of the subset). A tibble does not have this behavior. Here is an example using the <code>mn.trees</code> data frame.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="op">&gt;</span><span class="st"> </span><span class="kw">is.data.frame</span>(mn.trees[, <span class="dv">1</span>])</code></pre>
 <pre><code>[1] FALSE</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="op">&gt;</span><span class="st"> </span><span class="kw">is.vector</span>(mn.trees[, <span class="dv">1</span>])</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="op">&gt;</span><span class="st"> </span><span class="kw">is.vector</span>(mn.trees[, <span class="dv">1</span>])</code></pre>
 <pre><code>[1] TRUE</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="op">&gt;</span><span class="st"> </span>mn.trees.tbl &lt;-<span class="st"> </span><span class="kw">tbl_df</span>(mn.trees)
-<span class="op">&gt;</span><span class="st"> </span><span class="kw">is.tbl</span>(mn.trees.tbl[, <span class="dv">1</span>])</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="op">&gt;</span><span class="st"> </span>mn.trees.tbl &lt;-<span class="st"> </span><span class="kw">tbl_df</span>(mn.trees)
+<span class="op">&gt;</span><span class="st"> </span><span class="kw">is.tbl</span>(mn.trees.tbl[, <span class="dv">1</span>])</code></pre>
 <pre><code>[1] TRUE</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="op">&gt;</span><span class="st"> </span><span class="kw">is.data.frame</span>(mn.trees.tbl[, <span class="dv">1</span>])</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="op">&gt;</span><span class="st"> </span><span class="kw">is.data.frame</span>(mn.trees.tbl[, <span class="dv">1</span>])</code></pre>
 <pre><code>[1] TRUE</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="op">&gt;</span><span class="st"> </span>mn.trees.tbl[, <span class="dv">1</span>]</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="op">&gt;</span><span class="st"> </span>mn.trees.tbl[, <span class="dv">1</span>]</code></pre>
 <pre><code># A tibble: 15,301 x 1
    StandID
      &lt;int&gt;
@@ -294,13 +324,13 @@ FIGURE 5.1: Tree core derived diameter at breast height (DBH cm) by year for sam
  8       1
  9       1
 10       1
-# ... with 15,291 more rows</code></pre>
+# … with 15,291 more rows</code></pre>
 <p>Note, above that once the data frame is reduced to one dimension by subsetting to one column, it is no longer a data frame it has been <em>simplified</em> to a vector. This might not seem like a big deal; however, it can be very frustrating and potentially break your code when you expect an object to behave like a data frame and it doesn’t because it’s now a vector. Alternatively, once we convert <code>mn.trees</code> to a tibble via the <code>tbl_df</code> function the object remains a data frame even when subset down to one dimension (there is no automatic simplification). Converting data frames using <code>tbl_df()</code> is not required for using <code>dplyr</code> but is convenient. Also, it is important to note that <code>tbl_df</code> is simply a wrapper around a data frame that provides some additional behaviors. The newly formed <code>tbl_df</code> object will still behave like a data frame (because it technically still is a data frame) but will have some added niceties (some of which are illustrated below).</p>
 </div>
 <div id="filtering-data-by-row" class="section level2">
 <h2><span class="header-section-number">5.3</span> Filtering Data By Row</h2>
 <p>Filtering creates row subsets of data that satisfy a logical statement. Considering the <code>mn.trees</code> data, the <code>filter</code> function can be used to examine a particular set of stands, plots, trees, measurement years, species, etc. The first argument in the <code>filter</code> function is the data frame or tibble from which you want to select the rows based on the logical statement given in the second argument. As you work through this chapter, you’ll notice the data are specified in the first argument of all <code>dplyr</code>’s functions. Below are several illustrative applications of the <code>filter</code> function.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="op">&gt;</span><span class="st"> </span><span class="kw">filter</span>(mn.trees.tbl, StandID <span class="op">==</span><span class="st"> </span><span class="dv">5</span>)</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="op">&gt;</span><span class="st"> </span><span class="kw">filter</span>(mn.trees.tbl, StandID <span class="op">==</span><span class="st"> </span><span class="dv">5</span>)</code></pre>
 <pre><code># A tibble: 450 x 10
    StandID PlotID TreeID Species  Year   Age   DBH
      &lt;int&gt;  &lt;int&gt;  &lt;int&gt; &lt;fct&gt;   &lt;int&gt; &lt;int&gt; &lt;dbl&gt;
@@ -314,9 +344,9 @@ FIGURE 5.1: Tree core derived diameter at breast height (DBH cm) by year for sam
  8       5     13     57 ABBA     1985     9  4.70
  9       5     13     57 ABBA     1986    10  5.07
 10       5     13     57 ABBA     1987    11  5.39
-# ... with 440 more rows, and 3 more variables:
+# … with 440 more rows, and 3 more variables:
 #   rad.inc &lt;dbl&gt;, BA.inc &lt;dbl&gt;, UTreeID &lt;int&gt;</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="op">&gt;</span><span class="st"> </span><span class="kw">filter</span>(mn.trees.tbl, Species <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;ABBA&quot;</span>, <span class="st">&quot;PIST&quot;</span>))</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="op">&gt;</span><span class="st"> </span><span class="kw">filter</span>(mn.trees.tbl, Species <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;ABBA&quot;</span>, <span class="st">&quot;PIST&quot;</span>))</code></pre>
 <pre><code># A tibble: 2,876 x 10
    StandID PlotID TreeID Species  Year   Age   DBH
      &lt;int&gt;  &lt;int&gt;  &lt;int&gt; &lt;fct&gt;   &lt;int&gt; &lt;int&gt; &lt;dbl&gt;
@@ -330,9 +360,9 @@ FIGURE 5.1: Tree core derived diameter at breast height (DBH cm) by year for sam
  8       1      1      1 ABBA     1985    26  6.84
  9       1      1      1 ABBA     1986    27  7.10
 10       1      1      1 ABBA     1987    28  7.38
-# ... with 2,866 more rows, and 3 more variables:
+# … with 2,866 more rows, and 3 more variables:
 #   rad.inc &lt;dbl&gt;, BA.inc &lt;dbl&gt;, UTreeID &lt;int&gt;</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="op">&gt;</span><span class="st"> </span><span class="kw">filter</span>(mn.trees.tbl, DBH <span class="op">&gt;</span><span class="st"> </span><span class="dv">12</span> <span class="op">&amp;</span><span class="st"> </span>Year <span class="op">==</span><span class="st"> </span><span class="dv">1980</span>)</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="op">&gt;</span><span class="st"> </span><span class="kw">filter</span>(mn.trees.tbl, DBH <span class="op">&gt;</span><span class="st"> </span><span class="dv">12</span> <span class="op">&amp;</span><span class="st"> </span>Year <span class="op">==</span><span class="st"> </span><span class="dv">1980</span>)</code></pre>
 <pre><code># A tibble: 228 x 10
    StandID PlotID TreeID Species  Year   Age   DBH
      &lt;int&gt;  &lt;int&gt;  &lt;int&gt; &lt;fct&gt;   &lt;int&gt; &lt;int&gt; &lt;dbl&gt;
@@ -346,10 +376,10 @@ FIGURE 5.1: Tree core derived diameter at breast height (DBH cm) by year for sam
  8       2      4     17 PIGL     1980    34  12.6
  9       2      5     18 PIGL     1980    34  12.4
 10       2      5     19 PIRE     1980   242  58.4
-# ... with 218 more rows, and 3 more variables:
+# … with 218 more rows, and 3 more variables:
 #   rad.inc &lt;dbl&gt;, BA.inc &lt;dbl&gt;, UTreeID &lt;int&gt;</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="op">&gt;</span><span class="st"> </span><span class="kw">filter</span>(mn.trees.tbl, Species <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;ABBA&quot;</span>, <span class="st">&quot;PIST&quot;</span>) <span class="op">&amp;</span><span class="st"> </span>Year <span class="op">==</span><span class="st"> </span>
-<span class="op">+</span><span class="st">   </span><span class="dv">1985</span>)</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="op">&gt;</span><span class="st"> </span><span class="kw">filter</span>(mn.trees.tbl, Species <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;ABBA&quot;</span>, <span class="st">&quot;PIST&quot;</span>) <span class="op">&amp;</span><span class="st"> </span>Year <span class="op">==</span><span class="st"> </span>
+<span class="op">+</span><span class="st">   </span><span class="dv">1985</span>)</code></pre>
 <pre><code># A tibble: 87 x 10
    StandID PlotID TreeID Species  Year   Age   DBH
      &lt;int&gt;  &lt;int&gt;  &lt;int&gt; &lt;fct&gt;   &lt;int&gt; &lt;int&gt; &lt;dbl&gt;
@@ -363,14 +393,14 @@ FIGURE 5.1: Tree core derived diameter at breast height (DBH cm) by year for sam
  8       3      7     28 PIST     1985    49 10.5 
  9       3      7     29 PIST     1985    48 17.7 
 10       3      7     30 PIST     1985    52 22.4 
-# ... with 77 more rows, and 3 more variables:
+# … with 77 more rows, and 3 more variables:
 #   rad.inc &lt;dbl&gt;, BA.inc &lt;dbl&gt;, UTreeID &lt;int&gt;</code></pre>
 <p>Notice the full results are not printed. For example, when we asked for the data for stand 5, only the first ten rows were printed. This is an effect of using the <code>tbl_df</code> function. Of course if we wanted to analyze the results (as we will below) the full set of data would be available.</p>
 </div>
 <div id="selecting-variables-by-column" class="section level2">
 <h2><span class="header-section-number">5.4</span> Selecting Variables by Column</h2>
 <p>Another common task is to restrict attention to some subset of variables in the data set. This is accomplished using the <code>select</code> function. Like <code>filter</code>, the data frame or tibble is the first argument in the <code>select</code> function, followed by additional arguments identifying variables you want to include or exclude. Consider the examples below.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="op">&gt;</span><span class="st"> </span><span class="kw">select</span>(mn.trees.tbl, Year, DBH)</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="op">&gt;</span><span class="st"> </span>dplyr<span class="op">::</span><span class="kw">select</span>(mn.trees.tbl, Year, DBH)</code></pre>
 <pre><code># A tibble: 15,301 x 2
     Year   DBH
    &lt;int&gt; &lt;dbl&gt;
@@ -384,8 +414,8 @@ FIGURE 5.1: Tree core derived diameter at breast height (DBH cm) by year for sam
  8  1985  6.84
  9  1986  7.10
 10  1987  7.38
-# ... with 15,291 more rows</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="op">&gt;</span><span class="st"> </span><span class="kw">select</span>(mn.trees.tbl, <span class="dv">2</span><span class="op">:</span><span class="dv">4</span>)</code></pre></div>
+# … with 15,291 more rows</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="op">&gt;</span><span class="st"> </span>dplyr<span class="op">::</span><span class="kw">select</span>(mn.trees.tbl, <span class="dv">2</span><span class="op">:</span><span class="dv">4</span>)</code></pre>
 <pre><code># A tibble: 15,301 x 3
    PlotID TreeID Species
     &lt;int&gt;  &lt;int&gt; &lt;fct&gt;  
@@ -399,8 +429,8 @@ FIGURE 5.1: Tree core derived diameter at breast height (DBH cm) by year for sam
  8      1      1 ABBA   
  9      1      1 ABBA   
 10      1      1 ABBA   
-# ... with 15,291 more rows</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="op">&gt;</span><span class="st"> </span><span class="kw">select</span>(mn.trees.tbl, <span class="op">-</span><span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>))</code></pre></div>
+# … with 15,291 more rows</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="op">&gt;</span><span class="st"> </span>dplyr<span class="op">::</span><span class="kw">select</span>(mn.trees.tbl, <span class="op">-</span><span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>))</code></pre>
 <pre><code># A tibble: 15,301 x 7
    StandID  Year   Age   DBH rad.inc BA.inc UTreeID
      &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;   &lt;int&gt;
@@ -414,8 +444,8 @@ FIGURE 5.1: Tree core derived diameter at breast height (DBH cm) by year for sam
  8       1  1985    26  6.84   1.54    3.25       1
  9       1  1986    27  7.10   1.28    2.81       1
 10       1  1987    28  7.38   1.38    3.14       1
-# ... with 15,291 more rows</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="op">&gt;</span><span class="st"> </span><span class="kw">select</span>(mn.trees.tbl, <span class="kw">ends_with</span>(<span class="st">&quot;ID&quot;</span>))</code></pre></div>
+# … with 15,291 more rows</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="op">&gt;</span><span class="st"> </span>dplyr<span class="op">::</span><span class="kw">select</span>(mn.trees.tbl, <span class="kw">ends_with</span>(<span class="st">&quot;ID&quot;</span>))</code></pre>
 <pre><code># A tibble: 15,301 x 4
    StandID PlotID TreeID UTreeID
      &lt;int&gt;  &lt;int&gt;  &lt;int&gt;   &lt;int&gt;
@@ -429,14 +459,14 @@ FIGURE 5.1: Tree core derived diameter at breast height (DBH cm) by year for sam
  8       1      1      1       1
  9       1      1      1       1
 10       1      1      1       1
-# ... with 15,291 more rows</code></pre>
+# … with 15,291 more rows</code></pre>
 <p>Notice a few things. Variables can be selected by name or column number. As usual a negative sign tells R to leave something out. Also, there are special <em>helper</em> functions such as <code>ends_with</code> that provide ways to match part of a variable’s name. Other very handy helper functions you should investigate are <code>begins_with</code>, <code>contains</code>, <code>matches</code>, <code>num_range</code>, <code>one_of</code>, and <code>everything</code>.</p>
 </div>
 <div id="pipes" class="section level2">
 <h2><span class="header-section-number">5.5</span> Pipes</h2>
 <p>Consider selecting the <code>Age</code> and <code>rad.inc</code> for the two aspen species POTR or POGR (<em>Populus tremuloides</em> and <em>Populus grandifolia</em>). One possibility is to nest a <code>filter</code> call within <code>select</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="op">&gt;</span><span class="st"> </span><span class="kw">select</span>(<span class="kw">filter</span>(mn.trees.tbl, Species <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;POTR&quot;</span>, <span class="st">&quot;POGR&quot;</span>)), 
-<span class="op">+</span><span class="st">   </span>Age, rad.inc)</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="op">&gt;</span><span class="st"> </span>dplyr<span class="op">::</span><span class="kw">select</span>(<span class="kw">filter</span>(mn.trees.tbl, Species <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;POTR&quot;</span>, 
+<span class="op">+</span><span class="st">   &quot;POGR&quot;</span>)), Age, rad.inc)</code></pre>
 <pre><code># A tibble: 719 x 2
      Age rad.inc
    &lt;int&gt;   &lt;dbl&gt;
@@ -450,11 +480,11 @@ FIGURE 5.1: Tree core derived diameter at breast height (DBH cm) by year for sam
  8    62   1.20 
  9    63   1.09 
 10    64   0.975
-# ... with 709 more rows</code></pre>
+# … with 709 more rows</code></pre>
 <p>Even a two-step process like this becomes hard to follow in this nested form, and often we will want to perform more than two operations. There is a nice feature in <code>dplyr</code> that allows us to “feed” results of one function into the first argument of a subsequent function. Another way of saying this is that we are “piping” the results into another function. The <code>%&gt;%</code> operator does the piping.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="op">&gt;</span><span class="st"> </span>mn.trees.tbl <span class="op">%&gt;%</span><span class="st"> </span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="op">&gt;</span><span class="st"> </span>mn.trees.tbl <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="op">+</span><span class="st">   </span><span class="kw">filter</span>(Species <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;POTR&quot;</span>, <span class="st">&quot;POGR&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="op">+</span><span class="st">   </span><span class="kw">select</span>(Age, rad.inc)</code></pre></div>
+<span class="op">+</span><span class="st">   </span>dplyr<span class="op">::</span><span class="kw">select</span>(Age, rad.inc)</code></pre>
 <pre><code># A tibble: 719 x 2
      Age rad.inc
    &lt;int&gt;   &lt;dbl&gt;
@@ -468,14 +498,14 @@ FIGURE 5.1: Tree core derived diameter at breast height (DBH cm) by year for sam
  8    62   1.20 
  9    63   1.09 
 10    64   0.975
-# ... with 709 more rows</code></pre>
+# … with 709 more rows</code></pre>
 <p>It can help to think of <code>%&gt;%</code> as representing the word “then.” The above can be read as, “Start with the data frame <code>mn.trees.tbl</code>, <em>then</em> filter it to select data from the species POTR and POGR, <em>then</em> select the variables age and radial growth increment from these data.”</p>
 <p>The pipe operator <code>%&gt;%</code> is not restricted to functions in <code>dplyr</code>. In fact the pipe operator itself was introduced in another package called <code>magrittr</code>, but is included in <code>dplyr</code> as a convenience.</p>
 </div>
 <div id="arranging-data-by-row" class="section level2">
 <h2><span class="header-section-number">5.6</span> Arranging Data by Row</h2>
 <p>By default the <code>mn.trees</code> data are arranged in ascending order by <code>StandID</code>, then <code>PlotID</code>, then <code>TreeID</code>, then <code>Year</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="op">&gt;</span><span class="st"> </span><span class="kw">head</span>(mn.trees.tbl, <span class="dv">5</span>)</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="op">&gt;</span><span class="st"> </span><span class="kw">head</span>(mn.trees.tbl, <span class="dv">5</span>)</code></pre>
 <pre><code># A tibble: 5 x 10
   StandID PlotID TreeID Species  Year   Age   DBH
     &lt;int&gt;  &lt;int&gt;  &lt;int&gt; &lt;fct&gt;   &lt;int&gt; &lt;int&gt; &lt;dbl&gt;
@@ -484,9 +514,9 @@ FIGURE 5.1: Tree core derived diameter at breast height (DBH cm) by year for sam
 3       1      1      1 ABBA     1980    21  5.56
 4       1      1      1 ABBA     1981    22  5.75
 5       1      1      1 ABBA     1982    23  5.99
-# ... with 3 more variables: rad.inc &lt;dbl&gt;,
+# … with 3 more variables: rad.inc &lt;dbl&gt;,
 #   BA.inc &lt;dbl&gt;, UTreeID &lt;int&gt;</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="op">&gt;</span><span class="st"> </span><span class="kw">tail</span>(mn.trees.tbl, <span class="dv">5</span>)</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="op">&gt;</span><span class="st"> </span><span class="kw">tail</span>(mn.trees.tbl, <span class="dv">5</span>)</code></pre>
 <pre><code># A tibble: 5 x 10
   StandID PlotID TreeID Species  Year   Age   DBH
     &lt;int&gt;  &lt;int&gt;  &lt;int&gt; &lt;fct&gt;   &lt;int&gt; &lt;int&gt; &lt;dbl&gt;
@@ -495,14 +525,14 @@ FIGURE 5.1: Tree core derived diameter at breast height (DBH cm) by year for sam
 3      35    105    521 POTR     2005    34  17.9
 4      35    105    521 POTR     2006    35  18.1
 5      35    105    521 POTR     2007    36  18.2
-# ... with 3 more variables: rad.inc &lt;dbl&gt;,
+# … with 3 more variables: rad.inc &lt;dbl&gt;,
 #   BA.inc &lt;dbl&gt;, UTreeID &lt;int&gt;</code></pre>
 <p>This is convenient ordering for these data. But what if we wanted to change the order to be by <code>Species</code> then <code>Year</code>? The <code>arrange</code> function makes this easy. The following examples illustrate <code>arrange</code> but also use pipes to simplify code and <code>select</code> to focus attention on the columns of interest.</p>
 <p>Let’s start with arranging in ascending order <code>BA.inc</code> for tree 1 in plot 1 in stand 1.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="op">&gt;</span><span class="st"> </span>mn.trees.tbl <span class="op">%&gt;%</span><span class="st"> </span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="op">&gt;</span><span class="st"> </span>mn.trees.tbl <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="op">+</span><span class="st">   </span><span class="kw">filter</span>(StandID <span class="op">==</span><span class="st"> </span><span class="dv">1</span> <span class="op">&amp;</span><span class="st"> </span>PlotID <span class="op">==</span><span class="st"> </span><span class="dv">1</span> <span class="op">&amp;</span><span class="st"> </span>TreeID <span class="op">==</span><span class="st"> </span><span class="dv">1</span>) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="op">+</span><span class="st">   </span><span class="kw">select</span>(StandID, PlotID, TreeID, BA.inc) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="op">+</span><span class="st">   </span><span class="kw">arrange</span>(BA.inc) </code></pre></div>
+<span class="op">+</span><span class="st">   </span>dplyr<span class="op">::</span><span class="kw">select</span>(StandID, PlotID, TreeID, BA.inc) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="op">+</span><span class="st">   </span><span class="kw">arrange</span>(BA.inc) </code></pre>
 <pre><code># A tibble: 30 x 4
    StandID PlotID TreeID BA.inc
      &lt;int&gt;  &lt;int&gt;  &lt;int&gt;  &lt;dbl&gt;
@@ -516,12 +546,12 @@ FIGURE 5.1: Tree core derived diameter at breast height (DBH cm) by year for sam
  8       1      1      1  1.48 
  9       1      1      1  1.66 
 10       1      1      1  1.73 
-# ... with 20 more rows</code></pre>
+# … with 20 more rows</code></pre>
 <p>Possibly we want these data to be in decreasing (descending) order. Here, <code>desc()</code> is one of many <code>dplyr</code> helper functions.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="op">&gt;</span><span class="st"> </span>mn.trees.tbl <span class="op">%&gt;%</span><span class="st"> </span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="op">&gt;</span><span class="st"> </span>mn.trees.tbl <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="op">+</span><span class="st">   </span><span class="kw">filter</span>(StandID <span class="op">==</span><span class="st"> </span><span class="dv">1</span> <span class="op">&amp;</span><span class="st"> </span>PlotID <span class="op">==</span><span class="st"> </span><span class="dv">1</span> <span class="op">&amp;</span><span class="st"> </span>TreeID <span class="op">==</span><span class="st"> </span><span class="dv">1</span>) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="op">+</span><span class="st">   </span><span class="kw">select</span>(StandID, PlotID, TreeID, BA.inc) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="op">+</span><span class="st">   </span><span class="kw">arrange</span>(<span class="kw">desc</span>(BA.inc))</code></pre></div>
+<span class="op">+</span><span class="st">   </span>dplyr<span class="op">::</span><span class="kw">select</span>(StandID, PlotID, TreeID, BA.inc) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="op">+</span><span class="st">   </span><span class="kw">arrange</span>(<span class="kw">desc</span>(BA.inc))</code></pre>
 <pre><code># A tibble: 30 x 4
    StandID PlotID TreeID BA.inc
      &lt;int&gt;  &lt;int&gt;  &lt;int&gt;  &lt;dbl&gt;
@@ -535,11 +565,11 @@ FIGURE 5.1: Tree core derived diameter at breast height (DBH cm) by year for sam
  8       1      1      1   3.23
  9       1      1      1   3.16
 10       1      1      1   3.14
-# ... with 20 more rows</code></pre>
+# … with 20 more rows</code></pre>
 <p>Passing multiple variables to <code>arrange</code> results in nested ordering. The subsequent code orders first by <code>Species</code>, then <code>Year</code> within <code>Species</code>, then <code>BA.inc</code> within <code>Year</code> and <code>Species</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="op">&gt;</span><span class="st"> </span>mn.trees.tbl <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="op">+</span><span class="st">   </span><span class="kw">select</span>(Species, Year, BA.inc) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="op">+</span><span class="st">   </span><span class="kw">arrange</span>(Species, Year, BA.inc) </code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="op">&gt;</span><span class="st"> </span>mn.trees.tbl <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="op">+</span><span class="st">   </span>dplyr<span class="op">::</span><span class="kw">select</span>(Species, Year, BA.inc) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="op">+</span><span class="st">   </span><span class="kw">arrange</span>(Species, Year, BA.inc) </code></pre>
 <pre><code># A tibble: 15,301 x 3
    Species  Year BA.inc
    &lt;fct&gt;   &lt;int&gt;  &lt;dbl&gt;
@@ -553,15 +583,15 @@ FIGURE 5.1: Tree core derived diameter at breast height (DBH cm) by year for sam
  8 ABBA     1978  0.676
  9 ABBA     1978  0.699
 10 ABBA     1978  0.760
-# ... with 15,291 more rows</code></pre>
+# … with 15,291 more rows</code></pre>
 <p>For analyzing data in R, the order shouldn’t matter. But for presentation to human eyes, the order is important.</p>
 </div>
 <div id="renaming-variables" class="section level2">
 <h2><span class="header-section-number">5.7</span> Renaming Variables</h2>
 <p>The <code>dplyr</code> package has a <code>rename</code> function that makes renaming variables in a data frame quite easy. Below, I rename the <code>rad.inc</code> and <code>BA.inc</code> to remind myself of their measurement units (i.e., millimeters and centimeters squared, respectively).</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="op">&gt;</span><span class="st"> </span>mn.trees.tbl &lt;-<span class="st"> </span><span class="kw">rename</span>(mn.trees.tbl, <span class="dt">rad.inc.mm =</span> rad.inc, 
+<pre class="sourceCode r"><code class="sourceCode r"><span class="op">&gt;</span><span class="st"> </span>mn.trees.tbl &lt;-<span class="st"> </span><span class="kw">rename</span>(mn.trees.tbl, <span class="dt">rad.inc.mm =</span> rad.inc, 
 <span class="op">+</span><span class="st">                        </span><span class="dt">BA.inc.cm2 =</span> BA.inc)
-<span class="op">&gt;</span><span class="st"> </span><span class="kw">head</span>(mn.trees.tbl)</code></pre></div>
+<span class="op">&gt;</span><span class="st"> </span><span class="kw">head</span>(mn.trees.tbl)</code></pre>
 <pre><code># A tibble: 6 x 10
   StandID PlotID TreeID Species  Year   Age   DBH
     &lt;int&gt;  &lt;int&gt;  &lt;int&gt; &lt;fct&gt;   &lt;int&gt; &lt;int&gt; &lt;dbl&gt;
@@ -571,31 +601,31 @@ FIGURE 5.1: Tree core derived diameter at breast height (DBH cm) by year for sam
 4       1      1      1 ABBA     1981    22  5.75
 5       1      1      1 ABBA     1982    23  5.99
 6       1      1      1 ABBA     1983    24  6.24
-# ... with 3 more variables: rad.inc.mm &lt;dbl&gt;,
+# … with 3 more variables: rad.inc.mm &lt;dbl&gt;,
 #   BA.inc.cm2 &lt;dbl&gt;, UTreeID &lt;int&gt;</code></pre>
 </div>
 <div id="creating-new-variables" class="section level2">
 <h2><span class="header-section-number">5.8</span> Creating New Variables</h2>
 <p>We routinely want to create new variables and add them to an existing data frame. This task is done using the <code>mutate</code> function. <code>mutate</code> adds new columns to the right side of your data frame or tibble. This function is particularly useful because it can make a new variable by simply referencing variables that exist in the data frame. Let’s start with a simple example. Below I create a small data frame called <code>df</code> with two numeric columns <code>a</code> and <code>b</code>. Next, I add a new variable <code>c</code> that is the square root of the sum of <code>a</code> and <code>b</code>. We can of course use <code>mutate</code> to add variables that are not a function of existing variables, e.g., see the addition of the logical variable <code>d</code> below (this time using a pipe).</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="op">&gt;</span><span class="st"> </span>df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="st">&quot;a&quot;</span>=<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>, <span class="st">&quot;b&quot;</span>=<span class="kw">c</span>(<span class="dv">8</span>, <span class="dv">12</span>, <span class="dv">19</span>, <span class="dv">76</span>))
+<pre class="sourceCode r"><code class="sourceCode r"><span class="op">&gt;</span><span class="st"> </span>df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="st">&quot;a&quot;</span>=<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>, <span class="st">&quot;b&quot;</span>=<span class="kw">c</span>(<span class="dv">8</span>, <span class="dv">12</span>, <span class="dv">19</span>, <span class="dv">76</span>))
 <span class="op">&gt;</span><span class="st"> </span>df &lt;-<span class="st"> </span><span class="kw">mutate</span>(df, <span class="dt">c =</span> <span class="kw">log</span>(a<span class="op">+</span>b))
-<span class="op">&gt;</span><span class="st"> </span>df</code></pre></div>
+<span class="op">&gt;</span><span class="st"> </span>df</code></pre>
 <pre><code>  a  b     c
 1 1  8 2.197
 2 2 12 2.639
 3 3 19 3.091
 4 4 76 4.382</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="op">&gt;</span><span class="st"> </span>df &lt;-<span class="st"> </span>df <span class="op">%&gt;%</span><span class="st"> </span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="op">&gt;</span><span class="st"> </span>df &lt;-<span class="st"> </span>df <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="op">+</span><span class="st">   </span><span class="kw">mutate</span>(<span class="dt">d =</span> <span class="kw">c</span>(<span class="st">&quot;Jerry&quot;</span>,<span class="st">&quot;Jerry&quot;</span>,<span class="st">&quot;Bobby&quot;</span>,<span class="st">&quot;Bobby&quot;</span>))
-<span class="op">&gt;</span><span class="st"> </span>df</code></pre></div>
+<span class="op">&gt;</span><span class="st"> </span>df</code></pre>
 <pre><code>  a  b     c     d
 1 1  8 2.197 Jerry
 2 2 12 2.639 Jerry
 3 3 19 3.091 Bobby
 4 4 76 4.382 Bobby</code></pre>
 <p>Sometimes, we want to create new variables that are a function of existing variables but not add them to the data frame. In this case we use the <code>transmute</code> function. Here, I create a new data frame <code>df.2</code> that comprises two new variables, <code>e</code> and <code>f</code> where <code>e</code> is <code>a+c</code> and <code>f</code> is just a copy of <code>d</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="op">&gt;</span><span class="st"> </span>df.<span class="dv">2</span> &lt;-<span class="st"> </span>df <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">transmute</span>(<span class="dt">e =</span> a <span class="op">+</span><span class="st"> </span>c, <span class="dt">f =</span> d)
-<span class="op">&gt;</span><span class="st"> </span>df.<span class="dv">2</span></code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="op">&gt;</span><span class="st"> </span>df<span class="fl">.2</span> &lt;-<span class="st"> </span>df <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">transmute</span>(<span class="dt">e =</span> a <span class="op">+</span><span class="st"> </span>c, <span class="dt">f =</span> d)
+<span class="op">&gt;</span><span class="st"> </span>df<span class="fl">.2</span></code></pre>
 <pre><code>      e     f
 1 3.197 Jerry
 2 4.639 Jerry
@@ -605,43 +635,43 @@ FIGURE 5.1: Tree core derived diameter at breast height (DBH cm) by year for sam
 <div id="data-summaries-and-grouping" class="section level2">
 <h2><span class="header-section-number">5.9</span> Data Summaries and Grouping</h2>
 <p>The <code>summarize</code> function computes summary statistics or user provided functions for one or more variables in a data frame. Below, the <code>summarize</code> function is used to calculate the mean and sum of variable <code>a</code> in the data frame created in the previous section.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="op">&gt;</span><span class="st"> </span><span class="kw">summarize</span>(df, <span class="dt">a.mean =</span> <span class="kw">mean</span>(a), <span class="dt">a.sum =</span> <span class="kw">sum</span>(a))</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="op">&gt;</span><span class="st"> </span><span class="kw">summarize</span>(df, <span class="dt">a.mean =</span> <span class="kw">mean</span>(a), <span class="dt">a.sum =</span> <span class="kw">sum</span>(a))</code></pre>
 <pre><code>  a.mean a.sum
 1    2.5    10</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="op">&gt;</span><span class="st"> </span>##or
+<pre class="sourceCode r"><code class="sourceCode r"><span class="op">&gt;</span><span class="st"> </span><span class="co">##or</span>
 <span class="er">&gt;</span><span class="st"> </span>df <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="op">+</span><span class="st">   </span><span class="kw">summarize</span>(<span class="dt">a.mean =</span> <span class="kw">mean</span>(a), <span class="dt">a.sum =</span> <span class="kw">sum</span>(a))</code></pre></div>
+<span class="op">+</span><span class="st">   </span><span class="kw">summarize</span>(<span class="dt">a.mean =</span> <span class="kw">mean</span>(a), <span class="dt">a.sum =</span> <span class="kw">sum</span>(a))</code></pre>
 <pre><code>  a.mean a.sum
 1    2.5    10</code></pre>
 <p>By itself, <code>summarize</code> is of limited use. Often we want row summaries for specific components of the data. For example, say we want to sum variable <code>a</code> for each category of variable <code>d</code>. One option is to subset and summarize for each category in <code>b</code>:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="op">&gt;</span><span class="st"> </span>df <span class="op">%&gt;%</span><span class="st"> </span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="op">&gt;</span><span class="st"> </span>df <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="op">+</span><span class="st">   </span><span class="kw">filter</span>(d <span class="op">==</span><span class="st"> &quot;Jerry&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="op">+</span><span class="st">   </span><span class="kw">summarize</span>(<span class="dt">a.sum =</span> <span class="kw">sum</span>(a))</code></pre></div>
+<span class="op">+</span><span class="st">   </span><span class="kw">summarize</span>(<span class="dt">a.sum =</span> <span class="kw">sum</span>(a))</code></pre>
 <pre><code>  a.sum
 1     3</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="op">&gt;</span><span class="st"> </span>df <span class="op">%&gt;%</span><span class="st"> </span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="op">&gt;</span><span class="st"> </span>df <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="op">+</span><span class="st">   </span><span class="kw">filter</span>(d <span class="op">==</span><span class="st"> &quot;Bobby&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="op">+</span><span class="st">   </span><span class="kw">summarize</span>(<span class="dt">a.sum =</span> <span class="kw">sum</span>(a))</code></pre></div>
+<span class="op">+</span><span class="st">   </span><span class="kw">summarize</span>(<span class="dt">a.sum =</span> <span class="kw">sum</span>(a))</code></pre>
 <pre><code>  a.sum
 1     7</code></pre>
 <p>This is a very tedious approach if the number of subsets is large. Also, we might want the result as a single data frame, which means we would need to then combine the summaries of all the subsets in a subsequent step.</p>
 <p>The <code>group_by</code> function used in combination with <code>summarize</code> simplifies this task and makes the output more useful. The <code>summarize</code> function is applied to each category in the <em>grouping</em> variable specified in <code>group_by</code>, as illustrated in the code below.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="op">&gt;</span><span class="st"> </span>df <span class="op">%&gt;%</span><span class="st"> </span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="op">&gt;</span><span class="st"> </span>df <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="op">+</span><span class="st">   </span><span class="kw">group_by</span>(d) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="op">+</span><span class="st">   </span><span class="kw">summarize</span>(<span class="dt">a.sum =</span> <span class="kw">sum</span>(a)) </code></pre></div>
+<span class="op">+</span><span class="st">   </span><span class="kw">summarize</span>(<span class="dt">a.sum =</span> <span class="kw">sum</span>(a)) </code></pre>
 <pre><code># A tibble: 2 x 2
   d     a.sum
   &lt;chr&gt; &lt;int&gt;
 1 Bobby     7
 2 Jerry     3</code></pre>
 <p>We can specify multiple variables with <code>group_by</code> to define the categories to summarize. Let’s return to the <code>mn.trees</code> data set and find the sum of annual radial growth increment by species within each stand.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="op">&gt;</span><span class="st"> </span>stand.spp &lt;-<span class="st"> </span>mn.trees.tbl <span class="op">%&gt;%</span><span class="st"> </span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="op">&gt;</span><span class="st"> </span>stand.spp &lt;-<span class="st"> </span>mn.trees.tbl <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="op">+</span><span class="st">   </span><span class="kw">group_by</span>(StandID, Species) <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="op">+</span><span class="st">   </span><span class="kw">summarize</span>(<span class="dt">rad.inc.total =</span> <span class="kw">sum</span>(rad.inc.mm), 
 <span class="op">+</span><span class="st">             </span><span class="dt">BA.inc.total =</span> <span class="kw">sum</span>(BA.inc.cm2))
-<span class="op">&gt;</span><span class="st"> </span>stand.spp</code></pre></div>
+<span class="op">&gt;</span><span class="st"> </span>stand.spp</code></pre>
 <pre><code># A tibble: 115 x 4
-# Groups:   StandID [?]
+# Groups:   StandID [35]
    StandID Species rad.inc.total BA.inc.total
      &lt;int&gt; &lt;fct&gt;           &lt;dbl&gt;        &lt;dbl&gt;
  1       1 ABBA            109.         309. 
@@ -654,20 +684,20 @@ FIGURE 5.1: Tree core derived diameter at breast height (DBH cm) by year for sam
  8       2 PIST             60.3        749. 
  9       3 ABBA             57.6        135. 
 10       3 PIGL             21.1         94.8
-# ... with 105 more rows</code></pre>
+# … with 105 more rows</code></pre>
 <p>There are several things to notice here. Our code specifies both <code>StandID</code> and <code>Species</code> variables in the <code>group_by</code> function, which causes <code>summarize</code> arguments to be applied to each stand and species combination. For example, looking at the output, we can see that stand 1 contains three species <code>ABBA</code> (<em>Abies balsamea</em>), <code>BEPA</code> (<em>Betula papyrifera</em>), and <code>PIGL</code> (<em>Picea glauca</em>). Also, for each of these species, the sum of radial growth increments, i.e., <code>rad.inc.total</code>, is 108.735, 121.515, and 58.045, and the sum of basal area growth increments, i.e., <code>BA.inc.total</code>, is approximately 308.98, 732.58, and 121.26. The two commented lines above the resulting tibble tell us there are 115 such stand and species combinations, i.e., <code># A tibble: 115 x 4</code>, and the tibble is grouped by <code>StandID</code>, i.e., <code># Groups: StandID [?]</code>. This last bit of information is important. Recall a tibble is a data frame with some additional functionality. Not only does the resulting tibble hold the <code>summarize</code> output, it also retains all levels of grouping to the left of the last grouping variable specified in <code>group_by</code>. In this case we grouped by <code>StandID</code> and <code>Species</code> prior to calling <code>summarize</code>, so the resulting tibble is grouped by <code>StandID</code>. If we fed the resulting tibble back into <code>summarize</code>, aggregation would occur for each stand. Depending on the analysis, this retention of grouping can be handy or annoying. If necessary, use <code>ungroup</code> to remove the grouping from a tibble, e.g., <code>stand.spp %&gt;% ungroup()</code>.</p>
 </div>
 <div id="counts" class="section level2">
 <h2><span class="header-section-number">5.10</span> Counts</h2>
 <p>In many circumstances it is useful to know how many rows are being summarized. Continuing the previous example, say we want to know how many increment measurements comprise a given <code>StandID</code> and <code>Species</code> combination and, hence, went into the <code>rad.inc.total</code> and <code>BA.inc.total</code> summaries. The <code>n</code> function returns the count of rows per group (or number of rows in an ungrouped tibble). Below, I add a new variable called <code>n.inc</code> to the our previous <code>stand.spp</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="op">&gt;</span><span class="st"> </span>stand.spp &lt;-<span class="st"> </span>mn.trees.tbl <span class="op">%&gt;%</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="op">&gt;</span><span class="st"> </span>stand.spp &lt;-<span class="st"> </span>mn.trees.tbl <span class="op">%&gt;%</span>
 <span class="op">+</span><span class="st">   </span><span class="kw">group_by</span>(StandID, Species) <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="op">+</span><span class="st">   </span><span class="kw">summarize</span>(<span class="dt">rad.inc.total =</span> <span class="kw">sum</span>(rad.inc.mm), 
 <span class="op">+</span><span class="st">             </span><span class="dt">BA.inc.total =</span> <span class="kw">sum</span>(BA.inc.cm2),
 <span class="op">+</span><span class="st">             </span><span class="dt">n.inc =</span> <span class="kw">n</span>())
-<span class="op">&gt;</span><span class="st"> </span>stand.spp</code></pre></div>
+<span class="op">&gt;</span><span class="st"> </span>stand.spp</code></pre>
 <pre><code># A tibble: 115 x 5
-# Groups:   StandID [?]
+# Groups:   StandID [35]
    StandID Species rad.inc.total BA.inc.total n.inc
      &lt;int&gt; &lt;fct&gt;           &lt;dbl&gt;        &lt;dbl&gt; &lt;int&gt;
  1       1 ABBA            109.         309.    150
@@ -680,16 +710,16 @@ FIGURE 5.1: Tree core derived diameter at breast height (DBH cm) by year for sam
  8       2 PIST             60.3        749.     30
  9       3 ABBA             57.6        135.     30
 10       3 PIGL             21.1         94.8    60
-# ... with 105 more rows</code></pre>
+# … with 105 more rows</code></pre>
 <p>This is helpful. We now know how many individual increment measurements were used to compute the summaries. However, it is not clear how many trees were actually cored to generate these measurements. We can get at the count of unique trees in each group by using the <code>n_distinct</code> helper function.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="op">&gt;</span><span class="st"> </span>stand.spp &lt;-<span class="st"> </span>mn.trees.tbl <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">group_by</span>(StandID, Species) <span class="op">%&gt;%</span><span class="st"> </span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="op">&gt;</span><span class="st"> </span>stand.spp &lt;-<span class="st"> </span>mn.trees.tbl <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">group_by</span>(StandID, Species) <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="op">+</span><span class="st">     </span><span class="kw">summarize</span>(<span class="dt">rad.inc.total =</span> <span class="kw">sum</span>(rad.inc.mm), 
 <span class="op">+</span><span class="st">               </span><span class="dt">BA.inc.total =</span> <span class="kw">sum</span>(BA.inc.cm2),
 <span class="op">+</span><span class="st">               </span><span class="dt">n.inc =</span> <span class="kw">n</span>(),
 <span class="op">+</span><span class="st">               </span><span class="dt">n.trees =</span> <span class="kw">n_distinct</span>(PlotID, TreeID))
-<span class="op">&gt;</span><span class="st"> </span>stand.spp</code></pre></div>
+<span class="op">&gt;</span><span class="st"> </span>stand.spp</code></pre>
 <pre><code># A tibble: 115 x 6
-# Groups:   StandID [?]
+# Groups:   StandID [35]
    StandID Species rad.inc.total BA.inc.total n.inc
      &lt;int&gt; &lt;fct&gt;           &lt;dbl&gt;        &lt;dbl&gt; &lt;int&gt;
  1       1 ABBA            109.         309.    150
@@ -702,7 +732,7 @@ FIGURE 5.1: Tree core derived diameter at breast height (DBH cm) by year for sam
  8       2 PIST             60.3        749.     30
  9       3 ABBA             57.6        135.     30
 10       3 PIGL             21.1         94.8    60
-# ... with 105 more rows, and 1 more variable:
+# … with 105 more rows, and 1 more variable:
 #   n.trees &lt;int&gt;</code></pre>
 <p>Recall, <code>StandID</code>, <code>PlotID</code>, and <code>TreeID</code> identifies the set of increment measurements for a specific tree. Therefore, if we group using <code>StandID</code>, then <code>n_distinct(PlotID, TreeID)</code> returns the unique tree count within each stand. Above, we also group by <code>Species</code> so the unique tree count within the stand is also partitioned by species. Now, we can see the new variable <code>n.trees</code> is the number of trees by species over which <code>n.inc</code> increment measurements were collected.</p>
 
@@ -717,8 +747,8 @@ FIGURE 5.1: Tree core derived diameter at breast height (DBH cm) by year for sam
 <div class="footnotes">
 <hr />
 <ol start="22">
-<li id="fn22"><p>The text printed immediately after <code>library(dplyr)</code> means the <code>stats</code> and <code>base</code> packages, which are automatically loaded when you start R, have functions with the same name as functions in <code>dplyr</code>. So, for example, if you call the <code>filter()</code> or <code>lag()</code>, R will use <code>library(dplyr)</code>‘s functions. Use the <code>::</code> operator to explicitly identify which packages’ function you want to use, e.g., if you want <code>stats</code>’s <code>lag()</code> then call <code>stats::lag()</code>.<a href="manipulating-data-with-dplyr.html#fnref22">↩</a></p></li>
-<li id="fn23"><p>Reminds me of <a href="https://en.wikipedia.org/wiki/The_Trouble_with_Tribbles">The Trouble with Tribbles</a><a href="manipulating-data-with-dplyr.html#fnref23">↩</a></p></li>
+<li id="fn22"><p>The text printed immediately after <code>library(dplyr)</code> means the <code>stats</code> and <code>base</code> packages, which are automatically loaded when you start R, have functions with the same name as functions in <code>dplyr</code>. So, for example, if you call the <code>filter()</code> or <code>lag()</code>, R will use <code>library(dplyr)</code>‘s functions. Use the <code>::</code> operator to explicitly identify which packages’ function you want to use, e.g., if you want <code>stats</code>’s <code>lag()</code> then call <code>stats::lag()</code>.<a href="manipulating-data-with-dplyr.html#fnref22" class="footnote-back">↩</a></p></li>
+<li id="fn23"><p>Reminds me of <a href="https://en.wikipedia.org/wiki/The_Trouble_with_Tribbles">The Trouble with Tribbles</a><a href="manipulating-data-with-dplyr.html#fnref23" class="footnote-back">↩</a></p></li>
 </ol>
 </div>
             </section>
@@ -750,6 +780,10 @@ gitbook.start({
 "link": null,
 "text": null
 },
+"history": {
+"link": null,
+"text": null
+},
 "download": ["bookdown.pdf"],
 "toc": {
 "collapse": "none"
@@ -763,8 +797,8 @@ gitbook.start({
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    var src = "";
-    if (src === "" || src === "true") src = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:" && /^https?:/.test(src))
       src = src.replace(/^https?:/, '');
     script.src = src;
