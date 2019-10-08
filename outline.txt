@@ -1,0 +1,23 @@
+Outline of Book 
+
+Chapters already included in book
+
+- Data 
+- Intro to R and RStudio
+- Scripts, R Markdown, and Reproducibility
+- Data Structures
+- Manipulating data with dplyr
+- Functions and Programming
+- Working with Data Sources
+- Spatial Data Visualization and Analysis
+
+Chapters that need to be in book
+
+- General statisical overview (point estimators, interval estimators, etc.)
+- Sampling methods (SRS, systematic, stratified, cluster)
+
+Other ideas
+
+- Graphing chapter
+- Databases
+- Regression? Maybe kriging? 
