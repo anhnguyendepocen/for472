@@ -1,23 +1,67 @@
 Outline of Book 
 
-Chapters already included in book
+Chapter 1: Forestry Data Sets and R
 
-- Data 
-- Intro to R and RStudio
-- Scripts, R Markdown, and Reproducibility
-- Data Structures
-- Manipulating data with dplyr
-- Functions and Programming
-- Working with Data Sources
-- Spatial Data Visualization and Analysis
+    - Pretty much keep the same as what is currently in Chapter 1
+    - Think it would be useful to elaborate the Section 1.4 Looking Forward.
+      Specifically address the complications that will arise with each dataset, 
+      and then address the specific chapters in the text when we will address 
+      such problems. 
+    - Incorporate a couple paragraphs of why forestry people should learn R, then include
+      instructions for installing R and RStudio (i.e. the first two sections of 
+      the current chapter 2). 
+    - Note that I think the rest of the current Chapter 2 can be incorporated
+      either in the basic intro to stats chapter, or we can include little 
+      R Tips in boxes throughout the text (i.e. good variable names, use of <- vs =, etc.). 
 
-Chapters that need to be in book
+Chapter 2: Basic Introduction to Statistics
 
-- General statisical overview (point estimators, interval estimators, etc.)
-- Sampling methods (SRS, systematic, stratified, cluster)
+    - Descriptive statistics, empirical distributions, central tendency measures, 
+      measures of dispersion
+    - Along the way, describe how to use R as a basic calculator, then show how 
+      descriptive statistics can be computed, perhaps show some histograms as well. 
+      Can adapt current section 2.3.2 that uses the FEF data set. 
+    - Perhaps can go through a fairly lengthy example of making a histogram or 
+      something, and along the way can introduce using R Scripts. 
+    - Confidence intervals, precision, accuracy, standard error
 
-Other ideas
+Chapter 3: Data Structures in R
 
-- Graphing chapter
-- Databases
-- Regression? Maybe kriging? 
+    - The current Chapter 4. Don't think much needs to change. Perhaps can integrate
+      a couple larger examples. 
+    - I think we could combine the current Chapter 7 (Working with Data Sources) into 
+      this chapter. That should give the basic tools necessary to read in and manipulate 
+      data in R. 
+
+Chapter 4: Manipulating data with dplyr
+
+Chapter 5: Data Visualization
+
+    - A plotting chapter. Not currently in there, but based on FOR875 people seemed 
+      to really ejoy the plotting chapter. People may intially struggle with the coding
+      and manipulating data structures at the beginning and not exactly see the relevance
+      and lose interest, so perhaps a chapter where they can learn how to make nice plots
+      of their data will help keep interest and motivation for learning R high. 
+    - Not sure if it would be best to do ggplot or graphics, or a combo. 
+    - Think could be a useful way to combine reading data in, manipulating it with dplyr, 
+      and then producing some useful visualizations to share with colleagues. 
+    - Could also be a good spot to work with Hunter's package 
+
+Chapter 6: Simple Random Sampling
+
+- Thinking maybe could separate out SRS and then introduce functions and programming
+  in this chapter as well instead of separating out into it's own chapter. 
+
+Chapter 7: Further Sampling Strategies
+
+Chapter 7.5: Functions and Programming
+    - Perhaps can combine this with the chapter on sampling strategies? 
+
+Chapter 8: Spatial Data Visualization and Analysis
+
+Chapter 9: Basic Regression and Kriging ???  
+
+    - Thought this could be a good way to combine everything, not sure kriging would be
+      necessary to include, just a thought. 
+
+Chapter 10: Databases  ???
