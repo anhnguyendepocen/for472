@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 9 Descriptive Statistics, Point Estimators, and Interval Estimators | Forestry 472: Ecological Monitoring and Data Analysis</title>
+  <meta name="description" content="Course book for FOR472: Ecological Monitoring and Data Analysis" />
+  <meta name="generator" content="bookdown 0.11 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 9 Descriptive Statistics, Point Estimators, and Interval Estimators | Forestry 472: Ecological Monitoring and Data Analysis" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Course book for FOR472: Ecological Monitoring and Data Analysis" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 9 Descriptive Statistics, Point Estimators, and Interval Estimators | Forestry 472: Ecological Monitoring and Data Analysis" />
+  
+  <meta name="twitter:description" content="Course book for FOR472: Ecological Monitoring and Data Analysis" />
+  
+
+<meta name="author" content="Andrew O. Finley and Jeffrey W. Doser" />
+
+
+<meta name="date" content="2019-10-28" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="spatial-data-visualization-and-analysis.html">
+<link rel="next" href="references.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="css/style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="1" data-path="data.html"><a href="data.html"><i class="fa fa-check"></i><b>1</b> Data</a><ul>
+<li class="chapter" data-level="1.1" data-path="data.html"><a href="data.html#fef"><i class="fa fa-check"></i><b>1.1</b> FEF Tree Biomass Data Set</a></li>
+<li class="chapter" data-level="1.2" data-path="data.html"><a href="data.html#face-experiment-data-set"><i class="fa fa-check"></i><b>1.2</b> FACE Experiment Data Set</a></li>
+<li class="chapter" data-level="1.3" data-path="data.html"><a href="data.html#pef"><i class="fa fa-check"></i><b>1.3</b> PEF Inventory and LiDAR Data Set</a></li>
+<li class="chapter" data-level="1.4" data-path="data.html"><a href="data.html#looking-forward"><i class="fa fa-check"></i><b>1.4</b> Looking Forward</a></li>
+<li class="chapter" data-level="1.5" data-path="data.html"><a href="data.html#how-to-learn-the-most-important-section-in-this-book"><i class="fa fa-check"></i><b>1.5</b> How to Learn (The Most Important Section in This Book!)</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="introduction-to-r-and-rstudio.html"><a href="introduction-to-r-and-rstudio.html"><i class="fa fa-check"></i><b>2</b> Introduction to R and RStudio</a><ul>
+<li class="chapter" data-level="2.1" data-path="introduction-to-r-and-rstudio.html"><a href="introduction-to-r-and-rstudio.html#obtaining-and-installing-r"><i class="fa fa-check"></i><b>2.1</b> Obtaining and Installing R</a></li>
+<li class="chapter" data-level="2.2" data-path="introduction-to-r-and-rstudio.html"><a href="introduction-to-r-and-rstudio.html#obtaining-and-installing-rstudio"><i class="fa fa-check"></i><b>2.2</b> Obtaining and Installing RStudio</a></li>
+<li class="chapter" data-level="2.3" data-path="introduction-to-r-and-rstudio.html"><a href="introduction-to-r-and-rstudio.html#using-r-and-rstudio"><i class="fa fa-check"></i><b>2.3</b> Using R and RStudio</a><ul>
+<li class="chapter" data-level="2.3.1" data-path="introduction-to-r-and-rstudio.html"><a href="introduction-to-r-and-rstudio.html#r-as-a-calculator"><i class="fa fa-check"></i><b>2.3.1</b> R as a calculator</a></li>
+<li class="chapter" data-level="2.3.2" data-path="introduction-to-r-and-rstudio.html"><a href="introduction-to-r-and-rstudio.html#sec:dec"><i class="fa fa-check"></i><b>2.3.2</b> Basic descriptive statistics and graphics in R</a></li>
+<li class="chapter" data-level="2.3.3" data-path="introduction-to-r-and-rstudio.html"><a href="introduction-to-r-and-rstudio.html#simple-linear-regression-in-r"><i class="fa fa-check"></i><b>2.3.3</b> Simple linear regression in R</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="introduction-to-r-and-rstudio.html"><a href="introduction-to-r-and-rstudio.html#how-to-learn"><i class="fa fa-check"></i><b>2.4</b> How to Learn</a></li>
+<li class="chapter" data-level="2.5" data-path="introduction-to-r-and-rstudio.html"><a href="introduction-to-r-and-rstudio.html#getting-help"><i class="fa fa-check"></i><b>2.5</b> Getting help</a></li>
+<li class="chapter" data-level="2.6" data-path="introduction-to-r-and-rstudio.html"><a href="introduction-to-r-and-rstudio.html#workspace-working-directory-and-keeping-organized"><i class="fa fa-check"></i><b>2.6</b> Workspace, working directory, and keeping organized</a></li>
+<li class="chapter" data-level="2.7" data-path="introduction-to-r-and-rstudio.html"><a href="introduction-to-r-and-rstudio.html#quality-of-r-code"><i class="fa fa-check"></i><b>2.7</b> Quality of R code</a><ul>
+<li class="chapter" data-level="2.7.1" data-path="introduction-to-r-and-rstudio.html"><a href="introduction-to-r-and-rstudio.html#naming-files"><i class="fa fa-check"></i><b>2.7.1</b> Naming Files</a></li>
+<li class="chapter" data-level="2.7.2" data-path="introduction-to-r-and-rstudio.html"><a href="introduction-to-r-and-rstudio.html#naming-variables"><i class="fa fa-check"></i><b>2.7.2</b> Naming Variables</a></li>
+<li class="chapter" data-level="2.7.3" data-path="introduction-to-r-and-rstudio.html"><a href="introduction-to-r-and-rstudio.html#syntax"><i class="fa fa-check"></i><b>2.7.3</b> Syntax</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="scripts-r-markdown-and-reproducible-research.html"><a href="scripts-r-markdown-and-reproducible-research.html"><i class="fa fa-check"></i><b>3</b> Scripts, R Markdown, and Reproducible Research</a><ul>
+<li class="chapter" data-level="3.1" data-path="scripts-r-markdown-and-reproducible-research.html"><a href="scripts-r-markdown-and-reproducible-research.html#scripts-in-r"><i class="fa fa-check"></i><b>3.1</b> Scripts in R</a></li>
+<li class="chapter" data-level="3.2" data-path="scripts-r-markdown-and-reproducible-research.html"><a href="scripts-r-markdown-and-reproducible-research.html#r-markdown"><i class="fa fa-check"></i><b>3.2</b> R Markdown</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="scripts-r-markdown-and-reproducible-research.html"><a href="scripts-r-markdown-and-reproducible-research.html#creating-and-processing-r-markdown-documents"><i class="fa fa-check"></i><b>3.2.1</b> Creating and processing R Markdown documents</a></li>
+<li class="chapter" data-level="3.2.2" data-path="scripts-r-markdown-and-reproducible-research.html"><a href="scripts-r-markdown-and-reproducible-research.html#text-lists-and-headers"><i class="fa fa-check"></i><b>3.2.2</b> Text: Lists and Headers</a></li>
+<li class="chapter" data-level="3.2.3" data-path="scripts-r-markdown-and-reproducible-research.html"><a href="scripts-r-markdown-and-reproducible-research.html#code-chunks"><i class="fa fa-check"></i><b>3.2.3</b> Code Chunks</a></li>
+<li class="chapter" data-level="3.2.4" data-path="scripts-r-markdown-and-reproducible-research.html"><a href="scripts-r-markdown-and-reproducible-research.html#output-formats-other-than-html"><i class="fa fa-check"></i><b>3.2.4</b> Output formats other than HTML</a></li>
+<li class="chapter" data-level="3.2.5" data-path="scripts-r-markdown-and-reproducible-research.html"><a href="scripts-r-markdown-and-reproducible-research.html#latex-knitr-and-bookdown"><i class="fa fa-check"></i><b>3.2.5</b> LaTeX, knitr, and bookdown</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="data-structures.html"><a href="data-structures.html"><i class="fa fa-check"></i><b>4</b> Data Structures</a><ul>
+<li class="chapter" data-level="4.1" data-path="data-structures.html"><a href="data-structures.html#vectors"><i class="fa fa-check"></i><b>4.1</b> Vectors</a><ul>
+<li class="chapter" data-level="4.1.1" data-path="data-structures.html"><a href="data-structures.html#types-conversion-and-coercion"><i class="fa fa-check"></i><b>4.1.1</b> Types, Conversion, and Coercion</a></li>
+<li class="chapter" data-level="4.1.2" data-path="data-structures.html"><a href="data-structures.html#accessing-specific-elements-of-vectors"><i class="fa fa-check"></i><b>4.1.2</b> Accessing Specific Elements of Vectors</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="data-structures.html"><a href="data-structures.html#factors"><i class="fa fa-check"></i><b>4.2</b> Factors</a></li>
+<li class="chapter" data-level="4.3" data-path="data-structures.html"><a href="data-structures.html#names-of-objects-in-r"><i class="fa fa-check"></i><b>4.3</b> Names of objects in R</a></li>
+<li class="chapter" data-level="4.4" data-path="data-structures.html"><a href="data-structures.html#missing-data-infinity-etc."><i class="fa fa-check"></i><b>4.4</b> Missing Data, Infinity, etc.</a><ul>
+<li class="chapter" data-level="4.4.1" data-path="data-structures.html"><a href="data-structures.html#infinity-and-nan"><i class="fa fa-check"></i><b>4.4.1</b> Infinity and NaN</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="data-structures.html"><a href="data-structures.html#data-frames"><i class="fa fa-check"></i><b>4.5</b> Data Frames</a><ul>
+<li class="chapter" data-level="4.5.1" data-path="data-structures.html"><a href="data-structures.html#accessing-specific-elements-of-data-frames"><i class="fa fa-check"></i><b>4.5.1</b> Accessing specific elements of data frames</a></li>
+</ul></li>
+<li class="chapter" data-level="4.6" data-path="data-structures.html"><a href="data-structures.html#lists"><i class="fa fa-check"></i><b>4.6</b> Lists</a><ul>
+<li class="chapter" data-level="4.6.1" data-path="data-structures.html"><a href="data-structures.html#accessing-specific-elements-of-lists"><i class="fa fa-check"></i><b>4.6.1</b> Accessing specific elements of lists</a></li>
+</ul></li>
+<li class="chapter" data-level="4.7" data-path="data-structures.html"><a href="data-structures.html#subsetting-with-logical-vectors"><i class="fa fa-check"></i><b>4.7</b> Subsetting with Logical Vectors</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="manipulating-data-with-dplyr.html"><a href="manipulating-data-with-dplyr.html"><i class="fa fa-check"></i><b>5</b> Manipulating Data with <code>dplyr</code></a><ul>
+<li class="chapter" data-level="5.1" data-path="manipulating-data-with-dplyr.html"><a href="manipulating-data-with-dplyr.html#minnesota-tree-growth-data"><i class="fa fa-check"></i><b>5.1</b> Minnesota tree growth data</a></li>
+<li class="chapter" data-level="5.2" data-path="manipulating-data-with-dplyr.html"><a href="manipulating-data-with-dplyr.html#improved-data-frames"><i class="fa fa-check"></i><b>5.2</b> Improved Data Frames</a></li>
+<li class="chapter" data-level="5.3" data-path="manipulating-data-with-dplyr.html"><a href="manipulating-data-with-dplyr.html#filtering-data-by-row"><i class="fa fa-check"></i><b>5.3</b> Filtering Data By Row</a></li>
+<li class="chapter" data-level="5.4" data-path="manipulating-data-with-dplyr.html"><a href="manipulating-data-with-dplyr.html#selecting-variables-by-column"><i class="fa fa-check"></i><b>5.4</b> Selecting Variables by Column</a></li>
+<li class="chapter" data-level="5.5" data-path="manipulating-data-with-dplyr.html"><a href="manipulating-data-with-dplyr.html#pipes"><i class="fa fa-check"></i><b>5.5</b> Pipes</a></li>
+<li class="chapter" data-level="5.6" data-path="manipulating-data-with-dplyr.html"><a href="manipulating-data-with-dplyr.html#arranging-data-by-row"><i class="fa fa-check"></i><b>5.6</b> Arranging Data by Row</a></li>
+<li class="chapter" data-level="5.7" data-path="manipulating-data-with-dplyr.html"><a href="manipulating-data-with-dplyr.html#renaming-variables"><i class="fa fa-check"></i><b>5.7</b> Renaming Variables</a></li>
+<li class="chapter" data-level="5.8" data-path="manipulating-data-with-dplyr.html"><a href="manipulating-data-with-dplyr.html#creating-new-variables"><i class="fa fa-check"></i><b>5.8</b> Creating New Variables</a></li>
+<li class="chapter" data-level="5.9" data-path="manipulating-data-with-dplyr.html"><a href="manipulating-data-with-dplyr.html#data-summaries-and-grouping"><i class="fa fa-check"></i><b>5.9</b> Data Summaries and Grouping</a></li>
+<li class="chapter" data-level="5.10" data-path="manipulating-data-with-dplyr.html"><a href="manipulating-data-with-dplyr.html#counts"><i class="fa fa-check"></i><b>5.10</b> Counts</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="functions-and-programming.html"><a href="functions-and-programming.html"><i class="fa fa-check"></i><b>6</b> Functions and Programming</a><ul>
+<li class="chapter" data-level="6.1" data-path="functions-and-programming.html"><a href="functions-and-programming.html#r-functions"><i class="fa fa-check"></i><b>6.1</b> R Functions</a></li>
+<li class="chapter" data-level="6.2" data-path="functions-and-programming.html"><a href="functions-and-programming.html#programming-conditional-statements"><i class="fa fa-check"></i><b>6.2</b> Programming: Conditional Statements</a><ul>
+<li class="chapter" data-level="6.2.1" data-path="functions-and-programming.html"><a href="functions-and-programming.html#comparison-and-logical-operators"><i class="fa fa-check"></i><b>6.2.1</b> Comparison and Logical Operators</a></li>
+<li class="chapter" data-level="6.2.2" data-path="functions-and-programming.html"><a href="functions-and-programming.html#functions-with-multiple-returns"><i class="fa fa-check"></i><b>6.2.2</b> Functions with Multiple Returns</a></li>
+<li class="chapter" data-level="6.2.3" data-path="functions-and-programming.html"><a href="functions-and-programming.html#creating-functions"><i class="fa fa-check"></i><b>6.2.3</b> Creating functions</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="functions-and-programming.html"><a href="functions-and-programming.html#more-on-functions"><i class="fa fa-check"></i><b>6.3</b> More on Functions</a><ul>
+<li class="chapter" data-level="6.3.1" data-path="functions-and-programming.html"><a href="functions-and-programming.html#calling-functions"><i class="fa fa-check"></i><b>6.3.1</b> Calling Functions</a></li>
+<li class="chapter" data-level="6.3.2" data-path="functions-and-programming.html"><a href="functions-and-programming.html#the-...-argument"><i class="fa fa-check"></i><b>6.3.2</b> The <code>...</code> Argument</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="working-with-data-sources.html"><a href="working-with-data-sources.html"><i class="fa fa-check"></i><b>7</b> Working with Data Sources</a><ul>
+<li class="chapter" data-level="7.1" data-path="working-with-data-sources.html"><a href="working-with-data-sources.html#reading-data-into-r"><i class="fa fa-check"></i><b>7.1</b> Reading Data into R</a></li>
+<li class="chapter" data-level="7.2" data-path="working-with-data-sources.html"><a href="working-with-data-sources.html#reading-data-with-missing-observations"><i class="fa fa-check"></i><b>7.2</b> Reading Data with missing observations</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="spatial-data-visualization-and-analysis.html"><a href="spatial-data-visualization-and-analysis.html"><i class="fa fa-check"></i><b>8</b> Spatial Data Visualization and Analysis</a><ul>
+<li class="chapter" data-level="8.1" data-path="spatial-data-visualization-and-analysis.html"><a href="spatial-data-visualization-and-analysis.html#overview"><i class="fa fa-check"></i><b>8.1</b> Overview</a><ul>
+<li class="chapter" data-level="8.1.1" data-path="spatial-data-visualization-and-analysis.html"><a href="spatial-data-visualization-and-analysis.html#some-spatial-data-packages"><i class="fa fa-check"></i><b>8.1.1</b> Some Spatial Data Packages</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="spatial-data-visualization-and-analysis.html"><a href="spatial-data-visualization-and-analysis.html#motivating-data"><i class="fa fa-check"></i><b>8.2</b> Motivating Data</a></li>
+<li class="chapter" data-level="8.3" data-path="spatial-data-visualization-and-analysis.html"><a href="spatial-data-visualization-and-analysis.html#reading-spatial-data-into-r"><i class="fa fa-check"></i><b>8.3</b> Reading Spatial Data into R</a></li>
+<li class="chapter" data-level="8.4" data-path="spatial-data-visualization-and-analysis.html"><a href="spatial-data-visualization-and-analysis.html#coordinate-reference-systems"><i class="fa fa-check"></i><b>8.4</b> Coordinate Reference Systems</a></li>
+<li class="chapter" data-level="8.5" data-path="spatial-data-visualization-and-analysis.html"><a href="spatial-data-visualization-and-analysis.html#ggmap"><i class="fa fa-check"></i><b>8.5</b> Illustration using <code>ggmap</code></a></li>
+<li class="chapter" data-level="8.6" data-path="spatial-data-visualization-and-analysis.html"><a href="spatial-data-visualization-and-analysis.html#illustration-using-leaflet"><i class="fa fa-check"></i><b>8.6</b> Illustration using <code>leaflet</code></a></li>
+<li class="chapter" data-level="8.7" data-path="spatial-data-visualization-and-analysis.html"><a href="spatial-data-visualization-and-analysis.html#subsetting-spatial-data"><i class="fa fa-check"></i><b>8.7</b> Subsetting Spatial Data</a><ul>
+<li class="chapter" data-level="8.7.1" data-path="spatial-data-visualization-and-analysis.html"><a href="spatial-data-visualization-and-analysis.html#fetching-and-cropping-data-using-raster"><i class="fa fa-check"></i><b>8.7.1</b> Fetching and Cropping Data using <code>raster</code></a></li>
+<li class="chapter" data-level="8.7.2" data-path="spatial-data-visualization-and-analysis.html"><a href="spatial-data-visualization-and-analysis.html#logical-index-and-name-subsetting"><i class="fa fa-check"></i><b>8.7.2</b> Logical, Index, and Name Subsetting</a></li>
+<li class="chapter" data-level="8.7.3" data-path="spatial-data-visualization-and-analysis.html"><a href="spatial-data-visualization-and-analysis.html#spatial-subsetting-and-overlay"><i class="fa fa-check"></i><b>8.7.3</b> Spatial Subsetting and Overlay</a></li>
+<li class="chapter" data-level="8.7.4" data-path="spatial-data-visualization-and-analysis.html"><a href="spatial-data-visualization-and-analysis.html#spatial-aggregation"><i class="fa fa-check"></i><b>8.7.4</b> Spatial Aggregation</a></li>
+</ul></li>
+<li class="chapter" data-level="8.8" data-path="spatial-data-visualization-and-analysis.html"><a href="spatial-data-visualization-and-analysis.html#where-to-go-from-here"><i class="fa fa-check"></i><b>8.8</b> Where to go from here</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="descriptive-statistics-point-estimators-and-interval-estimators.html"><a href="descriptive-statistics-point-estimators-and-interval-estimators.html"><i class="fa fa-check"></i><b>9</b> Descriptive Statistics, Point Estimators, and Interval Estimators</a><ul>
+<li class="chapter" data-level="9.1" data-path="descriptive-statistics-point-estimators-and-interval-estimators.html"><a href="descriptive-statistics-point-estimators-and-interval-estimators.html#descriptive-statistics-101"><i class="fa fa-check"></i><b>9.1</b> Descriptive Statistics 101</a></li>
+<li class="chapter" data-level="9.2" data-path="descriptive-statistics-point-estimators-and-interval-estimators.html"><a href="descriptive-statistics-point-estimators-and-interval-estimators.html#measures-of-central-tendency"><i class="fa fa-check"></i><b>9.2</b> Measures of Central Tendency</a><ul>
+<li class="chapter" data-level="9.2.1" data-path="descriptive-statistics-point-estimators-and-interval-estimators.html"><a href="descriptive-statistics-point-estimators-and-interval-estimators.html#arithmetic-mean"><i class="fa fa-check"></i><b>9.2.1</b> Arithmetic Mean</a></li>
+<li class="chapter" data-level="9.2.2" data-path="descriptive-statistics-point-estimators-and-interval-estimators.html"><a href="descriptive-statistics-point-estimators-and-interval-estimators.html#quadratic-mean"><i class="fa fa-check"></i><b>9.2.2</b> Quadratic Mean</a></li>
+<li class="chapter" data-level="9.2.3" data-path="descriptive-statistics-point-estimators-and-interval-estimators.html"><a href="descriptive-statistics-point-estimators-and-interval-estimators.html#median"><i class="fa fa-check"></i><b>9.2.3</b> Median</a></li>
+<li class="chapter" data-level="9.2.4" data-path="descriptive-statistics-point-estimators-and-interval-estimators.html"><a href="descriptive-statistics-point-estimators-and-interval-estimators.html#mode"><i class="fa fa-check"></i><b>9.2.4</b> Mode</a></li>
+<li class="chapter" data-level="9.2.5" data-path="descriptive-statistics-point-estimators-and-interval-estimators.html"><a href="descriptive-statistics-point-estimators-and-interval-estimators.html#symmetrical-and-skewed-distributions"><i class="fa fa-check"></i><b>9.2.5</b> Symmetrical and Skewed Distributions</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="descriptive-statistics-point-estimators-and-interval-estimators.html"><a href="descriptive-statistics-point-estimators-and-interval-estimators.html#measures-of-dispersion"><i class="fa fa-check"></i><b>9.3</b> Measures of Dispersion</a><ul>
+<li class="chapter" data-level="9.3.1" data-path="descriptive-statistics-point-estimators-and-interval-estimators.html"><a href="descriptive-statistics-point-estimators-and-interval-estimators.html#variance"><i class="fa fa-check"></i><b>9.3.1</b> Variance</a></li>
+<li class="chapter" data-level="9.3.2" data-path="descriptive-statistics-point-estimators-and-interval-estimators.html"><a href="descriptive-statistics-point-estimators-and-interval-estimators.html#standard-deviation"><i class="fa fa-check"></i><b>9.3.2</b> Standard Deviation</a></li>
+<li class="chapter" data-level="9.3.3" data-path="descriptive-statistics-point-estimators-and-interval-estimators.html"><a href="descriptive-statistics-point-estimators-and-interval-estimators.html#coefficient-of-variation"><i class="fa fa-check"></i><b>9.3.3</b> Coefficient of Variation</a></li>
+</ul></li>
+<li class="chapter" data-level="9.4" data-path="descriptive-statistics-point-estimators-and-interval-estimators.html"><a href="descriptive-statistics-point-estimators-and-interval-estimators.html#bias-accuracy-and-precision"><i class="fa fa-check"></i><b>9.4</b> Bias, Accuracy, and Precision</a></li>
+<li class="chapter" data-level="9.5" data-path="descriptive-statistics-point-estimators-and-interval-estimators.html"><a href="descriptive-statistics-point-estimators-and-interval-estimators.html#sumarizing-uncertainty"><i class="fa fa-check"></i><b>9.5</b> Sumarizing Uncertainty</a><ul>
+<li class="chapter" data-level="9.5.1" data-path="descriptive-statistics-point-estimators-and-interval-estimators.html"><a href="descriptive-statistics-point-estimators-and-interval-estimators.html#standard-error-of-the-mean"><i class="fa fa-check"></i><b>9.5.1</b> Standard Error of the Mean</a></li>
+<li class="chapter" data-level="9.5.2" data-path="descriptive-statistics-point-estimators-and-interval-estimators.html"><a href="descriptive-statistics-point-estimators-and-interval-estimators.html#confidence-intervals"><i class="fa fa-check"></i><b>9.5.2</b> Confidence Intervals</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Forestry 472: Ecological Monitoring and Data Analysis</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="descriptive-statistics-point-estimators-and-interval-estimators" class="section level1">
+<h1><span class="header-section-number">Chapter 9</span> Descriptive Statistics, Point Estimators, and Interval Estimators</h1>
+<p>As researchers in the forest and environmental sciences, perhaps the most important thing we do is organize, calculate measures, and present data in a way that makes it easy to understand the information contained in the data. Although this may initially sound simple, there are an immense number of ways to summarize different types of data. Our task is to identify the data type and choose the most <em>appropriate</em> summary measure and/or graphical display for each specific goal we seek to accomplish. In this chapter, we will learn the basic tools necessary to accomplish these tasks. Specifically, we will present a brief overview of possible descriptive statistics, point estimators, and interval estimators to describe a data set, as well as learn the necessary code in <code>R</code> to obtain these estimators and produce basic plots of our data.</p>
+<div id="descriptive-statistics-101" class="section level2">
+<h2><span class="header-section-number">9.1</span> Descriptive Statistics 101</h2>
+<p>Two central concepts to any ecological data set are the population and sample. A <em>Population</em> is a complete set of items that share at least one property in common that is the subject of a statistical analysis. The population is the unit on which we seek inference. If we want to determine the mean DBH of trees in East Lansing, the population is <em>all</em> trees in East Lansing. If we want to determine the mean volume of oak trees in a national park, the population consists of all oak trees in the national park.</p>
+<p>As is clear from these two examples, it is often not reasonable to obtain a measurement for the entire population to answer our question of interest. One of the primary goals of statistics is to use a sample to draw inference about an entire population. A <em>Sample</em> is a subset drawn from the population to represent the population in a statistical analysis. If the sample is selected properly, we can use it to draw inference about the population. We will learn about useful sample schemes in great depth in Chapters <strong>cite chapters here</strong>, but for now we move forward with our initial exploration of descriptive statistics.</p>
+<p>When a sample of data is collected, there is variabiltiy in the different observations. When measuring DBH of trees in a forest stand, there is large variability in the measurements from individual to individual as a result of the species of the indvidual, location, age, measurement error, etc. This creates a <em>distribution</em> of measurements that we can visualize to obtain information regarding our collected sample.</p>
+<p>One simple and useful way to visualize a data distribution is to use a <em>Histogram</em>. Figure <a href="descriptive-statistics-point-estimators-and-interval-estimators.html#fig:hists">9.1</a> displays three very different histograms. A <em>Symmetric</em> distribution is a distribution such that the vertical axis divides the distribution into two identical parts. A <em>Skewed</em> distribution is <em>Asymmetric</em> (cannot be divided into two equal parts along the vertical axis). A <em>Positive Skewed</em> distribution is a distribution that has a long tail to the right, while a <em>Negative Skewed</em> distribution has a long tail to the left. Looking at the data points themselves, it is quite difficult to determine whether or not the data are symmetric or skewed, but it is clear from Figure <a href="descriptive-statistics-point-estimators-and-interval-estimators.html#fig:hists">9.1</a> that creating simple histograms to visualize the data makes it very easy to determine the skewness of the data.</p>
+<div class="figure"><span id="fig:hists"></span>
+<img src="bookdown_files/figure-html/hists-1.png" alt="Symmetric and asymmetric distributions of simulated data" width="33%" /><img src="bookdown_files/figure-html/hists-2.png" alt="Symmetric and asymmetric distributions of simulated data" width="33%" /><img src="bookdown_files/figure-html/hists-3.png" alt="Symmetric and asymmetric distributions of simulated data" width="33%" />
+<p class="caption">
+FIGURE 9.1: Symmetric and asymmetric distributions of simulated data
+</p>
+</div>
+<!-- We can produce very useful visualizations of data distributions using `R` with just a few lines of code. Here we'll work with the FEF Tree Biomass Data Set introduced in Chapter \@ref(data). Below we read in the data using the `read.csv` function and then use the `str()` function to look at the structure of the data set.  -->
+<!-- ```{r} -->
+<!-- fef <- read.csv("../datasets/RDS-2016-0016/Data/felled_tree_biomass.csv") -->
+<!-- str(fef) -->
+<!-- ``` -->
+<!-- The output from the `str` function shows us that there are a total of 88 trees and 18 variables in the data set. Let's take a look at the distribution of the dry stem weight of the trees in the data set by creating a histogram using the simple `hist` function.  -->
+<!-- ```{r} -->
+<!-- hist(x = fef$stem_dry_kg) -->
+<!-- ``` -->
+<!-- What do you notice about the distribution? First you may notice the large variety in the values of `fef$stem_dry_kg`, as the x-axis shows values that range from close to zero to 150. Perhaps more notably, there are clearly a lot of trees with a small dry stem weight and only a few trees with a larger dry stem weight. This type of distribution is said to be *Right Skewed*.  -->
+</div>
+<div id="measures-of-central-tendency" class="section level2">
+<h2><span class="header-section-number">9.2</span> Measures of Central Tendency</h2>
+<p>Visualizing a data set using histograms is a great way to get an idea of the data distribution and common values in the data set, but we typically want a quantitative measure to describe the central tendency, or a typical value, of a data set. We will explore four measures of central tendency:</p>
+<ol style="list-style-type: decimal">
+<li>Arithmetic Mean</li>
+<li>Quadratic Mean</li>
+<li>Median</li>
+<li>Mode</li>
+</ol>
+<div id="arithmetic-mean" class="section level3">
+<h3><span class="header-section-number">9.2.1</span> Arithmetic Mean</h3>
+<p>The arithmetic mean (often called simply the mean) is the unweighted average of a set of data points. There are two arithmetic means of interest to us:</p>
+<ol style="list-style-type: decimal">
+<li>Population</li>
+</ol>
+<span class="math display" id="eq:popMean">\[\begin{equation}
+\mu = \frac{\sum_{i = 1}^Nx_i}{N}
+\tag{9.1}
+\end{equation}\]</span>
+<p>where <span class="math inline">\(N\)</span> is the total number of units in the population, and <span class="math inline">\(x_i\)</span> for <span class="math inline">\(i = 1, 2, \dots N\)</span> are the data points.</p>
+<ol start="2" style="list-style-type: decimal">
+<li>Sample</li>
+</ol>
+<span class="math display" id="eq:sampleMean">\[\begin{equation}
+\bar{x} = \frac{\sum_{i = 1}^nx_i}{n}
+\tag{9.2}
+\end{equation}\]</span>
+<p>where <span class="math inline">\(n\)</span> is the number of sample units.</p>
+<p>The arithmetic mean is a very common summary measure of a data set. However, the arithmetic mean is very sensitive to extreme values and hence it is not always the best summary of central tendency.</p>
+</div>
+<div id="quadratic-mean" class="section level3">
+<h3><span class="header-section-number">9.2.2</span> Quadratic Mean</h3>
+<p>An alternative measure of central tendency is the quadratic mean. Again, we distinguish between the population and sample quadratic means:</p>
+<ol style="list-style-type: decimal">
+<li>Population</li>
+</ol>
+<span class="math display" id="eq:popQuadMean">\[\begin{equation}
+\mu_Q = \sqrt{\frac{\sum_{i = 1}^Nx_i^2}{N}}
+\tag{9.3}
+\end{equation}\]</span>
+<ol start="2" style="list-style-type: decimal">
+<li>Sample</li>
+</ol>
+<span class="math display" id="eq:sampleQuadMean">\[\begin{equation}
+\bar{x}_Q = \sqrt{\frac{\sum_{i = 1}^nx_i^2}{n}}
+\tag{9.4}
+\end{equation}\]</span>
+<p>The quadratic mean is often used in forestry for reporting average stand diameter (i.e., quadratic mean diameter (QMD)). It is common in most yield tables, simulator output, and stand summaries.</p>
+</div>
+<div id="median" class="section level3">
+<h3><span class="header-section-number">9.2.3</span> Median</h3>
+<p>The median is defined as the value in an ordered set of values below and above which there is an equal number of values, or which is the arithmetic mean of the two middle values if there is no one middle number. Unlike the arithmetic mean, the median is unaffected by extreme values, making it an attractive alternative to the mean when a data set is highly skewed or has outliers.</p>
+</div>
+<div id="mode" class="section level3">
+<h3><span class="header-section-number">9.2.4</span> Mode</h3>
+<p>The mode is the value that occurs most frequently in a data set. A distribution could have no mode, one mode (unimodal), two modes (bimodal), or several modes (multimodal). The mode is useful for qualitative and quantiative variables.</p>
+</div>
+<div id="symmetrical-and-skewed-distributions" class="section level3">
+<h3><span class="header-section-number">9.2.5</span> Symmetrical and Skewed Distributions</h3>
+<p>By looking at our four measures of central tendency for both symmetrical and skewed distributions, we can get an idea of how these measures vary under different circumstances. Figure <a href="descriptive-statistics-point-estimators-and-interval-estimators.html#fig:symmetric">9.2</a> shows a symmetrical distribution. A nice property of symmetrical distriutions is that the mean and median coincide.</p>
+<div class="figure"><span id="fig:symmetric"></span>
+<img src="bookdown_files/figure-html/symmetric-1.png" alt="Measures of central tendency in a symmetric distribution." width="672" />
+<p class="caption">
+FIGURE 9.2: Measures of central tendency in a symmetric distribution.
+</p>
+</div>
+<p>Looking at Figures <a href="descriptive-statistics-point-estimators-and-interval-estimators.html#fig:rightSkewed">9.3</a> and <a href="descriptive-statistics-point-estimators-and-interval-estimators.html#fig:leftSkewed">9.4</a> this is clearly not the case. In a positive skewed distribution, the distribution is skewed to the right (i.e., positive skew). The arithmetic mean is larger than the median, while the quadratic mean is larger than the arithmetic mean. On the other hand, a negative skewed distribution is skewed to the left (i.e., negative skew). In this case, the arithmetic mean is smaller than the median, while the quadratic mean is larger than the arithmetic mean. Note how in both types of skewness, the quadratic mean is larger than the arithmetic mean.</p>
+<div class="figure"><span id="fig:rightSkewed"></span>
+<img src="bookdown_files/figure-html/rightSkewed-1.png" alt="Measures of central tendency for a positive skewed distribution" width="672" />
+<p class="caption">
+FIGURE 9.3: Measures of central tendency for a positive skewed distribution
+</p>
+</div>
+<div class="figure"><span id="fig:leftSkewed"></span>
+<img src="bookdown_files/figure-html/leftSkewed-1.png" alt="Measures of central tendency for a left skewed distribution" width="672" />
+<p class="caption">
+FIGURE 9.4: Measures of central tendency for a left skewed distribution
+</p>
+</div>
+</div>
+</div>
+<div id="measures-of-dispersion" class="section level2">
+<h2><span class="header-section-number">9.3</span> Measures of Dispersion</h2>
+<p>Note that up until this point, we have only considered describing a data set by a single measure of central tendency. While useful, a single measure of central tendency, a type of <em>Point Estimate</em>, does not provide us with any information regarding the <em>variability</em> or <em>dispersion</em> of a data set. Understanding the dispersion of a set of data is arguably equally important as understanding the central tendencies of the data as well.</p>
+<p>To motivate our exploration of measures of dispersion, consider the following two forest stands shown in Figures <a href="descriptive-statistics-point-estimators-and-interval-estimators.html#fig:evenForest">9.5</a> and <a href="descriptive-statistics-point-estimators-and-interval-estimators.html#fig:unevenForest">9.6</a>. Suppose the two forest stands had the same mean DBH. If we were to solely focus on this mean value, we would not recognize any differences in DBH between the two stands. However, there are clear differences when looking at the images. The trees in <a href="descriptive-statistics-point-estimators-and-interval-estimators.html#fig:evenForest">9.5</a> all appear to have very similar DBH values. In other words, there is small dispersion around the mean. On the other hand, the trees in <a href="descriptive-statistics-point-estimators-and-interval-estimators.html#fig:unevenForest">9.6</a> have a wide range of DBH values; there is a large dispersion around the mean.</p>
+<div class="figure"><span id="fig:evenForest"></span>
+<img src="09-descStats/evenForest.png" alt="A forest with small variability in DBH across individual trees." width="50%" />
+<p class="caption">
+FIGURE 9.5: A forest with small variability in DBH across individual trees.
+</p>
+</div>
+<div class="figure"><span id="fig:unevenForest"></span>
+<img src="09-descStats/unevenForest.png" alt="A forest with large variability in DBH across individual trees." width="50%" />
+<p class="caption">
+FIGURE 9.6: A forest with large variability in DBH across individual trees.
+</p>
+</div>
+<p>Thus we see that when reporting values it will be important for us to include measures of central tendency as well as measures of variability around this measure. Here we will briefly explore five measures of dispersion:</p>
+<ol style="list-style-type: decimal">
+<li>Variance</li>
+<li>Standard Deviation</li>
+<li>Coefficient of Variation</li>
+<li>Range</li>
+<li>Inter-quartile Range</li>
+</ol>
+<div id="variance" class="section level3">
+<h3><span class="header-section-number">9.3.1</span> Variance</h3>
+<p>One of the most common measures of dispersion is <strong>Variance</strong>. The variance is a measure of variation of individual values around their mean. Similarly to our measures of central tendency, we distinguish between the population variance and the sample variance:</p>
+<p>Population:</p>
+<p><span class="math display">\[
+\sigma^2 = \frac{\sum_{i = 1}^N(x_i - \mu)^2}{N}
+\]</span></p>
+<p>where <span class="math inline">\(\mu\)</span> is the population mean and <span class="math inline">\(N\)</span> is the total number of units in the population.</p>
+<p>Sample:</p>
+<p><span class="math display">\[
+s^2 = \frac{\sum_{i = 1}^n(x_i - \bar{x})^2}{n - 1}
+\]</span></p>
+<p>where <span class="math inline">\(\bar{x}\)</span> is the sample mean and <span class="math inline">\(n\)</span> is the number of sample units. The numerator <span class="math inline">\(\sum_{i = 1}^n(x_i - \bar{x})^2\)</span> is an important value known as the <em>Sum of Squares</em>.</p>
+</div>
+<div id="standard-deviation" class="section level3">
+<h3><span class="header-section-number">9.3.2</span> Standard Deviation</h3>
+<p>The standard deviation is simply the square root of the variance, and thus also represents a measure of variation of individual values about their mean:</p>
+<p>Population</p>
+<p><span class="math display">\[
+\sigma = \sqrt{\sigma^2}
+\]</span> Sample</p>
+<p><span class="math display">\[
+s = \sqrt{s^2}
+\]</span></p>
+</div>
+<div id="coefficient-of-variation" class="section level3">
+<h3><span class="header-section-number">9.3.3</span> Coefficient of Variation</h3>
+<p>The coefficient of variation is the standard deviation expressed as a percentage of the mean. We will primarily use the sample coefficient of variation:</p>
+<p><span class="math display">\[
+\text{C.V.} = \frac{s}{\bar{x}} \times 100
+\]</span></p>
+</div>
+</div>
+<div id="bias-accuracy-and-precision" class="section level2">
+<h2><span class="header-section-number">9.4</span> Bias, Accuracy, and Precision</h2>
+</div>
+<div id="sumarizing-uncertainty" class="section level2">
+<h2><span class="header-section-number">9.5</span> Sumarizing Uncertainty</h2>
+<p>A <strong>Point Estimate</strong> is a single value given as an estimate for a population parameter. They are typically measures of a sample’s central tendency (or derived from such estimates, like sample totals or population totals). As we have noted earlier in our discussion on dispersion estimates, a point estimate is not that useful if we don’t provide a measure of how certain (or uncertain) we are in that value. In fact, you should always be very skeptical if you are reading a publication or any article that provides a point estimate without any uncertainty estimation. This idea was summarized quite succinctly by Frank Freese, a statistician with the Forest Service:</p>
+<blockquote>
+<p>We have it on good authority that “you can fool all of the people some of the time”. The oldest device for misleading folks is the barefaced lie. A method that is nearly as effective and far more subtle is to report a sample estimate without any indication of its reliability.</p>
+</blockquote>
+<p>Statistics is the science of uncertainty, and so we will always seek to obtain point estimates for our data at hand and provide the associated measures of uncertainty regarding those point estimates. To do this requires the use of some of the measures of dispersion we previously introduced.</p>
+<div id="standard-error-of-the-mean" class="section level3">
+<h3><span class="header-section-number">9.5.1</span> Standard Error of the Mean</h3>
+<p>Recall the standard deviation <span class="math inline">\(s\)</span> is a relatively intuitive measure of variation of individual sample observations about their mean (where <span class="math inline">\(s = \sqrt{s^2}\)</span> and <span class="math inline">\(s^2\)</span> is the sample variance). Now, suppose we draw <span class="math inline">\(m\)</span> different samples of size <span class="math inline">\(n\)</span> from a population, and we then calculate the mean for each of the <span class="math inline">\(m\)</span> different samples (i.e., we have <span class="math inline">\(m\)</span> different means). The <em>Standard Error</em> is a measure of variation of sample means about their mean (i.e., a measure of the variation of the <span class="math inline">\(m\)</span> different means around the mean of those <span class="math inline">\(m\)</span> different means). It is perhaps easiest to think of the standard error as the “standard deviation” among the means of <span class="math inline">\(m\)</span> samples, where <span class="math inline">\(m\)</span> is large.</p>
+<p>The standard error is a very useful measure that you will likely encounter on a daily basis. In this text, we use the standard error of the mean for two things:</p>
+<ol style="list-style-type: decimal">
+<li>Computing confidence intervals for the population parameters (e.g, mean, total). In this case, it allows us to answer the question “how certain are we in our point estimate”.</li>
+<li>Determining the sample size required to achieve a specified level of certainty in a population parameter estimate. In this case, it allows us to answer the question “how many samples should we collect?”.</li>
+</ol>
+<p>Clearly these are two questions we want to know the answers to. We will first focus on the first question. But before we tackle that question, we need to define the standard error of the mean so we can calculate it.</p>
+<p>Given one simple random sample of size <span class="math inline">\(n\)</span> from our population of interest, the standard error of the mean is calculated as:</p>
+<span class="math display">\[\begin{equation}
+s_{\bar{x}} = \sqrt{\frac{s^2}{n}} = \frac{s}{\sqrt{n}}
+\end{equation}\]</span>
+</div>
+<div id="confidence-intervals" class="section level3">
+<h3><span class="header-section-number">9.5.2</span> Confidence Intervals</h3>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="spatial-data-visualization-and-analysis.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="references.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": null,
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"download": ["bookdown.pdf"],
+"toc": {
+"collapse": "none"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
